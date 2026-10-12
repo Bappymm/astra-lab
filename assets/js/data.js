@@ -21,7 +21,7 @@ window.LAB_DATA = {
   site: {
     labShort: "ASTRA Lab",
     labName: "ASTRA Lab",
-    tagline: "AI and Digital Twin For Advanced Manufacturing and Smart Systems",
+    tagline: "AI & Digital Twin for Advanced Manufacturing and Smart Systems",
     department: "Department of Mechanical & Industrial Engineering, Louisiana State University",
     location: "Baton Rouge, Louisiana, USA",
     logo: "assets/images/logo.svg",
@@ -41,7 +41,25 @@ window.LAB_DATA = {
   home: {
     heroTitle: "Welcome to ASTRA Lab",
     heroSubtitle:
-      "Advanced sensing, analytics, and embodied intelligence for resilient cyber-physical systems.",
+      "AI & Digital Twin for Advanced Manufacturing and Smart Systems",
+
+    /* Rotating animated panels under the hero. Each entry pairs a caption with
+       one of the built-in animations, chosen by "art":
+         "printing"  — additive manufacturing print head laying down layers
+         "twin"      — a machine and its synchronized digital twin
+         "factory"   — robotic arm and conveyor on a smart factory line
+         "ai"        — neural network turning sensor data into decisions
+       Reorder or reword freely; drop an entry to remove that panel. */
+    showcase: [
+      { art: "printing", title: "Advanced Manufacturing",
+        text: "In-situ, layer-wise monitoring and certification of additive processes." },
+      { art: "twin", title: "Digital Twin",
+        text: "Physical assets mirrored by synchronized, physics-informed virtual models." },
+      { art: "factory", title: "Smart Systems",
+        text: "Robotics, sensing, and automation working together on the factory floor." },
+      { art: "ai", title: "Artificial Intelligence",
+        text: "Machine learning that turns streaming sensor data into real-time decisions." }
+    ],
     image: "assets/images/bappy.webp", // Dr. Bappy — swap for a lab group photo later if desired
     aboutLead:
       "ASTRA Lab, led by Dr. Mahathir Mohammad Bappy in the Department of Mechanical & " +
