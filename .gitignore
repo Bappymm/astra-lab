@@ -1,0 +1,13 @@
+# Local tooling / editor state
+.claude/
+.vscode/
+.idea/
+
+# OneDrive & OS cruft
+desktop.ini
+Thumbs.db
+ehthumbs.db
+.DS_Store
+
+# Logs
+*.log
