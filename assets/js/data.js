@@ -21,8 +21,7 @@ window.LAB_DATA = {
   site: {
     labShort: "CRISP Lab",
     labName: "CRISP Lab",
-    // TODO: confirm what CRISP stands for, then fill this tagline in.
-    tagline: "Cyber-physical Resilient & Intelligent Systems and Processes", // TODO confirm acronym
+    tagline: "Cyber-physical Resilient & Intelligent Systems and Processes",
     department: "Department of Mechanical & Industrial Engineering, Louisiana State University",
     location: "Baton Rouge, Louisiana, USA",
     logo: "assets/images/logo.svg",
