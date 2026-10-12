@@ -153,7 +153,7 @@
                 '<svg viewBox="0 0 640 270" role="img" aria-label="' + esc(it.title) + '">' +
                 art + "</svg></div>";
       dots += '<button type="button" data-i="' + i + '" aria-selected="' + (i === 0) +
-              '" aria-label="Show ' + esc(it.title) + '"></button>';
+              '" data-label="' + esc(it.title) + '" aria-label="Show ' + esc(it.title) + '"></button>';
     });
 
     host.innerHTML =

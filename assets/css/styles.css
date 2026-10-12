@@ -246,7 +246,8 @@ p { margin-bottom: var(--space-md); color: var(--text-secondary); }
    ========================================================================= */
 .showcase {
   background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 70%, var(--primary-light) 100%);
-  padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  /* Extra bottom padding leaves room for the dots' hover tooltips. */
+  padding: var(--space-xl) var(--space-lg) 3.25rem;
   border-bottom: 3px solid var(--accent-bright);
 }
 .showcase-inner { max-width: 820px; margin: 0 auto; }
@@ -347,9 +348,107 @@ p { margin-bottom: var(--space-md); color: var(--text-secondary); }
 }
 
 @media (max-width: 768px) {
-  .showcase { padding: var(--space-lg) var(--space-md); }
+  .showcase { padding: var(--space-lg) var(--space-md) 3rem; }
   .showcase-stage { height: 190px; }
   .showcase-caption { min-height: 92px; }
+}
+
+/* =========================================================================
+   Interactive polish — hover / focus states
+   One consistent vocabulary across every page: things lift slightly, gain a
+   gold accent, and reveal a little more detail under the cursor. Everything
+   here is decorative; it is all switched off under prefers-reduced-motion
+   at the end of this block.
+   ========================================================================= */
+
+/* ---- top navigation: gold underline sliding in ---- */
+.nav-links a { position: relative; }
+.nav-links a::after {
+  content: ""; position: absolute; left: var(--space-md); right: var(--space-md); bottom: 4px;
+  height: 2px; background: var(--accent-bright); border-radius: 2px;
+  transform: scaleX(0); transform-origin: left; transition: transform var(--transition-normal);
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+/* The sliding underline replaces the active link's static border, so the
+   two don't stack into a double rule. */
+.nav-links a.active::after { transform: scaleX(1); }
+.nav-links a.active { border-bottom-color: transparent; }
+.nav-toggle { transition: transform var(--transition-fast), color var(--transition-fast); }
+.nav-toggle:hover { transform: scale(1.12); color: var(--primary-dark); }
+
+/* ---- sidebar contact chips: lift + gold edge + glow ---- */
+.sidebar-links a { transition: all var(--transition-normal); }
+.sidebar-links a:hover {
+  background: rgba(253,208,35,.16);
+  border-color: var(--accent-bright);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.28);
+}
+.sidebar-logo { transition: transform var(--transition-normal); }
+.sidebar-logo:hover { transform: scale(1.05) rotate(-3deg); }
+
+/* ---- cards: existing lift, plus image zoom and a warming title ---- */
+.card-image, .team-card-image { transition: transform 450ms ease; }
+.card:hover .card-image, .team-card:hover .team-card-image { transform: scale(1.06); }
+.card:hover, .team-card:hover { border-color: var(--accent-bright); }
+.card:hover .card-title, .team-card:hover .team-card-name { color: var(--primary-dark); }
+.director-card { transition: box-shadow var(--transition-normal); }
+.director-card:hover { box-shadow: var(--shadow-lg); }
+
+/* ---- news + publication rows: gold marker slides out of the left edge ---- */
+.news-item, .publication-item {
+  position: relative; padding-left: 0;
+  transition: padding-left var(--transition-normal), background var(--transition-normal);
+}
+.news-item::before, .publication-item::before {
+  content: ""; position: absolute; left: 0; top: 50%; width: 3px; height: 0;
+  background: var(--accent-bright); border-radius: 2px;
+  transform: translateY(-50%); transition: height var(--transition-normal);
+}
+.news-item:hover, .publication-item:hover { padding-left: var(--space-md); background: var(--bg-light); }
+.news-item:hover::before, .publication-item:hover::before { height: 70%; }
+
+/* ---- award cards: lift and thicken the accent rule ---- */
+.award-card { transition: all var(--transition-normal); }
+.award-card:hover {
+  transform: translateX(4px);
+  border-left-width: 7px;
+  background: var(--bg-gray);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---- buttons ---- */
+.btn-primary:hover { box-shadow: var(--shadow-md); }
+.btn-outline:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.team-card-links a, .card-links a { transition: all var(--transition-fast); }
+.team-card-links a:hover, .card-links a:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+
+/* ---- showcase dots: grow, glow, and name their panel ---- */
+.showcase-dots button { position: relative; }
+.showcase-dots button:hover { background: #fff; transform: scaleY(1.8) scaleX(1.06); }
+.showcase-dots button[aria-selected="true"]:hover { background: var(--accent-bright); }
+.showcase-dots button::after {
+  content: attr(data-label);
+  /* Below the dots: above them it would cover the caption mid-sentence. */
+  position: absolute; top: calc(100% + 11px); left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  background: rgba(20,8,38,.92); color: #fff; font-size: .72rem; font-weight: 600;
+  letter-spacing: .01em; padding: 5px 10px; border-radius: var(--radius-sm);
+  white-space: nowrap; opacity: 0; pointer-events: none;
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+.showcase-dots button:hover::after,
+.showcase-dots button:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-links a::after { transition: none; }
+  .sidebar-links a:hover, .sidebar-logo:hover, .award-card:hover,
+  .btn-outline:hover, .team-card-links a:hover, .card-links a:hover,
+  .nav-toggle:hover, .showcase-dots button:hover { transform: none; }
+  .card:hover .card-image, .team-card:hover .team-card-image { transform: none; }
+  .card-image, .team-card-image, .news-item, .publication-item,
+  .award-card, .sidebar-links a, .showcase-dots button::after { transition: none; }
 }
 
 /* ---------- Responsive ---------- */
