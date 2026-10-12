@@ -8,5 +8,5 @@
   <circle cx="60" cy="60" r="58" fill="url(#g)"/>
   <circle cx="60" cy="60" r="58" fill="none" stroke="#FDD023" stroke-width="3"/>
   <text x="60" y="72" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700"
-        fill="#ffffff" text-anchor="middle">CRISP</text>
+        fill="#ffffff" text-anchor="middle">ASTRA</text>
 </svg>

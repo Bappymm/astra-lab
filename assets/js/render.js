@@ -1,5 +1,5 @@
 /* ============================================================================
-   CRISP Lab — rendering engine
+   ASTRA Lab — rendering engine
    Builds the shared sidebar / nav / footer and fills each page from data.js.
    You normally do NOT need to edit this file — edit data.js instead.
    ============================================================================ */
@@ -113,7 +113,7 @@
         about.innerHTML =
           "<div><p style='font-size:1.1rem;color:var(--text-primary)'>" + esc(h.aboutLead) + "</p>" +
           "<p>" + esc(h.aboutBody) + "</p></div>" +
-          (h.image ? "<div><img src='" + esc(h.image) + "' alt='CRISP Lab' " +
+          (h.image ? "<div><img src='" + esc(h.image) + "' alt='ASTRA Lab' " +
              "onerror=\"this.style.display='none'\"></div>" : "");
       }
       if (el("hero-title")) el("hero-title").textContent = h.heroTitle || "";

@@ -1,5 +1,5 @@
 /* ============================================================================
-   CRISP LAB — WEBSITE CONTENT
+   ASTRA LAB — WEBSITE CONTENT
    ----------------------------------------------------------------------------
    This is the ONLY file you normally need to edit to update the website.
    Change the text/links below, save, and refresh the page. No coding needed.
@@ -19,9 +19,9 @@ window.LAB_DATA = {
   /*  SITE / LAB IDENTITY  (shown in the sidebar on every page)             */
   /* ---------------------------------------------------------------------- */
   site: {
-    labShort: "CRISP Lab",
-    labName: "CRISP Lab",
-    tagline: "Cyber-physical Resilient & Intelligent Systems and Processes",
+    labShort: "ASTRA Lab",
+    labName: "ASTRA Lab",
+    tagline: "AI and Digital Twin For Advanced Manufacturing and Smart Systems",
     department: "Department of Mechanical & Industrial Engineering, Louisiana State University",
     location: "Baton Rouge, Louisiana, USA",
     logo: "assets/images/logo.svg",
@@ -39,12 +39,12 @@ window.LAB_DATA = {
   /*  HOME PAGE                                                             */
   /* ---------------------------------------------------------------------- */
   home: {
-    heroTitle: "Welcome to CRISP Lab",
+    heroTitle: "Welcome to ASTRA Lab",
     heroSubtitle:
       "Advanced sensing, analytics, and embodied intelligence for resilient cyber-physical systems.",
     image: "assets/images/bappy.webp", // Dr. Bappy — swap for a lab group photo later if desired
     aboutLead:
-      "CRISP Lab, led by Dr. Mahathir Mohammad Bappy in the Department of Mechanical & " +
+      "ASTRA Lab, led by Dr. Mahathir Mohammad Bappy in the Department of Mechanical & " +
       "Industrial Engineering at Louisiana State University, develops data-driven and " +
       "physics-informed methods to monitor, understand, and control complex engineered systems.",
     aboutBody:
@@ -59,8 +59,8 @@ window.LAB_DATA = {
   /*  NEWS  (newest first — shown on the Home page)                         */
   /* ---------------------------------------------------------------------- */
   news: [
-    { date: "Aug 2024", text: "Dr. Mahathir Mohammad Bappy joined Louisiana State University as an Assistant Professor and founded CRISP Lab." },
-    { date: "2024", text: "CRISP Lab is recruiting fully-funded Ph.D. students interested in Machine Learning, Advanced Manufacturing, Privacy-Preserving ML, and Computer Vision. See the Join page." }
+    { date: "Aug 2024", text: "Dr. Mahathir Mohammad Bappy joined Louisiana State University as an Assistant Professor and founded ASTRA Lab." },
+    { date: "2024", text: "ASTRA Lab is recruiting fully-funded Ph.D. students interested in Machine Learning, Advanced Manufacturing, Privacy-Preserving ML, and Computer Vision. See the Join page." }
     // Add newer items ABOVE this line, following the same pattern.
   ],
 
@@ -280,7 +280,7 @@ window.LAB_DATA = {
   /* ---------------------------------------------------------------------- */
   join: {
     intro:
-      "CRISP Lab is looking for motivated students who want to work at the intersection of " +
+      "ASTRA Lab is looking for motivated students who want to work at the intersection of " +
       "data science, machine learning, and engineered physical systems.",
     phd:
       "We have fully-funded Ph.D. openings for students with experience or strong interest in " +

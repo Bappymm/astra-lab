@@ -1,6 +1,6 @@
-# CRISP Lab — Website
+# ASTRA Lab — Website
 
-A lightweight, no-build static website for the CRISP Lab (Dr. Mahathir Mohammad Bappy,
+A lightweight, no-build static website for the ASTRA Lab (Dr. Mahathir Mohammad Bappy,
 Department of Mechanical & Industrial Engineering, Louisiana State University).
 
 Everything you normally need to change lives in **one file**: `assets/js/data.js`.
@@ -86,7 +86,6 @@ No Jekyll or build configuration is needed — these are plain static files.
 ---
 
 ## Items to confirm (placeholders)
-- **What "CRISP" stands for** — the sidebar tagline in `site.tagline` is a guess.
 - **Lab group photo** for the home page (`home.image`) — currently a student photo.
 - **LSU email addresses** for the Ph.D. students.
 - Education/degree details marked `TODO` in `team`.
