@@ -111,6 +111,7 @@ window.LAB_DATA = {
     { date: "Jun 2026", type: "award", text: "Md Shafikul Islam won 2nd Place, Best Track Paper (Health Systems Track), and 3rd Place in the DAIS Student Data Analytics Competition at the IISE Annual Conference 2026." },
     { date: "Apr 2026", type: "paper", text: "Preprint posted on feature-aware anisotropic local differential privacy for graph learning in metal additive manufacturing (arXiv:2604.05077)." },
     { date: "2026", type: "paper", text: "New journal papers in The International Journal of Advanced Manufacturing Technology, Applied Water Science, IISE Transactions on Healthcare Systems Engineering, Polymer Composites, and the International Journal of System Assurance Engineering and Management." },
+    { date: "2025", type: "paper", text: "New papers in Water on seasonal water quality dynamics in Louisiana waste stabilization ponds, and in Sustainability on hybrid drone and truck delivery optimization with geospatial analytics." },
     { date: "Nov 2025", type: "paper", text: "Interpretable dissolved-oxygen forecasting with a foundation model for proactive aeration in rural wastewater treatment published in Water Research." },
     { date: "Oct 2025", type: "talk", text: "Md Shafikul Islam presented two works at the INFORMS Annual Meeting 2025, including privacy-aware porosity prediction with hierarchical graph attention networks, and was runner-up in the Stakeholder Engagement Data Challenge." },
     { date: "Jul 2025", type: "grant", text: "NSF LAMDA Seed Grant awarded for physics-informed machine learning for process defect detection and fatigue modeling in wire arc additive manufacturing." },
@@ -450,6 +451,8 @@ window.LAB_DATA = {
       tags: ["Foundation Models", "Water & Energy", "Supply Chains"],
       links: [
         { label: "Water Research 2025", url: "https://doi.org/10.1016/j.watres.2025.124931" },
+        { label: "Water 2025", url: "https://www.mdpi.com/2073-4441/17/20/2936" },
+        { label: "Sustainability 2025", url: "https://doi.org/10.3390/su172310775" },
         { label: "Appl. Water Sci. 2026", url: "https://doi.org/10.1007/s13201-025-02698-6" },
         { label: "JCP 2019", url: "https://doi.org/10.1016/j.jclepro.2019.117771" }
       ]
@@ -610,11 +613,13 @@ window.LAB_DATA = {
   /* ---------------------------------------------------------------------- */
   publications: [
     // ---- Journal Articles ----
-    { category: "journal", year: 2026, authors: "Islam, M. D. S., Bappy, M. M., Tushar, S. R., Zamiela, C., & Wasi, A. T.", title: "Beyond local receptive fields: vision transformers for real-time surface defect detection in FDM", venue: "The International Journal of Advanced Manufacturing Technology, 1–22", link: "https://doi.org/10.1007/s00170-026-17846-8" },
+    { category: "journal", year: 2026, authors: "Islam, M. D. S., Bappy, M. M., Tushar, S. R., Zamiela, C., & Wasi, A. T.", title: "Beyond local receptive fields: vision transformers for real-time surface defect detection in FDM", venue: "The International Journal of Advanced Manufacturing Technology, 143(9–10), 5399–5420", link: "https://doi.org/10.1007/s00170-026-17846-8" },
     { category: "journal", year: 2026, authors: "Islam, M. S., Anik, M. A., Wasi, A. T., & Bappy, M. M.", title: "Fracture Finder: Computer-aided real-time diagnosis of vertebral fractures in thoracic spine X-rays using YOLOv8 with weighted box fusion and augmentation strategies", venue: "IISE Transactions on Healthcare Systems Engineering, 1–18", link: "https://doi.org/10.1080/24725579.2025.2598578" },
     { category: "journal", year: 2026, authors: "Martinez De La Hoz, J., Islam, M. D. S., Bappy, M. M., & Hayes, M. P.", title: "AI-enabled modeling for smart rural wastewater treatment systems: current practices and remaining gaps", venue: "Applied Water Science, 16, 40", link: "https://doi.org/10.1007/s13201-025-02698-6" },
     { category: "journal", year: 2026, authors: "Pan, D., Al Mamun, A., Zhou, R., Bappy, M. M., & Islam, M. S.", title: "Comprehensive and comparative characterizations of tensile properties and fracture mechanisms of 3D printed multifunctional carbon-fiber and metal-filled PLA composite parts", venue: "Polymer Composites, 47(3), 2282–2300", link: "https://doi.org/10.1002/pc.70281" },
     { category: "journal", year: 2026, authors: "Hosen, M. I., Mithun, A. C., Tushar, S. R., Alam, M. F. B., Islam, M. D., & Bappy, M. M.", title: "Advancing industry 4.0 and lean-driven ergonomic insights for sustainable textile manufacturing", venue: "International Journal of System Assurance Engineering and Management, 1–31", link: "" },
+    { category: "journal", year: 2025, authors: "Quddus, M. A., Rahman, M. F., & Bappy, M. M.", title: "Hybrid drone and truck delivery optimization in remote areas using geospatial analytics", venue: "Sustainability, 17(23), 10775", link: "https://doi.org/10.3390/su172310775" },
+    { category: "journal", year: 2025, authors: "Marcantel, M., Bappy, M. M., & Hayes, M. P.", title: "Investigating seasonal water quality dynamics in humid, subtropical Louisiana facultative waste stabilization ponds", venue: "Water, 17(20), 2936", link: "https://www.mdpi.com/2073-4441/17/20/2936" },
     { category: "journal", year: 2025, authors: "De La Hoz, J. L. M., Bappy, M. M., Islam, M. S., Marcantel, M., & Hayes, M. P.", title: "Interpretable forecasting of dissolved oxygen leveraging foundation model for proactive aeration in rural wastewater treatment systems", venue: "Water Research, 124931", link: "https://doi.org/10.1016/j.watres.2025.124931" },
     { category: "journal", year: 2025, authors: "Shakibaei, H., Islam, M. S., & Bappy, M. M.", title: "A fuzzy data-driven framework for enhanced risk management decision-making in manufacturing: A case study", venue: "Manufacturing Letters, 44, 1681–1688", link: "https://doi.org/10.1016/j.mfglet.2025.06.187" },
     { category: "journal", year: 2025, authors: "Biswas, S., Al Mamun, A., Islam, M. D. S., & Bappy, M. M.", title: "Interpretable CNN models for computationally efficient bearing fault diagnosis using learnable Gaussian/Sinc filters", venue: "Manufacturing Letters, 44, 110–120", link: "https://doi.org/10.1016/j.mfglet.2025.06.015" },
