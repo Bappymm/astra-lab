@@ -7,59 +7,76 @@
   <meta name="description" content="ASTRA Lab at Louisiana State University — AI and digital twins for advanced manufacturing and smart systems.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
 </head>
 <body data-page="home">
-  <div class="page-wrapper">
-    <aside class="sidebar" id="sidebar"></aside>
-    <main class="main-content">
-      <nav class="nav" id="nav"></nav>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header"></header>
+  <main id="main">
+    <section class="hero" id="hero" aria-label="Introduction"></section>
 
-      <section class="page-header">
-        <h1 id="hero-title">Welcome to ASTRA Lab</h1>
-        <p id="hero-sub"></p>
-      </section>
+    <section class="stats-band" aria-label="Lab at a glance"><div class="stats" id="stats"></div></section>
 
-      <section class="showcase" id="showcase" aria-label="What we work on"></section>
-
-      <section class="stats-band" aria-label="Lab at a glance"><div class="stats" id="stats"></div></section>
-
-      <div class="container">
-        <section class="section">
-          <div class="about-grid" id="about"></div>
-        </section>
-
-        <section class="section">
-          <div class="section-head">
-            <h2 class="section-title">Research Highlights</h2>
-            <a class="more-link" href="research.html">All research &rarr;</a>
-          </div>
-          <div class="hl-grid" id="home-highlights"></div>
-        </section>
-
-        <section class="section">
-          <div class="director-spotlight" id="spotlight"></div>
-        </section>
-
-        <section class="section">
-          <h2 class="section-title">Latest Updates</h2>
-          <div class="news-box"><ul class="news-list" id="news"></ul></div>
-        </section>
-      </div>
-
-      <section class="marquee-band" aria-label="Photos from our research">
-        <div class="marquee-head">
-          <h2>Research in Action</h2>
-          <a class="more-link" href="gallery.html">View gallery &rarr;</a>
+    <div class="container">
+      <section class="section">
+        <div class="section-head">
+          <div><span class="eyebrow">What we do</span><h2 class="section-title">Research Thrusts</h2></div>
+          <a class="more-link" href="research.html">All research &rarr;</a>
         </div>
-        <div class="marquee" id="marquee"></div>
+        <div class="thrust-grid" id="home-thrusts"></div>
+      </section>
+    </div>
+
+    <section class="showcase" id="showcase" aria-label="How our research works"></section>
+
+    <div class="container">
+      <section class="section">
+        <div class="section-head">
+          <div><span class="eyebrow">Recent work</span><h2 class="section-title">Current Research</h2></div>
+          <a class="more-link" href="research.html#projects-sec">All projects &rarr;</a>
+        </div>
+        <div class="proj-grid" id="home-projects"></div>
       </section>
 
-      <footer class="footer" id="footer"></footer>
-    </main>
-  </div>
+      <section class="section">
+        <div class="about-grid" id="about"></div>
+      </section>
+
+      <section class="section">
+        <div class="news-spot">
+          <div>
+            <div class="section-head"><div><span class="eyebrow">What's new</span><h2 class="section-title">News</h2></div></div>
+            <ul class="news-list" id="news"></ul>
+          </div>
+          <aside class="spotlight" id="spotlight" aria-label="Lab director"></aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div><span class="eyebrow">Facilities</span><h2 class="section-title">Inside the Lab</h2></div>
+          <a class="more-link" href="research.html#facilities">All equipment &rarr;</a>
+        </div>
+        <div class="fac-strip" id="home-facilities"></div>
+      </section>
+    </div>
+
+    <section class="marquee-band" aria-label="Photos from our research">
+      <div class="marquee-head">
+        <h2>Research in Action</h2>
+        <a class="more-link" href="gallery.html">View gallery &rarr;</a>
+      </div>
+      <div class="marquee" id="marquee"></div>
+    </section>
+
+    <section class="sponsors-band" aria-label="Research support">
+      <span class="sponsors-label">Research supported by</span>
+      <div class="sponsors" id="sponsors"></div>
+    </section>
+  </main>
+  <footer class="footer" id="footer"></footer>
   <script src="assets/js/data.js"></script>
   <script src="assets/js/render.js"></script>
 </body>

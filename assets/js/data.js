@@ -18,7 +18,7 @@
 window.LAB_DATA = {
 
   /* ---------------------------------------------------------------------- */
-  /*  SITE / LAB IDENTITY  (shown in the sidebar on every page)             */
+  /*  SITE / LAB IDENTITY  (shown in the header and footer)             */
   /* ---------------------------------------------------------------------- */
   site: {
     labShort: "ASTRA Lab",
@@ -41,12 +41,31 @@ window.LAB_DATA = {
   /*  HOME PAGE                                                             */
   /* ---------------------------------------------------------------------- */
   home: {
-    heroTitle: "Welcome to ASTRA Lab",
-    heroSubtitle:
-      "AI & Digital Twin for Advanced Manufacturing and Smart Systems",
+    heroTitle: "ASTRA Lab",
+    heroSubtitle: "AI & Digital Twin for Advanced Manufacturing and Smart Systems",
+    heroText:
+      "We build trustworthy AI, digital twins, and sensing systems that monitor, certify, and " +
+      "control the machines and processes behind modern manufacturing.",
 
-    /* Rotating animated panels under the hero. Each entry pairs a caption with
-       one of the built-in animations, chosen by "art":
+    /* Full-screen photos behind the home-page title. They cross-fade in this
+       order. Use wide photos where possible; the centre of each is kept. */
+    heroSlides: [
+      { image: "assets/images/hero-digital-twin.webp",
+        caption: "Digital twin of a robotic additive manufacturing cell (illustration)" },
+      { image: "assets/images/gal-3d-scanning.webp",
+        caption: "3D scanning a printed part for in-process quality monitoring" },
+      { image: "assets/images/gal-machine-fault-simulator.webp",
+        caption: "Machine fault simulator instrumented for condition monitoring" },
+      { image: "assets/images/resource-creality-ender3.webp",
+        caption: "Large-format FDM printing in the ASTRA Lab" },
+      { image: "assets/images/gal-xct-lab.webp",
+        caption: "X-ray computed tomography for non-destructive inspection" },
+      { image: "assets/images/resource-seeed-arm.webp",
+        caption: "Robotic manipulation experiments in the ASTRA Lab" }
+    ],
+
+    /* Rotating animated panels. Each entry pairs a caption with one of the
+       built-in animations, chosen by "art":
          "printing"  — additive manufacturing print head laying down layers
          "twin"      — a machine and its synchronized digital twin
          "factory"   — robotic arm and conveyor on a smart factory line
@@ -62,31 +81,39 @@ window.LAB_DATA = {
       { art: "ai", title: "Artificial Intelligence",
         text: "Machine learning that turns streaming sensor data into real-time decisions." }
     ],
-    image: "assets/images/gal-3d-scanning.webp", // swap for a lab group photo later if desired
-    imageCaption: "3D scanning a printed part for in-process quality monitoring",
+
+    image: "assets/images/gal-las-2025-lsua.webp", // a team photo works best here
+    imageCaption: "ASTRA Lab members at the Louisiana Academy of Sciences Annual Meeting, LSU Alexandria",
     aboutLead:
       "ASTRA Lab, led by Dr. Mahathir Mohammad Bappy in the Department of Mechanical & " +
       "Industrial Engineering at Louisiana State University, develops data-driven and " +
       "physics-informed methods to monitor, understand, and control complex engineered systems.",
     aboutBody:
-      "Our research focuses on advanced sensing and analytics for systems informatics, " +
-      "privacy-preserving modeling, digital twins, physics-informed machine learning, and " +
-      "expert human–AI collaboration. Applications span smart manufacturing, additive " +
-      "manufacturing, cyber-physical security, robotic systems, energy and water systems " +
-      "resilience, sustainability, and engineering education."
+      "We combine multimodal sensing, machine learning, and digital twins to make manufacturing " +
+      "more reliable, secure, and sustainable — from certifying metal parts layer by layer and " +
+      "protecting design data on cloud platforms, to diagnosing machine faults in real time and " +
+      "forecasting the behavior of water and energy systems."
   },
 
   /* ---------------------------------------------------------------------- */
   /*  NEWS  (newest first — shown on the Home page)                         */
   /* ---------------------------------------------------------------------- */
+  // type: paper | award | grant | talk | milestone | people   (sets the tag colour)
   news: [
-    { date: "2026", text: "New paper in The International Journal of Advanced Manufacturing Technology: vision transformers for real-time surface defect detection in FDM." },
-    { date: "2026", text: "Published in Applied Water Science: AI-enabled modeling for smart rural wastewater treatment systems — current practices and remaining gaps." },
-    { date: "2025", text: "Adaptive thermal history de-identification for privacy-preserving data sharing in directed energy deposition published in the Journal of Computing and Information Science in Engineering." },
-    { date: "Aug 2024", text: "Dr. Mahathir Mohammad Bappy joined Louisiana State University as an Assistant Professor and founded ASTRA Lab." },
-    { date: "2024", text: "ASTRA Lab is recruiting fully-funded Ph.D. students interested in Machine Learning, Advanced Manufacturing, Privacy-Preserving ML, and Computer Vision. See the Join page." },
-    { date: "2024", text: "Dr. Bappy received the NSF Student/Early Career Researcher Travel Award." },
-    { date: "2024", text: "Dr. Bappy received the ISE “Outstanding Graduate Student Researcher” Award (2023–2024) at Mississippi State University." }
+    { date: "Aug 2026", type: "milestone", text: "Md Shafikul Islam earned his M.S. in Industrial Engineering (thesis option) at LSU with the thesis “Trustworthy Artificial Intelligence for Real-Time Quality Assurance in Additive Manufacturing.”" },
+    { date: "Jun 2026", type: "talk", text: "Entropy-aware model predictive control for transient quality mitigation in metal additive manufacturing presented at the LSU Control Systems Symposium." },
+    { date: "Jun 2026", type: "award", text: "Md Shafikul Islam won 2nd Place, Best Track Paper (Health Systems Track), and 3rd Place in the DAIS Student Data Analytics Competition at the IISE Annual Conference 2026." },
+    { date: "Apr 2026", type: "paper", text: "Preprint posted on feature-aware anisotropic local differential privacy for graph learning in metal additive manufacturing (arXiv:2604.05077)." },
+    { date: "2026", type: "paper", text: "New journal papers in The International Journal of Advanced Manufacturing Technology, Applied Water Science, IISE Transactions on Healthcare Systems Engineering, Polymer Composites, and the International Journal of System Assurance Engineering and Management." },
+    { date: "Nov 2025", type: "paper", text: "Interpretable dissolved-oxygen forecasting with a foundation model for proactive aeration in rural wastewater treatment published in Water Research." },
+    { date: "Oct 2025", type: "talk", text: "Md Shafikul Islam presented two works at the INFORMS Annual Meeting 2025, including privacy-aware porosity prediction with hierarchical graph attention networks, and was runner-up in the Stakeholder Engagement Data Challenge." },
+    { date: "Jul 2025", type: "grant", text: "NSF LAMDA Seed Grant awarded for physics-informed machine learning for process defect detection and fatigue modeling in wire arc additive manufacturing." },
+    { date: "Jun 2025", type: "award", text: "Md Shafikul Islam’s team won the IISE Innovative Design Competition, and he placed 2nd runner-up in the QCRE Data Challenge at the IISE Annual Conference 2025." },
+    { date: "Mar 2025", type: "award", text: "Md Shafikul Islam received the Best Graduate Oral Presentation award at the Louisiana Academy of Sciences 99th Annual Meeting for foundation-model-driven modeling of critical materials." },
+    { date: "Feb 2025", type: "grant", text: "Selected for the NSF Southwest I-Corps IdeaLaunch program with a privacy-preserving certification framework for additive-manufacturing-as-a-service platforms (Md Shafikul Islam, Entrepreneurial Lead)." },
+    { date: "Jan 2025", type: "people", text: "Md Shafikul Islam joined ASTRA Lab as a Ph.D. student in Industrial Engineering." },
+    { date: "2025", type: "paper", text: "Three papers published in Manufacturing Letters, and a paper on adaptive thermal history de-identification published in the Journal of Computing and Information Science in Engineering." },
+    { date: "Aug 2024", type: "milestone", text: "Dr. Mahathir Mohammad Bappy joined Louisiana State University as an Assistant Professor and founded ASTRA Lab." }
     // Add newer items at the TOP of this list, following the same pattern.
   ],
 
@@ -104,6 +131,7 @@ window.LAB_DATA = {
     scholar: "https://scholar.google.com/citations?user=FRV5XRUAAAAJ&hl=en",
     researchgate: "https://www.researchgate.net/profile/Mahathir-Bappy-2",
     linkedin: "https://www.linkedin.com/in/mahathir-mohammad-bappy-b122a978/",
+    lsuProfile: "https://www.lsu.edu/eng/mie/people/faculty/bappy.php",
     interests: [
       "Systems Informatics", "Additive Manufacturing", "Digital Twins",
       "Privacy-Preserving AI", "Physics-Informed Machine Learning",
@@ -239,6 +267,39 @@ window.LAB_DATA = {
   },
 
   /* ---------------------------------------------------------------------- */
+  /*  TEACHING EXTRAS — shown on the Teaching page                        */
+  /*  Courses themselves live in director.teaching above.                 */
+  /* ---------------------------------------------------------------------- */
+  teachingPage: {
+    intro:
+      "Dr. Bappy has taught manufacturing processes, engineering mechanics, advanced manufacturing " +
+      "systems, and system modeling and simulation at Mississippi State University and Shahjalal " +
+      "University of Science and Technology, bringing nearly four years of manufacturing industry " +
+      "experience into the classroom.",
+    // TODO add current LSU courses here, e.g. { code: "IE 0000", title: "...", term: "Fall 2025" }
+    lsuCourses: [],
+    // Theses and research projects supervised
+    mentoring: [
+      { name: "Md Shafikul Islam", level: "M.S. Thesis, Industrial Engineering, LSU", year: "2026",
+        title: "Trustworthy Artificial Intelligence for Real-Time Quality Assurance in Additive Manufacturing",
+        link: "https://repository.lsu.edu/gradschool_theses/6431/" },
+      { name: "Undergraduate researchers", level: "Bio-manufacturing project, Mississippi State University", year: "",
+        title: "Mechanical and rheology testing of 3D-printed composite bone scaffolds",
+        link: "" },
+      { name: "Undergraduate theses", level: "Industrial and Production Engineering, SUST", year: "2018–2019",
+        title: "Supervised undergraduate thesis projects as a Lecturer",
+        link: "" }
+    ],
+    // Teaching-development certifications (titles must match director.certifications)
+    development: [
+      "Preparing Future Faculty",
+      "Online Teaching 101: Best Practices in Online Instruction",
+      "Teaching, Learning and Assessment",
+      "Science Communication"
+    ]
+  },
+
+  /* ---------------------------------------------------------------------- */
   /*  TEAM                                                                  */
   /*  category: "director" | "phd" | "ms" | "undergrad" | "alumni"          */
   /* ---------------------------------------------------------------------- */
@@ -272,27 +333,29 @@ window.LAB_DATA = {
     {
       name: "Md Shafikul Islam",
       category: "phd",
-      position: "Ph.D. Student | Graduate Research Assistant",
+      position: "Ph.D. Student, Industrial Engineering",
+      since: "2025",
       image: "assets/images/md-shafikul-islam.png",
-      education: "M.S. / B.Sc., Mechanical & Industrial Engineering",
-      interests: "Physical AI for Manufacturing, Learned Dynamics, Digital Twins, Edge Deployment",
+      education: "M.S. Industrial Engineering, LSU (2026) · B.Sc. Industrial & Production Engineering, SUST",
+      interests: "Physical AI for Manufacturing, Trustworthy & Privacy-Preserving AI, Predictive Control, Edge AI",
       bio:
-        "Md Shafikul Islam is a Ph.D. student in Mechanical and Industrial Engineering working on " +
-        "cyber-physical intelligence for additive manufacturing — moving from post-build inspection " +
-        "to predictive, safety-aware, and adaptive process autonomy. He works at the intersection of " +
-        "physics-based modeling, uncertainty-aware machine learning, and real-time robotic control.",
-      email: "", // TODO add LSU email
-      linkedin: "https://www.linkedin.com/in/md-shafikul-islam-sohan",
-      scholar: "",
+        "Shafikul works on trustworthy and transferable autonomy for cyber-physical manufacturing " +
+        "systems — multimodal in-process sensing, learned process dynamics and digital twins, " +
+        "model predictive control, and real-time edge deployment for metal additive manufacturing. " +
+        "He earned his M.S. at LSU in 2026 with a thesis on trustworthy AI for real-time quality " +
+        "assurance in additive manufacturing.",
+      email: "misla79@lsu.edu",
+      linkedin: "https://www.linkedin.com/in/md-shafikul-islam-sohan/",
+      scholar: "https://scholar.google.com/citations?user=A8KOQBEAAAAJ&hl=en",
       website: "https://shafikul-islam.github.io"
     },
     {
       name: "Saifur Rahman Tushar",
       category: "phd",
-      position: "Ph.D. Student | Graduate Research Assistant",
+      position: "Ph.D. Student, Industrial Engineering",
       image: "assets/images/saifur-rahman-tushar.webp",
       education: "M.Sc. in Industrial & Production Engineering", // TODO confirm
-      interests: "Industrial Engineering, Sustainable Manufacturing, Supply Chain, Multi-Criteria Decision Making",
+      interests: "Sustainable Manufacturing, Supply Chain Resilience, Multi-Criteria Decision Making",
       bio:
         "Saifur Rahman Tushar is a Ph.D. student and Graduate Research Assistant in Mechanical and " +
         "Industrial Engineering at LSU. He previously served as an Assistant Professor at Bangladesh " +
@@ -305,92 +368,98 @@ window.LAB_DATA = {
     }
 
     // ---- Add more members below by copying a block above and editing it.
-    // Example undergraduate:
-    // {
-    //   name: "Full Name", category: "undergrad",
-    //   position: "Undergraduate Researcher",
-    //   image: "assets/images/placeholder.svg",
-    //   interests: "...", bio: "...",
-    //   email: "", linkedin: "", website: ""
-    // }
+    // category "ms", "undergrad" or "alumni" sections appear automatically
+    // once they have at least one member.
   ],
 
   /* ---------------------------------------------------------------------- */
-  /*  RESEARCH AREAS                                                        */
+  /*  RESEARCH THRUSTS                                                      */
   /*  fit: "contain" shows a whole figure (diagrams); omit it for photos.   */
   /* ---------------------------------------------------------------------- */
+  // icon: printer | twin | shield | gear | leaf | pulse   (small symbol on each card)
   research: [
     {
-      title: "Cyber-Physical Intelligence for Additive Manufacturing",
+      title: "In-Situ Sensing & Quality Assurance for Additive Manufacturing",
+      icon: "printer",
       image: "assets/images/fig-melt-pool-morphology.webp", fit: "contain",
       description:
-        "In-situ, layer-wise process monitoring and certification for metal additive manufacturing " +
-        "using thermal imaging, melt-pool morphology dynamics, physics-informed models, and " +
-        "uncertainty-aware machine learning.",
-      tags: ["Metal AM", "Thermal Imaging", "In-situ Certification"],
+        "Layer-wise monitoring and certification of metal and polymer additive manufacturing using " +
+        "thermal imaging, melt-pool morphology dynamics, laser-scan depth maps, and vision transformers " +
+        "that flag defects while the part is still being built.",
+      tags: ["Metal AM", "Thermal Imaging", "Vision Transformers"],
       links: [
         { label: "JMSE 2022", url: "https://doi.org/10.1115/1.4054805" },
-        { label: "JMP 2022", url: "https://doi.org/10.1016/j.jmapro.2021.12.041" }
+        { label: "IJAMT 2026", url: "https://doi.org/10.1007/s00170-026-17846-8" }
       ]
     },
     {
-      title: "Privacy-Preserving Modeling for Smart Manufacturing",
+      title: "Digital Twins & Predictive Process Control",
+      icon: "twin",
+      image: "assets/images/fig-entropy-mpc.webp", fit: "contain",
+      description:
+        "Physics-informed and data-driven process models that link in-process measurements to part " +
+        "quality, and model predictive controllers that act on them — such as using the spectral " +
+        "entropy of arc sound to correct restart transients in wire arc additive manufacturing.",
+      tags: ["Digital Twins", "Model Predictive Control", "Physics-Informed ML"],
+      links: [
+        { label: "LSU Control Symposium 2026", url: "https://doi.org/10.31390/lsucontrol.26.12" }
+      ]
+    },
+    {
+      title: "Trustworthy & Privacy-Preserving Manufacturing AI",
+      icon: "shield",
       image: "assets/images/fig-amaas-privacy.webp", fit: "contain",
       description:
-        "Methods such as thermal-history de-identification and federated learning that let " +
-        "manufacturers collaborate and share process data on cloud platforms without exposing " +
-        "sensitive design information.",
-      tags: ["Data Privacy", "Cloud Manufacturing", "Federated Learning"],
+        "Methods that let manufacturers share process data on cloud platforms without exposing " +
+        "sensitive designs — thermal-history de-identification, federated learning, and local " +
+        "differential privacy for graph learning — with interpretable, uncertainty-aware models.",
+      tags: ["Data Privacy", "Graph Learning", "Explainable AI"],
       links: [
-        { label: "Manuf. Letters 2023", url: "https://doi.org/10.1016/j.mfglet.2023.03.004" }
+        { label: "Manuf. Letters 2023", url: "https://doi.org/10.1016/j.mfglet.2023.03.004" },
+        { label: "arXiv 2026", url: "https://arxiv.org/abs/2604.05077" }
       ]
     },
     {
-      title: "Real-Time Fault Diagnosis for Rotary Machinery",
+      title: "Condition Monitoring & Smart Systems",
+      icon: "gear",
       image: "assets/images/fig-sensor-fusion.webp", fit: "contain",
       description:
-        "Multi-channel vibro-acoustic sensor fusion, tensor decomposition, and interpretable deep " +
-        "learning for real-time bearing fault diagnosis, missing-signal imputation, and predictive maintenance.",
-      tags: ["Sensor Fusion", "Tensor Methods", "Predictive Maintenance"],
+        "Multi-channel vibro-acoustic sensor fusion, tensor methods, and interpretable deep learning " +
+        "for real-time fault diagnosis, missing-signal imputation, and predictive maintenance of " +
+        "rotating machinery and robotic systems.",
+      tags: ["Sensor Fusion", "Fault Diagnosis", "Robotics"],
       links: [
-        { label: "IJAMT 2023", url: "https://doi.org/10.1007/s00170-022-10525-4" }
+        { label: "IJAMT 2023", url: "https://doi.org/10.1007/s00170-022-10525-4" },
+        { label: "Manuf. Letters 2025", url: "https://doi.org/10.1016/j.mfglet.2025.06.015" }
       ]
     },
     {
-      title: "Bio-Manufacturing for Bone Tissue Engineering",
-      image: "assets/images/gal-bioprinter-lab.webp",
-      description:
-        "3D bioprinting of polymer–ceramic composite bone scaffolds, with image-based process " +
-        "parameter optimization, XCT characterization, and finite element modeling for accurate, " +
-        "repeatable fabrication.",
-      tags: ["Bioprinting", "Process Optimization", "XCT"],
-      links: []
-    },
-    {
-      title: "Sustainable & Resilient Supply Chains",
-      image: "assets/images/fig-dempster-shafer.webp", fit: "contain",
-      description:
-        "Evidential reasoning and data-fusion models that quantify the sustainability, social " +
-        "impact, and cyber resilience of manufacturing supply chains.",
-      tags: ["Evidential Reasoning", "Sustainability", "Cyber Resilience"],
-      links: [
-        { label: "JCP 2019", url: "https://doi.org/10.1016/j.jclepro.2019.117771" },
-        { label: "CIRP JMST 2021", url: "https://doi.org/10.1016/j.cirpj.2021.09.008" },
-        { label: "GJFSM 2022", url: "https://doi.org/10.1007/s40171-021-00295-5" }
-      ]
-    },
-    {
-      title: "AI for Water & Energy Systems Resilience",
+      title: "AI for Sustainable & Resilient Systems",
+      icon: "leaf",
       image: "assets/images/research-water-energy.svg", fit: "contain",
       description:
-        "Foundation-model-based forecasting and data-driven modeling for proactive control of rural " +
-        "wastewater treatment and sustainable energy systems.",
-      tags: ["Foundation Models", "Forecasting", "Wastewater"],
+        "Foundation-model forecasting and data-driven decision support for rural wastewater " +
+        "treatment, energy systems, critical materials, and sustainable, resilient supply chains.",
+      tags: ["Foundation Models", "Water & Energy", "Supply Chains"],
       links: [
-        { label: "Appl. Water Sci. 2026", url: "https://doi.org/10.1007/s13201-025-02386-4" }
+        { label: "Water Research 2025", url: "https://doi.org/10.1016/j.watres.2025.124931" },
+        { label: "Appl. Water Sci. 2026", url: "https://doi.org/10.1007/s13201-025-02698-6" },
+        { label: "JCP 2019", url: "https://doi.org/10.1016/j.jclepro.2019.117771" }
+      ]
+    },
+    {
+      title: "AI for Healthcare & Bio-Manufacturing",
+      icon: "pulse",
+      image: "assets/images/gal-bioprinter-lab.webp",
+      description:
+        "Real-time medical image analysis and 3D bioprinting of composite bone scaffolds, with " +
+        "image-based process optimization, XCT characterization, and finite element modeling.",
+      tags: ["Medical Imaging", "Bioprinting", "Process Optimization"],
+      links: [
+        { label: "IISE THSE 2026", url: "https://doi.org/10.1080/24725579.2025.2598578" }
       ]
     }
-    // Add more research areas by copying a block above.
+    // Add more research thrusts by copying a block above.
   ],
 
   /* ---------------------------------------------------------------------- */
@@ -451,29 +520,89 @@ window.LAB_DATA = {
   ],
 
   /* ---------------------------------------------------------------------- */
-  /*  RESEARCH SUPPORT — sponsors of the director's doctoral research       */
+  /*  CURRENT LAB PROJECTS — recent work by ASTRA Lab members             */
   /* ---------------------------------------------------------------------- */
+  projects: [
+    {
+      title: "Entropy-Aware Model Predictive Control for Transient Quality Mitigation in Wire Arc Additive Manufacturing",
+      image: "assets/images/fig-entropy-mpc.webp",
+      status: "Poster · LSU Control Systems Symposium 2026",
+      tags: ["Process Control", "Acoustic Sensing", "WAAM"],
+      summary:
+        "Restart transients in wire arc additive manufacturing can be invisible in current and " +
+        "voltage signals. The spectral entropy of the arc sound serves as a control state, letting a " +
+        "model predictive controller apply a front-loaded heat correction that shortens recovery " +
+        "(simulation and surrogate-model study).",
+      links: [{ label: "DOI", url: "https://doi.org/10.31390/lsucontrol.26.12" }]
+    },
+    {
+      title: "Feature-Aware Anisotropic Local Differential Privacy for Graph Learning in Metal AM",
+      image: "assets/images/fig-graph-privacy.webp",
+      status: "Under major revision · ASME JCISE",
+      tags: ["Graph ML", "Privacy", "Additive Manufacturing"],
+      summary:
+        "Embedding-level local differential privacy with feature-aware, anisotropic noise, combined " +
+        "with a layer-wise graph attention network, enables collaborative porosity detection across " +
+        "manufacturers while preserving much of the non-private accuracy.",
+      links: [{ label: "arXiv", url: "https://arxiv.org/abs/2604.05077" }]
+    },
+    {
+      title: "Vision Transformers for Real-Time Surface Defect Detection in FDM",
+      image: "assets/images/fig-vit-fdm.webp",
+      status: "The International Journal of Advanced Manufacturing Technology · 2026",
+      tags: ["Vision Transformers", "Quality Assurance", "Real-Time"],
+      summary:
+        "An optimized vision transformer on laser-scan depth maps uses global self-attention to " +
+        "detect spatially distributed surface anomalies during fused deposition modeling in real time.",
+      links: [{ label: "DOI", url: "https://doi.org/10.1007/s00170-026-17846-8" }]
+    },
+    {
+      title: "Fracture Finder: Real-Time Vertebral Fracture Localization on Thoracic Spine X-Rays",
+      image: "assets/images/fig-fracture-finder.webp",
+      status: "IISE Transactions on Healthcare Systems Engineering · 2026",
+      tags: ["Medical Imaging", "YOLOv8", "Real-Time"],
+      summary:
+        "A single-stage YOLOv8 detector with targeted augmentation and weighted box fusion localizes " +
+        "suspected vertebral fractures on thoracic spine X-rays in about 126 ms per image.",
+      links: [{ label: "DOI", url: "https://doi.org/10.1080/24725579.2025.2598578" }]
+    }
+  ],
+
+  /* ---------------------------------------------------------------------- */
+  /*  RESEARCH SUPPORT — lab funding and the director's doctoral support   */
+  /* ---------------------------------------------------------------------- */
+  // scope: "lab" (ASTRA Lab projects) | "doctoral" (the director's Ph.D. research at MSU)
   funding: [
-    { sponsor: "National Science Foundation", short: "NSF", award: "CMMI-2046515",
+    { scope: "lab", sponsor: "National Science Foundation — LAMDA Seed Grant", short: "NSF", award: "2025",
+      project: "Physics-informed machine learning for process defect detection and fatigue modeling in wire arc additive manufacturing" },
+    { scope: "lab", sponsor: "NSF Southwest I-Corps — IdeaLaunch Program", short: "I-Corps", award: "2025",
+      project: "Privacy-preserving certification framework for additive-manufacturing-as-a-service platforms" },
+    { scope: "doctoral", sponsor: "National Science Foundation", short: "NSF", award: "CMMI-2046515",
       project: "Data analytics and statistical learning in additive manufacturing" },
-    { sponsor: "Department of Defense", short: "DoD", award: "Institute of Systems Engineering Research (ISER)",
+    { scope: "doctoral", sponsor: "Department of Defense", short: "DoD", award: "Institute of Systems Engineering Research (ISER)",
       project: "Condition monitoring and diagnosis of complex manufacturing systems" },
-    { sponsor: "National Science Foundation", short: "NSF", award: "",
+    { scope: "doctoral", sponsor: "National Science Foundation", short: "NSF", award: "",
       project: "Bio-manufacturing for bone tissue engineering" }
   ],
 
   /* ---------------------------------------------------------------------- */
   /*  PUBLICATIONS                                                          */
-  /*  category: "journal" | "conference" | "preprint" | "talk" | "poster"   */
+  /*  category: journal | conference | preprint | talk | poster | thesis    */
   /*  The lab director's name is highlighted automatically.                 */
   /* ---------------------------------------------------------------------- */
   publications: [
     // ---- Journal Articles ----
-    { category: "journal", year: 2026, authors: "Islam, M. D. S., Bappy, M. M., Tushar, S. R., Zamiela, C., & Wasi, A. T.", title: "Beyond local receptive fields: vision transformers for real-time surface defect detection in FDM", venue: "The International Journal of Advanced Manufacturing Technology", link: "" },
-    { category: "journal", year: 2026, authors: "De La Hoz, J. M., Islam, M. D. S., Bappy, M. M., & Hayes, M. P.", title: "AI-enabled modeling for smart rural wastewater treatment systems: current practices and remaining gaps", venue: "Applied Water Science, 16(2), 40", link: "https://doi.org/10.1007/s13201-025-02386-4" },
-    { category: "journal", year: 2025, authors: "Biswas, S., Al Mamun, A., Islam, M. D. S., & Bappy, M. M.", title: "Interpretable CNN models for computationally efficient bearing fault diagnosis using learnable Gaussian/Sinc filters", venue: "Manufacturing Letters, 44, 110–120", link: "" },
-    { category: "journal", year: 2025, authors: "Ahsan, M. N., Islam, M. D. S., & Bappy, M. M.", title: "Generative modeling in smart manufacturing: Applications, challenges, and future directions", venue: "Manufacturing Letters, 44, 1285–1295", link: "" },
-    { category: "journal", year: 2025, authors: "Bappy, M. M., Fullington, D., Bian, L., & Tian, W.", title: "Adaptive Thermal History De-Identification for Privacy-Preserving Data Sharing of Directed Energy Deposition Processes", venue: "Journal of Computing and Information Science in Engineering, 25(3)", link: "" },
+    { category: "journal", year: 2026, authors: "Islam, M. D. S., Bappy, M. M., Tushar, S. R., Zamiela, C., & Wasi, A. T.", title: "Beyond local receptive fields: vision transformers for real-time surface defect detection in FDM", venue: "The International Journal of Advanced Manufacturing Technology, 1–22", link: "https://doi.org/10.1007/s00170-026-17846-8" },
+    { category: "journal", year: 2026, authors: "Islam, M. S., Anik, M. A., Wasi, A. T., & Bappy, M. M.", title: "Fracture Finder: Computer-aided real-time diagnosis of vertebral fractures in thoracic spine X-rays using YOLOv8 with weighted box fusion and augmentation strategies", venue: "IISE Transactions on Healthcare Systems Engineering, 1–18", link: "https://doi.org/10.1080/24725579.2025.2598578" },
+    { category: "journal", year: 2026, authors: "Martinez De La Hoz, J., Islam, M. D. S., Bappy, M. M., & Hayes, M. P.", title: "AI-enabled modeling for smart rural wastewater treatment systems: current practices and remaining gaps", venue: "Applied Water Science, 16, 40", link: "https://doi.org/10.1007/s13201-025-02698-6" },
+    { category: "journal", year: 2026, authors: "Pan, D., Al Mamun, A., Zhou, R., Bappy, M. M., & Islam, M. S.", title: "Comprehensive and comparative characterizations of tensile properties and fracture mechanisms of 3D printed multifunctional carbon-fiber and metal-filled PLA composite parts", venue: "Polymer Composites, 47(3), 2282–2300", link: "https://doi.org/10.1002/pc.70281" },
+    { category: "journal", year: 2026, authors: "Hosen, M. I., Mithun, A. C., Tushar, S. R., Alam, M. F. B., Islam, M. D., & Bappy, M. M.", title: "Advancing industry 4.0 and lean-driven ergonomic insights for sustainable textile manufacturing", venue: "International Journal of System Assurance Engineering and Management, 1–31", link: "" },
+    { category: "journal", year: 2025, authors: "De La Hoz, J. L. M., Bappy, M. M., Islam, M. S., Marcantel, M., & Hayes, M. P.", title: "Interpretable forecasting of dissolved oxygen leveraging foundation model for proactive aeration in rural wastewater treatment systems", venue: "Water Research, 124931", link: "https://doi.org/10.1016/j.watres.2025.124931" },
+    { category: "journal", year: 2025, authors: "Shakibaei, H., Islam, M. S., & Bappy, M. M.", title: "A fuzzy data-driven framework for enhanced risk management decision-making in manufacturing: A case study", venue: "Manufacturing Letters, 44, 1681–1688", link: "https://doi.org/10.1016/j.mfglet.2025.06.187" },
+    { category: "journal", year: 2025, authors: "Biswas, S., Al Mamun, A., Islam, M. D. S., & Bappy, M. M.", title: "Interpretable CNN models for computationally efficient bearing fault diagnosis using learnable Gaussian/Sinc filters", venue: "Manufacturing Letters, 44, 110–120", link: "https://doi.org/10.1016/j.mfglet.2025.06.015" },
+    { category: "journal", year: 2025, authors: "Ahsan, M. N., Islam, M. D. S., & Bappy, M. M.", title: "Generative modeling in smart manufacturing: Applications, challenges, and future directions", venue: "Manufacturing Letters, 44, 1285–1295", link: "https://doi.org/10.1016/j.mfglet.2025.06.148" },
+    { category: "journal", year: 2025, authors: "Islam, M. S., Tushar, S. R., Bappy, M. M., Ali, M., & Al Nadim, A.", title: "Evaluating challenges to the adoption of smart textiles in readymade garment industries: Implications for sustainable business development", venue: "Green Technologies and Sustainability, 3(3), 100225", link: "https://doi.org/10.1016/j.grets.2025.100225" },
+    { category: "journal", year: 2025, authors: "Bappy, M. M., Fullington, D., Bian, L., & Tian, W.", title: "Adaptive thermal history de-identification for privacy-preserving data sharing of directed energy deposition processes", venue: "Journal of Computing and Information Science in Engineering, 25(3)", link: "" },
     { category: "journal", year: 2024, authors: "Fullington, D., Yangue, E., Bappy, M. M., Liu, C., & Tian, W.", title: "Leveraging small-scale datasets for additive manufacturing process modeling and part certification: Current practice and remaining gaps", venue: "Journal of Manufacturing Systems, 75, 306–321", link: "" },
     { category: "journal", year: 2024, authors: "Bappy, M. M., Epps, E. V., Priddy, L. B., & Tian, W.", title: "Parameter optimization for accurate and repeatable strut width in the 3D printing of composite bone scaffolds", venue: "Journal of Manufacturing Processes, 131, 1631–1641", link: "" },
     { category: "journal", year: 2023, authors: "Al Mamun, A., Bappy, M. M., Mudiyanselage, A. S., Li, J., Jiang, Z., Tian, Z., Fuller, S., Falls, T. C., Bian, L., & Tian, W.", title: "Multi-channel sensor fusion for real-time bearing fault diagnosis by frequency-domain multilinear principal component analysis", venue: "The International Journal of Advanced Manufacturing Technology, 124(3–4), 1321–1334", link: "https://doi.org/10.1007/s00170-022-10525-4" },
@@ -489,9 +618,15 @@ window.LAB_DATA = {
     { category: "journal", year: 2015, authors: "Karim, R., & Bappy, M. M.", title: "Identification of significant factors for value-in-use assessment of product service system in business to business sector", venue: "International Journal of Advanced Multidisciplinary Research, 2(3), 16–27", link: "" },
 
     // ---- Preprints ----
+    { category: "preprint", year: 2026, authors: "Islam, M. S., Bappy, M. M., Tushar, S. R., & Arifuzzaman, M.", title: "Feature-aware anisotropic local differential privacy for utility-preserving graph representation learning in metal additive manufacturing", venue: "arXiv:2604.05077 (under major revision, ASME Journal of Computing and Information Science in Engineering)", link: "https://arxiv.org/abs/2604.05077" },
+    { category: "preprint", year: 2026, authors: "Monteiro, C., Bappy, M. M., Nahmens, I., & Islam, M. S.", title: "An integrated decision-support framework for energy benchmarking, anomaly detection, and proxy setpoint optimization in data-limited retail portfolios", venue: "SSRN working paper 6410730", link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6410730" },
     { category: "preprint", year: 2024, authors: "Wasi, A. T., Islam, M. D. S., Akib, A. R., & Bappy, M. M.", title: "Graph neural networks in supply chain analytics and optimization: Concepts, perspectives, dataset and benchmarks", venue: "arXiv preprint arXiv:2411.08550", link: "https://arxiv.org/abs/2411.08550" },
 
-    // ---- Conference Proceedings ----
+    // ---- Conference Papers & Proceedings ----
+    { category: "conference", year: 2025, authors: "Islam, M. S., & Bappy, M. M.", title: "Privacy-aware porosity prediction in metal additive manufacturing using hierarchical graph attention networks", venue: "INFORMS Annual Meeting", link: "" },
+    { category: "conference", year: 2025, authors: "Islam, M. S., & Bappy, M. M.", title: "Inference-driven strategy design for professional societies: A hybrid machine learning and scenario simulation framework", venue: "INFORMS Annual Meeting", link: "" },
+    { category: "conference", year: 2025, authors: "Islam, M. S., & Bappy, M. M.", title: "Explainable vision transformer-based real-time anomaly detection for fused deposition modeling", venue: "IISE Annual Conference and Expo", link: "" },
+    { category: "conference", year: 2025, authors: "Islam, M. S., Bappy, M. M., De La Hoz, D., Martinez, J. L., & Chowdhury, S.", title: "Foundation model-driven predictive and interpretable modeling for critical materials in renewable energy applications", venue: "Proceedings of the 99th Annual Meeting of the Louisiana Academy of Sciences (Best Graduate Oral Presentation)", link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5248814" },
     { category: "conference", year: 2024, authors: "Nguimfack, R. T., Bappy, M. M., Al Mamun, A., & Tian, W.", title: "Domain adaptation between heterogeneous time series data: A case study on real-time rotary machinery fault diagnosis", venue: "52nd SME North American Manufacturing Research Conference (NAMRC 52), Knoxville, TN", link: "" },
     { category: "conference", year: 2021, authors: "Al Mamun, A., Bappy, M. M., Fuller, S., Falls, T. C., Bian, L., & Tian, W.", title: "Heterogeneous sensor fusion for in-situ condition monitoring of rotary machines", venue: "IISE Annual Conference", link: "" },
     { category: "conference", year: 2020, authors: "Sayed, M. A., & Bappy, M. M.", title: "Reducing patients waiting time using the Six Sigma methodology in a radiology department", venue: "ICERIE, Sylhet, Bangladesh", link: "" },
@@ -507,12 +642,17 @@ window.LAB_DATA = {
     { category: "talk", year: 2021, authors: "Bappy, M. M.", title: "In-situ layer-wise certification for direct energy deposition processes", venue: "Three Minute Thesis (3MT), Mississippi State University", link: "" },
 
     // ---- Poster Presentations ----
+    { category: "poster", year: 2026, authors: "Islam, M. S., Bappy, M. M., & Tushar, S. R.", title: "Entropy-aware model predictive control for transient quality mitigation in metal additive manufacturing", venue: "LSU Control Systems Symposium", link: "https://doi.org/10.31390/lsucontrol.26.12" },
+    { category: "poster", year: 2024, authors: "Anik, M., Hoque, I., Islam, M. S., Wasi, A. T., Bappy, M. M., & Ahsan, M. M.", title: "Sustainable management of rare earth elements for clean energy using prescriptive digital twins", venue: "Digital Twin for Manufacturing Sustainability, Safety, and Resilience, Purdue University", link: "" },
     { category: "poster", year: 2023, authors: "Bappy, M. M., Fullington, D., & Tian, W.", title: "Adaptive thermal history de-identification for privacy-preserving process-defect modeling of metal additive manufacturing", venue: "IISE Annual Conference, New Orleans, LA", link: "" },
     { category: "poster", year: 2023, authors: "Epps, E. V., Bappy, M. M., Tian, W., & Priddy, L. B.", title: "Bioprinting parameter optimization for polymer-ceramic composite scaffolds for bone tissue engineering", venue: "Research That Matters in ISE, Mississippi State University", link: "" },
     { category: "poster", year: 2023, authors: "Bappy, M. M., Fullington, D., & Tian, W.", title: "Adaptive thermal history de-identification for privacy-preserving process-defect modeling of metal additive manufacturing", venue: "Research Week Poster Competition, Mississippi State University", link: "" },
     { category: "poster", year: 2022, authors: "Bappy, M. M., & Tian, W.", title: "Morphological dynamics-based anomaly detection towards in-situ layer-wise certification for directed energy deposition processes", venue: "INFORMS Annual Meeting, Indianapolis, IN", link: "" },
     { category: "poster", year: 2022, authors: "Kailey, C., Bappy, M. M., Epps, E. V., Tian, W., & Priddy, L. B.", title: "Evaluation of the printability of additively manufactured poly(lactic-co-glycolic acid) and nano-hydroxyapatite composite bone scaffolds", venue: "4th Annual Summer Science and Engineering Symposium, Mississippi Academy of Sciences", link: "" },
-    { category: "poster", year: 2021, authors: "Bappy, M. M., & Tian, W.", title: "In-situ layer-wise certification for direct energy deposition processes based on melt pool morphology dynamics analysis", venue: "Graduate Research Symposium, Mississippi State University", link: "" }
+    { category: "poster", year: 2021, authors: "Bappy, M. M., & Tian, W.", title: "In-situ layer-wise certification for direct energy deposition processes based on melt pool morphology dynamics analysis", venue: "Graduate Research Symposium, Mississippi State University", link: "" },
+
+    // ---- Theses supervised ----
+    { category: "thesis", year: 2026, authors: "Islam, M. S. (advisor: Bappy, M. M.)", title: "Trustworthy artificial intelligence for real-time quality assurance in additive manufacturing", venue: "M.S. Thesis, Louisiana State University", link: "https://repository.lsu.edu/gradschool_theses/6431/" }
     // Add more by copying a block above. Order within a year does not matter.
   ],
 
@@ -575,12 +715,12 @@ window.LAB_DATA = {
 
   /* ---------------------------------------------------------------------- */
   /*  AWARDS & HONORS                                                       */
-  /*  group: "research" | "grant" | "scholarship"   (newest first)          */
+  /*  group: "research" | "student" | "grant" | "scholarship"              */
   /*  person: optional — shown when an award belongs to someone other       */
   /*  than the lab director.                                                */
   /* ---------------------------------------------------------------------- */
   awards: [
-    // ---- Research honors ----
+    // ---- Lab director: research honors ----
     { group: "research", year: "2023–2024", title: "ISE “Outstanding Graduate Student Researcher” Award", org: "Department of Industrial and Systems Engineering, Mississippi State University" },
     { group: "research", year: "2023", title: "Best Poster Award — Research Week Poster Competition", org: "Mississippi State University" },
     { group: "research", year: "2023", title: "Best Poster Award — Research That Matters in ISE", org: "Mississippi State University" },
@@ -590,6 +730,16 @@ window.LAB_DATA = {
     { group: "research", year: "2022", title: "First Runner-up, Best Posters — Graduate Research Symposium", org: "Mississippi State University" },
     { group: "research", year: "2021", title: "First Runner-up, Best Posters — Graduate Research Symposium", org: "Mississippi State University" },
 
+    // ---- Student honors ----
+    { group: "student", year: "2026", title: "2nd Place, Best Track Paper Award (Health Systems Track)", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
+    { group: "student", year: "2026", title: "3rd Place, DAIS Student Data Analytics Competition", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
+    { group: "student", year: "2025", title: "Champion, IISE Innovative Design Competition", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
+    { group: "student", year: "2025", title: "Runner-up, Stakeholder Engagement Data Challenge", org: "INFORMS Annual Meeting", person: "Md Shafikul Islam" },
+    { group: "student", year: "2025", title: "2nd Runner-up, QCRE Data Challenge", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
+    { group: "student", year: "2025", title: "Best Graduate Oral Presentation", org: "Louisiana Academy of Sciences, 99th Annual Meeting", person: "Md Shafikul Islam" },
+    { group: "student", year: "2025", title: "NSF Student Travel Award", org: "North American Manufacturing Research Conference (NAMRC)", person: "Md Shafikul Islam" },
+    { group: "student", year: "2025", title: "NSF Student Travel Award", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
+
     // ---- Grants & travel awards ----
     { group: "grant", year: "2024", title: "NSF Student/Early Career Researcher Travel Award", org: "National Science Foundation" },
     { group: "grant", year: "2022", title: "Graduate Student Travel Assistance Grant (TAGGS)", org: "The Graduate School, Mississippi State University" },
@@ -597,21 +747,69 @@ window.LAB_DATA = {
     { group: "grant", year: "2019", title: "Research Project Funding Award", org: "Research Centre, Shahjalal University of Science and Technology" },
 
     // ---- Scholarships ----
-    { group: "scholarship", year: "2009–2013", title: "University Merit Scholarship", org: "Shahjalal University of Science and Technology" },
-    { group: "scholarship", year: "2008", title: "Education Board Scholarship — Higher Secondary Certificate (HSC)", org: "Bangladesh" },
-    { group: "scholarship", year: "2006", title: "Education Board Scholarship — Secondary School Certificate (SSC)", org: "Bangladesh" },
-    { group: "scholarship", year: "2003", title: "Merit Scholarship — Junior Secondary School Scholarship Examination", org: "Bangladesh" },
-    { group: "scholarship", year: "2000", title: "Merit Scholarship — Primary School Scholarship Examination", org: "Bangladesh" }
+    { group: "scholarship", year: "2009–2013", title: "University Merit Scholarship", org: "Shahjalal University of Science and Technology" }
     // Add more awards by copying a block above.
   ],
 
   /* ---------------------------------------------------------------------- */
+  /*  SERVICE & OUTREACH                                                  */
+  /* ---------------------------------------------------------------------- */
+  service: {
+    // Lab director. kind: review | committee | judge | outreach | organizing
+    // TODO add journal reviewing, editorial boards, committees and session chairs here.
+    director: [
+      { kind: "judge", title: "Judge, student research poster competition",
+        org: "Mississippi State University", year: "", image: "assets/images/gal-poster-judging.webp" },
+      { kind: "judge", title: "Judge, student science fair",
+        org: "", year: "", image: "assets/images/gal-science-fair-judging.webp" },
+      { kind: "outreach", title: "STEM outreach with high-school students",
+        org: "", year: "", image: "assets/images/gal-outreach-group.webp" },
+      { kind: "organizing", title: "Organizer, problem setter and judge for onsite practice contests",
+        org: "Department of Industrial and Production Engineering, SUST", year: "2018–2019", image: "" }
+    ],
+    // Lab members
+    students: [
+      { kind: "judge", title: "Judge, Louisiana Science and Engineering Fair (Senior Division)",
+        org: "Md Shafikul Islam", year: "2026" },
+      { kind: "talk", title: "Invited talk: “Application of Machine Learning Methods in Grease Manufacturing under Data Scarcity”",
+        org: "Md Shafikul Islam · CeRoM, LSU", year: "2025" },
+      { kind: "review", title: "Reviewer: Expert Systems with Applications, Heliyon, Digital Twins and Applications, and MSEC 2026",
+        org: "Md Shafikul Islam", year: "2025–present" },
+      { kind: "committee", title: "Session Chair, IISE Annual Conference and Expo",
+        org: "Md Shafikul Islam", year: "2025" }
+    ]
+  },
+
+  /* ---------------------------------------------------------------------- */
   /*  GALLERY                                                               */
-  /*  category: "talks" | "lab" | "outreach" | "campus"                     */
+  /*  category: "talks" | "awards" | "lab" | "outreach" | "life"            */
   /* ---------------------------------------------------------------------- */
   gallery: [
+    // ---- Awards & milestones ----
+    { image: "assets/images/gal-iise-award-shafikul.webp", category: "awards",
+      caption: "Md Shafikul Islam receiving an award at the IISE Annual Conference" },
+    { image: "assets/images/gal-las-best-oral.webp", category: "awards",
+      caption: "Best Graduate Oral Presentation award, Louisiana Academy of Sciences 99th Annual Meeting (2025)" },
+    { image: "assets/images/gal-iise-design-champion.webp", category: "awards",
+      caption: "Champion team presenting at the IISE Innovative Design Competition (2025)" },
+    { image: "assets/images/gal-ms-graduation.webp", category: "awards",
+      caption: "Md Shafikul Islam earns his M.S. in Industrial Engineering at LSU (2026)" },
+    { image: "assets/images/gal-commencement-lsu.webp", category: "awards",
+      caption: "Commencement day at the LSU College of Engineering" },
+
+    // ---- Talks & conferences ----
+    { image: "assets/images/gal-las-2025-lsua.webp", category: "talks",
+      caption: "ASTRA Lab members at the Louisiana Academy of Sciences Annual Meeting, LSU Alexandria" },
+    { image: "assets/images/gal-poster-entropy-mpc.webp", category: "talks",
+      caption: "Entropy-aware model predictive control poster, LSU Control Systems Symposium (2026)" },
+    { image: "assets/images/gal-talk-gnn.webp", category: "talks",
+      caption: "Presenting graph attention networks for privacy-aware porosity prediction" },
+    { image: "assets/images/gal-talk-vit.webp", category: "talks",
+      caption: "Presenting vision transformers for real-time defect detection in FDM" },
+    { image: "assets/images/gal-iise-2025-shafikul.webp", category: "talks",
+      caption: "IISE Annual Conference & Expo 2025" },
     { image: "assets/images/gal-talk-sensing-analytics.webp", category: "talks",
-      caption: "Presenting “Sensing and Analytics in Advanced Manufacturing Systems” at the IISE Annual Conference" },
+      caption: "Dr. Bappy presenting “Sensing and Analytics in Advanced Manufacturing Systems” at the IISE Annual Conference" },
     { image: "assets/images/gal-poster-iise-2023.webp", category: "talks",
       caption: "Poster on adaptive thermal history de-identification for privacy-preserving process–defect modeling" },
     { image: "assets/images/gal-talk-ded-certification.webp", category: "talks",
@@ -620,6 +818,8 @@ window.LAB_DATA = {
       caption: "IISE Annual Conference & Expo" },
     { image: "assets/images/gal-informs-2022.webp", category: "talks",
       caption: "INFORMS Annual Meeting 2022, Indianapolis" },
+
+    // ---- In the lab ----
     { image: "assets/images/gal-3d-scanning.webp", category: "lab",
       caption: "3D scanning a printed part for in-process quality monitoring" },
     { image: "assets/images/gal-bioprinter-lab.webp", category: "lab",
@@ -628,24 +828,18 @@ window.LAB_DATA = {
       caption: "Machine Fault Simulator instrumented for multi-channel condition monitoring" },
     { image: "assets/images/gal-xct-lab.webp", category: "lab",
       caption: "X-ray computed tomography for non-destructive analysis of printed parts" },
-    { image: "assets/images/gal-xct-mentoring.webp", category: "outreach",
-      caption: "Mentoring undergraduate researchers in the X-ray CT lab" },
+
+    // ---- Outreach & service ----
     { image: "assets/images/gal-poster-judging.webp", category: "outreach",
       caption: "Judging student research posters" },
     { image: "assets/images/gal-science-fair-judging.webp", category: "outreach",
       caption: "Judging a student science fair project" },
     { image: "assets/images/gal-outreach-group.webp", category: "outreach",
       caption: "STEM outreach with high-school students" },
-    { image: "assets/images/gal-outreach-students.webp", category: "outreach",
-      caption: "Hands-on outreach activity with student volunteers" },
-    { image: "assets/images/gal-mccain-engineering.webp", category: "campus",
-      caption: "McCain Engineering, Bagley College of Engineering, Mississippi State University" },
-    { image: "assets/images/gal-drill-field.webp", category: "campus",
-      caption: "The Drill Field, Mississippi State University" },
-    { image: "assets/images/gal-davis-wade-stadium.webp", category: "campus",
-      caption: "Davis Wade Stadium, Mississippi State University" },
-    { image: "assets/images/gal-international-fair.webp", category: "campus",
-      caption: "Representing Bangladesh at the campus international fair" }
+
+    // ---- Lab life ----
+    { image: "assets/images/gal-lab-dinner.webp", category: "life",
+      caption: "ASTRA Lab dinner" }
     // Add photos by copying a block above. Put image files in assets/images/.
   ],
 
