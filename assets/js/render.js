@@ -464,8 +464,8 @@
     var h = D.home || {}, slides = h.heroSlides || [];
     host.innerHTML =
       '<div class="hero-slides">' + slides.map(function (s, i) {
-        return '<img class="hero-slide' + (i === 0 ? " is-active" : "") + '" src="' + esc(s.image) + '" alt="" ' +
-               (i === 0 ? 'fetchpriority="high"' : 'loading="lazy"') + ">";
+        return '<img class="hero-slide' + (i === 0 ? " is-active" : "") + '" src="' + esc(s.image) + '" alt="" decoding="async"' +
+               (i === 0 ? ' fetchpriority="high"' : "") + ">";
       }).join("") + "</div>" +
       '<div class="hero-shade" aria-hidden="true"></div>' +
       '<div class="hero-grid" aria-hidden="true"></div>' +
@@ -477,28 +477,87 @@
         '<div class="btn-row">' + btn("research.html", "Explore our research " + icon("arrow"), "btn-cta") +
           btn("people.html", "Meet the team", "btn-ghost") + "</div>" +
       "</div>" +
-      (slides.length ? '<div class="hero-foot"><span class="hero-cap" aria-live="polite">' + esc(slides[0].caption || "") + "</span>" +
+      (slides.length ? '<div class="hero-foot"><div class="hero-meta" aria-live="polite">' +
+          '<span class="hero-topic"></span><span class="hero-cap"></span><span class="hero-credit"></span></div>' +
         '<div class="hero-dots">' + slides.map(function (s, i) {
-          return '<button type="button" aria-label="Show photo ' + (i + 1) + '" aria-pressed="' + (i === 0) + '" data-i="' + i + '"></button>';
+          return '<button type="button" aria-label="Show: ' + esc(s.label || s.caption || "photo " + (i + 1)) +
+                 '" aria-pressed="' + (i === 0) + '" data-i="' + i + '"></button>';
         }).join("") + "</div></div>" : "");
 
     var imgs = host.querySelectorAll(".hero-slide"), dots = host.querySelectorAll(".hero-dots button");
-    var cap = host.querySelector(".hero-cap"), idx = 0, timer = null;
+    var meta = host.querySelector(".hero-meta"), idx = 0, timer = null, dead = {};
+    function fill() {
+      if (!meta) return;
+      var s = slides[idx] || {};
+      meta.classList.remove("is-in");
+      meta.querySelector(".hero-topic").textContent = s.label || "";
+      meta.querySelector(".hero-cap").textContent = s.caption || "";
+      meta.querySelector(".hero-credit").textContent = s.credit || "";
+      void meta.offsetWidth;          // restart the entrance animation
+      meta.classList.add("is-in");
+    }
     function show(n) {
-      idx = (n + imgs.length) % imgs.length;
+      // step past any photo that failed to load
+      for (var k = 0; k < imgs.length; k++) {
+        var j = ((n + k) % imgs.length + imgs.length) % imgs.length;
+        if (!dead[j]) { n = j; break; }
+      }
+      idx = n;
       for (var i = 0; i < imgs.length; i++) {
         imgs[i].classList.toggle("is-active", i === idx);
         if (dots[i]) dots[i].setAttribute("aria-pressed", String(i === idx));
       }
-      if (cap) cap.textContent = slides[idx].caption || "";
+      fill();
     }
+    // Photos hosted elsewhere can disappear; drop them instead of showing a gap.
+    Array.prototype.forEach.call(imgs, function (img, i) {
+      img.addEventListener("error", function () {
+        dead[i] = true;
+        img.style.display = "none";
+        if (dots[i]) dots[i].style.display = "none";
+        if (i === idx) show(idx + 1);
+      });
+    });
     function start() { stop(); if (!REDUCED && imgs.length > 1) timer = setInterval(function () { show(idx + 1); }, 6500); }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
     Array.prototype.forEach.call(dots, function (d) {
       d.addEventListener("click", function () { show(+d.getAttribute("data-i")); start(); });
     });
     document.addEventListener("visibilitychange", function () { if (document.hidden) stop(); else start(); });
+    fill();
     start();
+  }
+
+  /* --- page-wide touches: reading progress, back-to-top, card glow ------- */
+  function setupExtras() {
+    var bar = document.createElement("div");
+    bar.className = "progress-bar"; bar.setAttribute("aria-hidden", "true");
+    document.body.appendChild(bar);
+    var up = document.createElement("button");
+    up.className = "to-top"; up.type = "button"; up.setAttribute("aria-label", "Back to top");
+    up.innerHTML = icon("arrow");
+    up.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" }); });
+    document.body.appendChild(up);
+    var ticking = false;
+    function sync() {
+      ticking = false;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = "scaleX(" + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ")";
+      up.classList.toggle("is-shown", window.scrollY > 700);
+    }
+    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(sync); } }, { passive: true });
+    sync();
+
+    // A soft light follows the cursor across cards.
+    if (!REDUCED && window.matchMedia && window.matchMedia("(hover: hover)").matches) {
+      document.addEventListener("pointermove", function (e) {
+        var c = e.target.closest && e.target.closest(".thrust-card, .proj-card, .card, .svc-card, .fund-card, .join-card");
+        if (!c) return;
+        var r = c.getBoundingClientRect();
+        c.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        c.style.setProperty("--my", (e.clientY - r.top) + "px");
+      }, { passive: true });
+    }
   }
 
   function sectionHead(title, more, href) {
@@ -631,12 +690,7 @@
 
       var spn = el("sponsors");
       if (spn) {
-        var seen = {}, marks = [];
-        (D.funding || []).forEach(function (f) {
-          var k = f.sponsor.split(" — ")[0];
-          if (!seen[k]) { seen[k] = 1; marks.push({ short: f.short, name: k }); }
-        });
-        spn.innerHTML = marks.map(function (m) {
+        spn.innerHTML = (D.sponsors || []).map(function (m) {
           return '<span class="sponsor"><b>' + esc(m.short) + "</b>" + esc(m.name) + "</span>";
         }).join("");
       }
@@ -1153,5 +1207,6 @@
     renderFooter();
     if (PAGES[active]) { try { PAGES[active](); } catch (e) { console.error(e); } }
     try { setupReveal(); } catch (e) { console.error(e); }
+    try { setupExtras(); } catch (e) { console.error(e); }
   });
 })();

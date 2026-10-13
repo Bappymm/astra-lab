@@ -49,18 +49,24 @@ window.LAB_DATA = {
 
     /* Full-screen photos behind the home-page title. They cross-fade in this
        order. Use wide photos where possible; the centre of each is kept. */
+    /* Full-screen photos behind the home-page title, cross-fading in order.
+       "label" is the large topic tag; "credit" is required for photos that
+       are not the lab's own. A photo that fails to load is skipped. */
     heroSlides: [
-      { image: "assets/images/hero-digital-twin.webp",
-        caption: "Digital twin of a robotic additive manufacturing cell (illustration)" },
-      { image: "assets/images/gal-3d-scanning.webp",
-        caption: "3D scanning a printed part for in-process quality monitoring" },
-      { image: "assets/images/gal-machine-fault-simulator.webp",
-        caption: "Machine fault simulator instrumented for condition monitoring" },
-      { image: "assets/images/resource-creality-ender3.webp",
+      { image: "assets/images/hero-digital-twin.webp", label: "Metal Additive Manufacturing",
+        caption: "Laser metal printing with in-situ melt-pool and thermal data collection (illustration)" },
+      { image: "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%9F%D0%B0%D0%BD%D1%84%D0%B8%D0%BB%D0%BE%D0%B2_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80_-_Wire_Arc_Additive_Manufacturing_%28%D0%98%D0%A4%D0%9F%D0%9C_%D0%A1%D0%9E_%D0%A0%D0%90%D0%9D%29.jpg?width=1920", label: "Wire DED · WAAM",
+        caption: "Wire arc additive manufacturing (wire-fed directed energy deposition)",
+        credit: "Photo: Alexander Panfilov, ISPMS SB RAS / Wikimedia Commons, CC BY 4.0" },
+      { image: "https://commons.wikimedia.org/wiki/Special:FilePath/Industrial_robot.jpg?width=1920", label: "Robotic Manufacturing",
+        caption: "Industrial robot for automated manufacturing",
+        credit: "Photo: KUKA Roboter GmbH / Wikimedia Commons, public domain" },
+      { image: "https://commons.wikimedia.org/wiki/Special:FilePath/Mississippi_River_Lock_and_Dam_number_25.jpg?width=1920", label: "Cyber-Physical-Social Systems",
+        caption: "Freshwater infrastructure: Lock and Dam 25 on the Mississippi River",
+        credit: "Photo: U.S. Army Corps of Engineers / Wikimedia Commons, public domain" },
+      { image: "assets/images/resource-creality-ender3.webp", label: "Additive Manufacturing",
         caption: "Large-format FDM printing in the ASTRA Lab" },
-      { image: "assets/images/gal-xct-lab.webp",
-        caption: "X-ray computed tomography for non-destructive inspection" },
-      { image: "assets/images/resource-seeed-arm.webp",
+      { image: "assets/images/resource-seeed-arm.webp", label: "Robotics",
         caption: "Robotic manipulation experiments in the ASTRA Lab" }
     ],
 
@@ -438,8 +444,9 @@ window.LAB_DATA = {
       icon: "leaf",
       image: "assets/images/research-water-energy.svg", fit: "contain",
       description:
-        "Foundation-model forecasting and data-driven decision support for rural wastewater " +
-        "treatment, energy systems, critical materials, and sustainable, resilient supply chains.",
+        "Foundation-model forecasting and data-driven decision support for cyber-physical-social " +
+        "systems — rural wastewater and freshwater infrastructure, energy systems, critical " +
+        "materials, and sustainable, resilient supply chains.",
       tags: ["Foundation Models", "Water & Energy", "Supply Chains"],
       links: [
         { label: "Water Research 2025", url: "https://doi.org/10.1016/j.watres.2025.124931" },
@@ -583,6 +590,17 @@ window.LAB_DATA = {
       project: "Condition monitoring and diagnosis of complex manufacturing systems" },
     { scope: "doctoral", sponsor: "National Science Foundation", short: "NSF", award: "",
       project: "Bio-manufacturing for bone tissue engineering" }
+  ],
+
+  /* ---------------------------------------------------------------------- */
+  /*  SPONSORS — the "Research supported by" band on the home page           */
+  /* ---------------------------------------------------------------------- */
+  sponsors: [
+    { short: "NSF",   name: "National Science Foundation" },
+    { short: "BoR",   name: "Louisiana Board of Regents" },
+    { short: "LTRC",  name: "Louisiana Transportation Research Center & Louisiana DOTD" },
+    { short: "USGS",  name: "U.S. Geological Survey" }
+    // Add sponsors by copying a line above.
   ],
 
   /* ---------------------------------------------------------------------- */
