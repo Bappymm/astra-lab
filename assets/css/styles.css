@@ -486,14 +486,14 @@ section[id], article[id] { scroll-margin-top: 92px; }
   background-size: 56px 56px; animation: gridDrift 30s linear infinite;
   -webkit-mask-image: radial-gradient(ellipse at 22% 50%, #000, transparent 62%); mask-image: radial-gradient(ellipse at 22% 50%, #000, transparent 62%); }
 @keyframes gridDrift { to { background-position: 56px 56px; } }
-.hero-inner { width: 100%; max-width: 1320px; margin: 0 auto; padding: 150px var(--space-xl) 170px; }
+.hero-inner { width: 100%; max-width: 1320px; margin: 0 auto; padding: 150px var(--space-xl) 190px; }
 .hero-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-bright); margin-bottom: var(--space-lg); animation: fadeUp .8s ease both; }
 .hero-eyebrow::before { content: ""; width: 36px; height: 2px; background: var(--accent-bright); }
 .hero-title { font-size: clamp(3.2rem, 8.5vw, 6.6rem); line-height: .95; font-weight: 800; letter-spacing: -.035em; color: #fff; margin-bottom: var(--space-lg); animation: fadeUp .8s ease .08s both; }
 .hero-sub { font-size: clamp(1.15rem, 2.2vw, 1.65rem); font-weight: 600; line-height: 1.35; color: #fff; max-width: 760px; margin-bottom: var(--space-md); animation: fadeUp .8s ease .18s both; }
 .hero-text { font-size: 1.06rem; color: rgba(255,255,255,.84); max-width: 600px; animation: fadeUp .8s ease .28s both; }
 .hero .btn-row { margin-top: var(--space-xl); animation: fadeUp .8s ease .38s both; }
-.hero-foot { position: absolute; left: 0; right: 0; bottom: 96px; max-width: 1320px; margin: 0 auto; padding: 0 var(--space-xl); display: flex; justify-content: space-between; align-items: center; gap: var(--space-md); }
+.hero-foot { position: absolute; left: 0; right: 0; bottom: 44px; max-width: 1320px; margin: 0 auto; padding: 0 var(--space-xl); display: flex; justify-content: space-between; align-items: center; gap: var(--space-md); }
 .hero-cap { font-size: .82rem; color: rgba(255,255,255,.78); }
 .hero-cap::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; background: var(--accent-bright); box-shadow: 0 0 0 4px rgba(253,208,35,.25); vertical-align: 1px; }
 .hero-dots { display: flex; gap: 8px; }
@@ -949,6 +949,39 @@ h1, h2, h3, .hero-title { text-wrap: balance; }
 .sponsor { font-size: .92rem; padding: 8px 18px 8px 8px; }
 .sponsor b { min-width: 52px; height: 34px; }
 
+/* ---- facility tiles showing renders / diagrams whole ---- */
+.fac-tile.is-contain { background: #fff; }
+.fac-tile.is-contain img { object-fit: contain; padding: 10px 10px 70px; }
+.fac-tile.is-contain .fac-cap { background: linear-gradient(transparent, rgba(26,8,48,.95) 45%); }
+
+/* ---- People: student research spotlights ---- */
+.spot { margin-bottom: var(--space-2xl); padding: var(--space-2xl); background: #fff; border: 1px solid var(--border-color); border-radius: 24px; box-shadow: 0 10px 30px rgba(46,18,82,.06); position: relative; overflow: hidden; }
+.spot::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(var(--accent-bright), var(--primary-light)); }
+.spot-head { display: flex; align-items: center; gap: var(--space-lg); margin-bottom: var(--space-lg); }
+.spot-head img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; object-position: top; border: 3px solid var(--accent-bright); flex: none; }
+.spot-head h3 { font-size: 1.45rem; color: var(--primary-dark); margin: 0; }
+.spot-role { font-size: .9rem; color: var(--accent); font-weight: 600; margin: 2px 0 6px; }
+.spot-head .team-card-links { margin: 0; }
+.spot-summary { font-size: 1.04rem; color: var(--text-secondary); max-width: 920px; }
+.spot-sub { font-family: var(--font-mono); font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: var(--space-xl) 0 var(--space-md); }
+.spot-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-lg); }
+.spot-papers { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+.spot-paper { display: grid; grid-template-columns: 200px 1fr; gap: var(--space-md); align-items: start; padding: var(--space-md); background: var(--bg-light); border: 1px solid var(--border-color); border-radius: var(--radius-lg); transition: all var(--transition-normal); }
+.spot-paper:hover { border-color: var(--accent-bright); box-shadow: var(--shadow-md); background: #fff; }
+.spot-fig { padding: 6px; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: #fff; cursor: zoom-in; }
+.spot-fig img { width: 100%; height: 110px; object-fit: contain; transition: transform .4s ease; }
+.spot-fig:hover img { transform: scale(1.05); }
+.spot-fig:focus-visible { outline: 3px solid var(--accent-bright); }
+.spot-paper h5 { font-family: var(--font-display); font-size: .98rem; line-height: 1.35; color: var(--primary-dark); margin-bottom: 6px; }
+.spot-paper p { font-size: .86rem; margin: 0; }
+.spot-next { margin-top: var(--space-xl); font-size: .95rem; }
+@media (max-width: 1100px) { .spot-papers { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+  .spot { padding: var(--space-lg); }
+  .spot-head img { width: 64px; height: 64px; }
+  .spot-paper { grid-template-columns: 1fr; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1240px) {
   .hdr-nav a { padding: 8px 9px; font-size: .88rem; }
@@ -986,7 +1019,7 @@ h1, h2, h3, .hero-title { text-wrap: balance; }
   .hdr-inner { padding: 0 var(--space-md); }
   .brand-text small { display: none; }
   .hero-inner { padding: 120px var(--space-md) 190px; }
-  .hero-foot { flex-direction: column; align-items: flex-start; bottom: 92px; padding: 0 var(--space-md); }
+  .hero-foot { flex-direction: column; align-items: flex-start; bottom: 30px; padding: 0 var(--space-md); }
   .hero + .stats-band { padding: 0 var(--space-md); }
   .page-header, .page-header.has-bg { padding: var(--space-2xl) var(--space-md); }
   .stats { grid-template-columns: 1fr 1fr; }
@@ -1041,3 +1074,7 @@ h1, h2, h3, .hero-title { text-wrap: balance; }
   .svc-card:hover, .svc-card:hover .svc-media img, .svc-row:hover, .join-card:hover, .sponsor:hover,
   .course-list li:hover, .brand:hover img { transform: none; }
 }
+
+/* Facility cards: a taller image well so machine renders read clearly. */
+#facilities-list .card-image { height: 250px; }
+#facilities-list .card-media.card-icon { height: 250px; }

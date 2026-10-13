@@ -109,7 +109,7 @@ window.LAB_DATA = {
     { date: "Aug 2026", type: "milestone", text: "Md Shafikul Islam earned his M.S. in Industrial Engineering (thesis option) at LSU with the thesis “Trustworthy Artificial Intelligence for Real-Time Quality Assurance in Additive Manufacturing.”" },
     { date: "Jun 2026", type: "talk", text: "Entropy-aware model predictive control for transient quality mitigation in metal additive manufacturing presented at the LSU Control Systems Symposium." },
     { date: "Jun 2026", type: "award", text: "Md Shafikul Islam won 2nd Place, Best Track Paper (Health Systems Track), and 3rd Place in the DAIS Student Data Analytics Competition at the IISE Annual Conference 2026." },
-    { date: "Apr 2026", type: "paper", text: "Preprint posted on feature-aware anisotropic local differential privacy for graph learning in metal additive manufacturing (arXiv:2604.05077)." },
+    { date: "2026", type: "paper", text: "Paper on feature-aware anisotropic local differential privacy for graph learning in metal additive manufacturing accepted in the ASME Journal of Computing and Information Science in Engineering (preprint arXiv:2604.05077)." },
     { date: "2026", type: "paper", text: "New journal papers in The International Journal of Advanced Manufacturing Technology, Applied Water Science, IISE Transactions on Healthcare Systems Engineering, Polymer Composites, and the International Journal of System Assurance Engineering and Management." },
     { date: "2025", type: "paper", text: "New papers in Water on seasonal water quality dynamics in Louisiana waste stabilization ponds, and in Sustainability on hybrid drone and truck delivery optimization with geospatial analytics." },
     { date: "Nov 2025", type: "paper", text: "Interpretable dissolved-oxygen forecasting with a foundation model for proactive aeration in rural wastewater treatment published in Water Research." },
@@ -354,7 +354,20 @@ window.LAB_DATA = {
       email: "misla79@lsu.edu",
       linkedin: "https://www.linkedin.com/in/md-shafikul-islam-sohan/",
       scholar: "https://scholar.google.com/citations?user=A8KOQBEAAAAJ&hl=en",
-      website: "https://shafikul-islam.github.io"
+      website: "https://shafikul-islam.github.io",
+      // Research spotlight on the People page; titles must match entries in "projects".
+      spotlight: {
+        summary:
+          "Physical AI for metal additive manufacturing: multimodal in-process sensing, learned process " +
+          "dynamics and digital twins, predictive control, and real-time edge deployment — built to be " +
+          "trustworthy, privacy-preserving, and transferable across machines.",
+        projects: [
+          "Entropy-Aware Model Predictive Control for Transient Quality Mitigation in Wire Arc Additive Manufacturing",
+          "Feature-Aware Anisotropic Local Differential Privacy for Graph Learning in Metal AM",
+          "Vision Transformers for Real-Time Surface Defect Detection in FDM",
+          "Fracture Finder: Real-Time Vertebral Fracture Localization on Thoracic Spine X-Rays"
+        ]
+      }
     },
     {
       name: "Saifur Rahman Tushar",
@@ -362,16 +375,43 @@ window.LAB_DATA = {
       position: "Ph.D. Student, Industrial Engineering",
       image: "assets/images/saifur-rahman-tushar.webp",
       education: "M.Sc. in Industrial & Production Engineering", // TODO confirm
-      interests: "Sustainable Manufacturing, Supply Chain Resilience, Multi-Criteria Decision Making",
+      interests: "Structural Integrity, Physics-Informed ML, Fatigue & Corrosion, Digital Twins for Metal AM",
       bio:
         "Saifur Rahman Tushar is a Ph.D. student and Graduate Research Assistant in Mechanical and " +
-        "Industrial Engineering at LSU. He previously served as an Assistant Professor at Bangladesh " +
-        "University of Textiles. His research centers on sustainable manufacturing, supply chain " +
-        "resilience, and data-driven decision making for industrial systems.",
+        "Industrial Engineering at LSU, working at the intersection of structural integrity and " +
+        "artificial intelligence. He previously served as an Assistant Professor at Bangladesh " +
+        "University of Textiles.",
       email: "", // TODO add LSU email
       linkedin: "https://www.linkedin.com/in/saifur-rahman-tushar",
       scholar: "",
-      website: ""
+      website: "",
+      spotlight: {
+        summary:
+          "Digital twins that predict failure and fracture of additively manufactured metal parts in extreme " +
+          "environments such as corrosive media and elevated temperature. Experimental sensing — infrared " +
+          "thermography, electrochemical monitoring and X-ray CT — is coupled with physics-informed models " +
+          "that embed thermodynamic quantities such as entropy generation, keeping predictions accurate, " +
+          "interpretable and reliable when data are scarce. A parallel multiscale framework links thermal " +
+          "history, defects and microstructure to fatigue life for parts made by robotic WAAM, LPBF and FFF.",
+        projects: [
+          "Thermo-Physics-Informed Transfer Learning for Fatigue-Life Prediction across Metallic Alloys",
+          "Entropy-Guided Machine Learning for Corrosion Degradation Prediction",
+          "Scan-to-Repair Additive Manufacturing for Fatigue Restoration of Steel Bridge Components"
+        ],
+        // Further work without a project card
+        papers: [
+          { title: "Artificial Intelligence Techniques for Fatigue Performance Prediction in Metal Additive Manufacturing: A Systematic Review",
+            image: "assets/images/fig-fatigue-ai-review.webp",
+            text: "PRISMA screening of 583 records retained 89 studies on AI/ML prediction of fatigue life, strength and crack growth in metal AM; key gaps are data scarcity, physics integration, uncertainty and cross-material generalization." },
+          { title: "Deep Learning-Based High-Resolution Spectrogram Reconstruction for Robust Bearing Fault Diagnosis",
+            image: "assets/images/fig-spectrogram-bearing.webp",
+            text: "A denoising U-Net and multi-resolution convolutional STFT pipeline reconstructs noise-robust time–frequency maps from raw vibration, reaching 99.4% accuracy on CWRU and 99.1% on HUST." }
+        ],
+        next: "Physics-aware thermal-history reconstruction for accelerated fatigue performance prediction, building on the thermographic datasets above.",
+        tools: ["Robotic WAAM", "LPBF", "FFF", "WARDJet waterjet", "Bending fatigue tester", "FLIR A600 IR camera",
+                "Gamry potentiostat", "X-ray CT", "SEM / EBSD", "3D laser scanner", "PINNs", "CS-MMD transfer learning",
+                "Bayesian Ridge Regression", "SHAP"]
+      }
     }
 
     // ---- Add more members below by copying a block above and editing it.
@@ -423,7 +463,7 @@ window.LAB_DATA = {
       tags: ["Data Privacy", "Graph Learning", "Explainable AI"],
       links: [
         { label: "Manuf. Letters 2023", url: "https://doi.org/10.1016/j.mfglet.2023.03.004" },
-        { label: "arXiv 2026", url: "https://arxiv.org/abs/2604.05077" }
+        { label: "JCISE 2026 (accepted)", url: "https://arxiv.org/abs/2604.05077" }
       ]
     },
     {
@@ -548,13 +588,46 @@ window.LAB_DATA = {
     {
       title: "Feature-Aware Anisotropic Local Differential Privacy for Graph Learning in Metal AM",
       image: "assets/images/fig-graph-privacy.webp",
-      status: "Under major revision · ASME JCISE",
+      status: "Accepted · ASME JCISE 2026",
       tags: ["Graph ML", "Privacy", "Additive Manufacturing"],
       summary:
         "Embedding-level local differential privacy with feature-aware, anisotropic noise, combined " +
         "with a layer-wise graph attention network, enables collaborative porosity detection across " +
         "manufacturers while preserving much of the non-private accuracy.",
       links: [{ label: "arXiv", url: "https://arxiv.org/abs/2604.05077" }]
+    },
+    {
+      title: "Thermo-Physics-Informed Transfer Learning for Fatigue-Life Prediction across Metallic Alloys",
+      image: "assets/images/fig-fatigue-transfer.webp",
+      status: "Ongoing · Saifur Rahman Tushar",
+      tags: ["Physics-Informed ML", "Transfer Learning", "Infrared Thermography"],
+      summary:
+        "Infrared thermography during fully reversed bending fatigue feeds a monotonic physics-informed " +
+        "network trained on CS1018 and transferred to CS1010 and SS321 with condition-stratified MMD — " +
+        "reaching R² = 0.954 and 0.934 on the data-scarce target alloys.",
+      links: []
+    },
+    {
+      title: "Entropy-Guided Machine Learning for Corrosion Degradation Prediction",
+      image: "assets/images/fig-corrosion-entropy.webp",
+      status: "Ongoing · Saifur Rahman Tushar",
+      tags: ["Degradation Entropy", "Bayesian Learning", "Corrosion"],
+      summary:
+        "Degradation-entropy generation from electrochemical tests is used as a single physics-based input " +
+        "to an uncertainty-aware Bayesian model, predicting material loss on LCS 1018 and Al 6061-T6 with " +
+        "R² = 0.986–0.991 and calibrated 95% intervals from only 7–24 samples.",
+      links: []
+    },
+    {
+      title: "Scan-to-Repair Additive Manufacturing for Fatigue Restoration of Steel Bridge Components",
+      image: "assets/images/fig-scan-to-repair.webp",
+      status: "Ongoing · Saifur Rahman Tushar",
+      tags: ["Robotic WAAM", "3D Scanning", "Fatigue"],
+      summary:
+        "Notched CS1018 specimens are 3D-scanned, repaired by robotic WAAM with in-situ melt-pool imaging, " +
+        "machined and inspected by X-ray CT. Fatigue testing is under way to measure how much fatigue life " +
+        "the repair recovers.",
+      links: []
     },
     {
       title: "Vision Transformers for Real-Time Surface Defect Detection in FDM",
@@ -565,6 +638,26 @@ window.LAB_DATA = {
         "An optimized vision transformer on laser-scan depth maps uses global self-attention to " +
         "detect spatially distributed surface anomalies during fused deposition modeling in real time.",
       links: [{ label: "DOI", url: "https://doi.org/10.1007/s00170-026-17846-8" }]
+    },
+    {
+      title: "Interpretable Foundation-Model Forecasting of Dissolved Oxygen for Proactive Aeration",
+      image: "assets/images/fig-do-forecasting.webp",
+      status: "Water Research · 2025",
+      tags: ["Foundation Models", "SHAP", "Rural Wastewater"],
+      summary:
+        "Seasonal segmentation, foundation-model forecasting and SHAP interpretability deliver transparent " +
+        "dissolved-oxygen forecasts that support proactive aeration in a rural wastewater stabilization pond.",
+      links: [{ label: "DOI", url: "https://doi.org/10.1016/j.watres.2025.124931" }]
+    },
+    {
+      title: "AI-Enabled Modeling for Smart Rural Wastewater Treatment Systems",
+      image: "assets/images/fig-rural-ww-framework.webp",
+      status: "Applied Water Science · 2026",
+      tags: ["Systematic Review", "Interpretable AI", "Cyber-Physical-Social Systems"],
+      summary:
+        "A structured review of AI for wastewater treatment finds rural adoption limited by data scarcity, " +
+        "infrastructure mismatch and opacity, and proposes a modular, interpretable framework for rural systems.",
+      links: [{ label: "DOI", url: "https://doi.org/10.1007/s13201-025-02698-6" }]
     },
     {
       title: "Fracture Finder: Real-Time Vertebral Fracture Localization on Thoracic Spine X-Rays",
@@ -613,6 +706,7 @@ window.LAB_DATA = {
   /* ---------------------------------------------------------------------- */
   publications: [
     // ---- Journal Articles ----
+    { category: "journal", year: 2026, authors: "Islam, M. S., Bappy, M. M., Tushar, S. R., & Arifuzzaman, M.", title: "Feature-aware anisotropic local differential privacy for utility-preserving graph representation learning in metal additive manufacturing", venue: "Journal of Computing and Information Science in Engineering (accepted; preprint arXiv:2604.05077)", link: "https://arxiv.org/abs/2604.05077" },
     { category: "journal", year: 2026, authors: "Islam, M. D. S., Bappy, M. M., Tushar, S. R., Zamiela, C., & Wasi, A. T.", title: "Beyond local receptive fields: vision transformers for real-time surface defect detection in FDM", venue: "The International Journal of Advanced Manufacturing Technology, 143(9–10), 5399–5420", link: "https://doi.org/10.1007/s00170-026-17846-8" },
     { category: "journal", year: 2026, authors: "Islam, M. S., Anik, M. A., Wasi, A. T., & Bappy, M. M.", title: "Fracture Finder: Computer-aided real-time diagnosis of vertebral fractures in thoracic spine X-rays using YOLOv8 with weighted box fusion and augmentation strategies", venue: "IISE Transactions on Healthcare Systems Engineering, 1–18", link: "https://doi.org/10.1080/24725579.2025.2598578" },
     { category: "journal", year: 2026, authors: "Martinez De La Hoz, J., Islam, M. D. S., Bappy, M. M., & Hayes, M. P.", title: "AI-enabled modeling for smart rural wastewater treatment systems: current practices and remaining gaps", venue: "Applied Water Science, 16, 40", link: "https://doi.org/10.1007/s13201-025-02698-6" },
@@ -641,7 +735,6 @@ window.LAB_DATA = {
     { category: "journal", year: 2015, authors: "Karim, R., & Bappy, M. M.", title: "Identification of significant factors for value-in-use assessment of product service system in business to business sector", venue: "International Journal of Advanced Multidisciplinary Research, 2(3), 16–27", link: "" },
 
     // ---- Preprints ----
-    { category: "preprint", year: 2026, authors: "Islam, M. S., Bappy, M. M., Tushar, S. R., & Arifuzzaman, M.", title: "Feature-aware anisotropic local differential privacy for utility-preserving graph representation learning in metal additive manufacturing", venue: "arXiv:2604.05077 (under major revision, ASME Journal of Computing and Information Science in Engineering)", link: "https://arxiv.org/abs/2604.05077" },
     { category: "preprint", year: 2026, authors: "Monteiro, C., Bappy, M. M., Nahmens, I., & Islam, M. S.", title: "An integrated decision-support framework for energy benchmarking, anomaly detection, and proxy setpoint optimization in data-limited retail portfolios", venue: "SSRN working paper 6410730", link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6410730" },
     { category: "preprint", year: 2024, authors: "Wasi, A. T., Islam, M. D. S., Akib, A. R., & Bappy, M. M.", title: "Graph neural networks in supply chain analytics and optimization: Concepts, perspectives, dataset and benchmarks", venue: "arXiv preprint arXiv:2411.08550", link: "https://arxiv.org/abs/2411.08550" },
 
@@ -684,6 +777,74 @@ window.LAB_DATA = {
   /*  Grouped by "group". Add items by copying a { ... } block.             */
   /* ---------------------------------------------------------------------- */
   resources: [
+    // fit: "contain" shows the whole image (renders, labelled diagrams); omit for photos.
+    // ---- Robotic Additive Manufacturing ----
+    {
+      group: "Robotic Additive Manufacturing",
+      name: "UR5–Miller Robotic WAAM System",
+      image: "assets/images/res-waam-ur5-miller.webp", fit: "contain",
+      description: "Wire arc additive manufacturing cell pairing a Universal Robots UR5 arm with a Miller Continuum 350 welding power source, shielding-gas supply, torch assembly, positioner/build platform and process sensing inside a safety enclosure.",
+      specs: "UR5 cobot · Miller Continuum 350 · positioner · in-process sensing"
+    },
+    {
+      group: "Robotic Additive Manufacturing",
+      name: "FANUC–Fronius Robotic WAAM System",
+      image: "assets/images/res-waam-fanuc-fronius.webp", fit: "contain",
+      description: "Industrial FANUC robot with a Fronius TPS 400i power source and welding torch over a dedicated WAAM worktable, used for metal deposition and localized repair with in-situ melt-pool imaging.",
+      specs: "FANUC robot · Fronius TPS 400i · WAAM worktable · melt-pool camera"
+    },
+    {
+      group: "Robotic Additive Manufacturing",
+      name: "Industrial Robot Arm 3D Printer",
+      image: "assets/images/res-kuka-am-robot.webp",
+      description: "KUKA-style industrial robot arm configured as a large-format 3D printer over an open build platform, for multi-axis deposition beyond the envelope of gantry printers.",
+      specs: "6-axis industrial arm · large-format build platform"
+    },
+    {
+      group: "Robotic Additive Manufacturing",
+      name: "Diabase H-Series Hybrid 3D Printer",
+      image: "assets/images/res-diabase-h-series.webp", fit: "contain",
+      description: "Hybrid manufacturing platform combining multi-material additive printing with subtractive machining in one machine, for printing and finishing parts in a single setup.",
+      specs: "Hybrid additive–subtractive · multi-material"
+    },
+    {
+      group: "Robotic Additive Manufacturing",
+      name: "DexArm Multi-Functional Robot Arm",
+      image: "assets/images/res-dexarm.webp", fit: "contain",
+      description: "Desktop robot arm with interchangeable tool modules for pick-and-place, laser, and 3D-printing experiments in robotic manufacturing and human–robot collaboration.",
+      specs: "Desktop arm · interchangeable tool modules"
+    },
+
+    // ---- Sensing & Characterization ----
+    {
+      group: "Sensing & Characterization",
+      name: "In-Situ Laser Profilometry FDM Testbed",
+      image: "assets/images/res-laser-profilometry.webp",
+      description: "Creality Ender-5 FDM printer integrated with a motorized scanner frame, angle encoder and motion controller for layer-wise surface scanning, used for real-time defect detection with vision transformers.",
+      specs: "KEYENCE LJ-V7000 2D laser profiler · 1 µm vertical resolution · ±48 mm range"
+    },
+    {
+      group: "Sensing & Characterization",
+      name: "Bending Fatigue Tester with Infrared Thermography",
+      image: "assets/images/res-bending-fatigue-ir.webp", fit: "contain",
+      description: "Displacement-controlled, fully reversed bending fatigue tester instrumented with an infrared camera to record surface temperature evolution during cyclic loading.",
+      specs: "FLIR A600-series · 640 × 480 px · up to 200 frames/s · 50 mK"
+    },
+    {
+      group: "Sensing & Characterization",
+      name: "Electrochemical Corrosion Test Station",
+      image: "assets/images/res-potentiostat.webp",
+      description: "Gamry potentiostat with a three-electrode cell (specimen, graphite counter, Ag/AgCl reference) in 3.5 wt% NaCl for accelerated corrosion testing, with precision weighing of material loss.",
+      specs: "Gamry potentiostat · 1 Hz logging · balance ±0.1 mg"
+    },
+    {
+      group: "Sensing & Characterization",
+      name: "Handheld 3D Laser Scanner",
+      image: "assets/images/res-3d-laser-scan.webp",
+      description: "Blue-laser 3D scanner for capturing defect and notch geometry before repair, linking measured geometry to fatigue mechanics in scan-to-repair workflows.",
+      specs: "3D laser scanning · defect geometry capture"
+    },
+
     // ---- Computing ----
     {
       group: "Computing",
@@ -692,7 +853,7 @@ window.LAB_DATA = {
       description:
         "High-performance workstations equipped with NVIDIA GPUs for deep learning, " +
         "computer vision, physics-informed modeling, and large-scale simulation.",
-      specs: "NVIDIA GPUs · high-core-count CPUs · large RAM" // TODO update exact specs
+      specs: "Includes NVIDIA RTX 4080 (16 GB) for training and real-time inference" // TODO list other workstations
     },
 
     // ---- 3D Printing ----
@@ -849,6 +1010,12 @@ window.LAB_DATA = {
       caption: "Fabricating composite bone scaffolds on a BIO X 3D bioprinter" },
     { image: "assets/images/gal-machine-fault-simulator.webp", category: "lab",
       caption: "Machine Fault Simulator instrumented for multi-channel condition monitoring" },
+    { image: "assets/images/res-waam-cell.webp", category: "lab",
+      caption: "Robotic WAAM cell repairing a notched steel fatigue specimen" },
+    { image: "assets/images/gal-waam-repaired.webp", category: "lab",
+      caption: "Notched CS1018 specimens after robotic WAAM repair" },
+    { image: "assets/images/res-3d-laser-scan.webp", category: "lab",
+      caption: "3D laser scanning of notched specimens before repair" },
     { image: "assets/images/gal-xct-lab.webp", category: "lab",
       caption: "X-ray computed tomography for non-destructive analysis of printed parts" },
 

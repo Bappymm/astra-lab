@@ -669,7 +669,7 @@
       if (fac) {
         var shots = (D.resources || []).filter(function (r) { return r.image; }).slice(0, 5);
         fac.innerHTML = shots.map(function (r) {
-          return '<a class="fac-tile" href="research.html#facilities"><img src="' + esc(r.image) + '" alt="' + esc(r.name) + '" loading="lazy">' +
+          return '<a class="fac-tile' + (r.fit === "contain" ? " is-contain" : "") + '" href="research.html#facilities"><img src="' + esc(r.image) + '" alt="' + esc(r.name) + '" loading="lazy">' +
             '<span class="fac-cap"><strong>' + esc(r.name) + "</strong><small>" + esc(r.group || "") + "</small></span></a>";
         }).join("");
       }
@@ -762,7 +762,7 @@
             groups[g].map(function (r) {
               return '<div class="card">' +
                 (r.image
-                  ? "<div class='card-media'><img class='card-image' src='" + esc(r.image) + "' alt='" + esc(r.name) + "' loading='lazy'></div>"
+                  ? "<div class='card-media" + (r.fit === "contain" ? " is-figure" : "") + "'><img class='card-image' src='" + esc(r.image) + "' alt='" + esc(r.name) + "' loading='lazy'></div>"
                   : "<div class='card-media card-icon'>" + icon(GI[g] || "gear") + "</div>") +
                 "<div class='card-body'><h3 class='card-title'>" + esc(r.name) + "</h3>" +
                 "<p class='card-text'>" + esc(r.description) + "</p>" +
@@ -994,6 +994,42 @@
       fill("team-undergrad", "undergrad");
       fill("team-alumni", "alumni");
 
+      var sr = el("student-research");
+      if (sr) {
+        var withSpot = team.filter(function (m) { return m.spotlight; });
+        if (!withSpot.length) { sr.closest(".section").style.display = "none"; }
+        var byTitle = {};
+        (D.projects || []).forEach(function (p) { byTitle[p.title] = p; });
+        sr.innerHTML = withSpot.map(function (m, k) {
+          var sp = m.spotlight;
+          var projs = (sp.projects || []).map(function (t) { return byTitle[t]; }).filter(Boolean);
+          var papers = sp.papers || [];
+          return '<article class="spot">' +
+            '<header class="spot-head">' +
+              '<img src="' + esc(m.image) + '" alt="' + esc(m.name) + '" loading="lazy">' +
+              '<div><h3>' + esc(m.name) + '</h3><p class="spot-role">' + esc(m.position || "") + "</p>" +
+                '<div class="team-card-links">' + personLinks(m) + "</div></div>" +
+            "</header>" +
+            '<p class="spot-summary">' + esc(sp.summary || "") + "</p>" +
+            (projs.length ? '<h4 class="spot-sub">Projects</h4><div class="proj-grid spot-grid" data-set="p' + k + '">' +
+              projs.map(projectCard).join("") + "</div>" : "") +
+            (papers.length ? '<h4 class="spot-sub">Papers</h4><div class="spot-papers" data-set="q' + k + '">' + papers.map(function (q, i) {
+              return '<div class="spot-paper"><button class="spot-fig" type="button" data-i="' + i + '" aria-label="Enlarge figure: ' + esc(q.title) + '">' +
+                '<img src="' + esc(q.image) + '" alt="" loading="lazy"></button>' +
+                "<div><h5>" + esc(q.title) + "</h5><p>" + esc(q.text) + "</p></div></div>";
+            }).join("") + "</div>" : "") +
+            (sp.next ? '<p class="spot-next"><span class="badge badge-gold">Next</span> ' + esc(sp.next) + "</p>" : "") +
+            ((sp.tools || []).length ? '<h4 class="spot-sub">Tools &amp; methods</h4><div class="tag-row">' +
+              sp.tools.map(function (t) { return '<span class="tag">' + esc(t) + "</span>"; }).join("") + "</div>" : "") +
+          "</article>";
+        }).join("");
+        withSpot.forEach(function (m, k) {
+          var pg = sr.querySelector('[data-set="p' + k + '"]'), qg = sr.querySelector('[data-set="q' + k + '"]');
+          if (pg) wireFigures(pg, (m.spotlight.projects || []).map(function (t) { return byTitle[t]; }).filter(Boolean));
+          if (qg) wireFigures(qg, (m.spotlight.papers || []).map(function (q) { return { image: q.image, title: q.title }; }));
+        });
+      }
+
       var j = D.join || {}, host = el("join");
       if (host) {
         host.innerHTML =
@@ -1186,7 +1222,7 @@
     // auto-tag the main content blocks on each page
     var sel = ".card, .team-card, .director-card, .award-card, .news-item, .about-grid > *, " +
               ".stat, .thrust-card, .proj-card, .spotlight, .feature-row, .fund-card, .fac-tile, " +
-              ".tl-item, .project-row, .teach-card, .cert-card, .fact, .award-stat, .svc-card, .svc-row, .join-card";
+              ".tl-item, .project-row, .teach-card, .cert-card, .fact, .award-stat, .svc-card, .svc-row, .join-card, .spot-paper";
     var nodes = Array.prototype.slice.call(document.querySelectorAll(sel));
     if (reduce || !("IntersectionObserver" in window)) { return; } // leave fully visible
     nodes.forEach(function (n) { n.classList.add("reveal"); });
