@@ -24,9 +24,11 @@
   var NAV = [
     { href: "index.html",        label: "Home",         key: "home" },
     { href: "research.html",     label: "Research",     key: "research" },
+    { href: "director.html",     label: "Director",     key: "director" },
     { href: "team.html",         label: "Team",         key: "team" },
     { href: "publications.html", label: "Publications", key: "publications" },
     { href: "awards.html",       label: "Awards",       key: "awards" },
+    { href: "gallery.html",      label: "Gallery",      key: "gallery" },
     { href: "resources.html",    label: "Resources",    key: "resources" },
     { href: "join.html",         label: "Join Us",      key: "join" }
   ];
@@ -255,8 +257,25 @@
   function renderFooter() {
     var host = el("footer"); if (!host) return;
     var y = new Date().getFullYear();
-    host.innerHTML = "<p>&copy; " + y + " " + esc(S.labName || "") + " · " +
-      esc(S.department || "") + "</p>";
+    var social = "";
+    if (S.scholar)      social += link(S.scholar, "Google Scholar", true);
+    if (S.linkedin)     social += link(S.linkedin, "LinkedIn", true);
+    if (S.researchgate) social += link(S.researchgate, "ResearchGate", true);
+    if (S.github)       social += link(S.github, "GitHub", true);
+    host.innerHTML =
+      '<div class="footer-grid">' +
+        '<div class="footer-col"><div class="footer-brand">' + esc(S.labName || "") + "</div>" +
+          (S.tagline ? '<p class="footer-tag">' + esc(S.tagline) + "</p>" : "") +
+          "<p>" + esc(S.department || "") + "</p></div>" +
+        '<div class="footer-col"><h4>Explore</h4><ul class="footer-links">' +
+          NAV.map(function (n) { return '<li><a href="' + n.href + '">' + esc(n.label) + "</a></li>"; }).join("") +
+        "</ul></div>" +
+        '<div class="footer-col"><h4>Contact</h4>' +
+          (S.email ? "<p>" + link("mailto:" + S.email, S.email, false) + "</p>" : "") +
+          (S.location ? "<p>" + esc(S.location) + "</p>" : "") +
+          '<div class="footer-social">' + social + "</div></div>" +
+      "</div>" +
+      '<p class="footer-bottom">&copy; ' + y + " " + esc(S.labName || "") + " · Louisiana State University</p>";
   }
 
   // --- person card ---------------------------------------------------------
@@ -285,44 +304,389 @@
       "</div></div>";
   }
 
+  // --- shared building blocks ---------------------------------------------
+  var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Small inline icons (stroke-based, inherit currentColor).
+  var ICON = {
+    trophy: '<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3"/>',
+    grant:  '<circle cx="12" cy="9" r="5"/><path d="M8.5 13 7 21l5-3 5 3-1.5-8"/>',
+    cap:    '<path d="M2 9 12 4l10 5-10 5L2 9z"/><path d="M6 11v5c3 2 9 2 12 0v-5M22 9v6"/>',
+    cert:   '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M7 9h10M7 12h6M15 17l1 4 2-1.5 2 1.5-1-4"/>',
+    mail:   '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    link:   '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+    arrow:  '<path d="M5 12h14M13 6l6 6-6 6"/>',
+    search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+    school: '<path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>',
+    work:   '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2M3 12h18"/>',
+    zoom:   '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/>'
+  };
+  function icon(name, cls) {
+    return '<svg class="ico' + (cls ? " " + cls : "") + '" viewBox="0 0 24 24" aria-hidden="true" ' +
+           'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+           (ICON[name] || "") + "</svg>";
+  }
+
+  // Bold the lab director in an author list (escaped first, so it is safe).
+  function authorsHtml(a) {
+    return esc(a).replace(/Bappy, M\.(?: M\.)?/g, function (m) { return "<strong>" + m + "</strong>"; });
+  }
+
+  function btn(href, label, kind, blank) {
+    if (!href) return "";
+    return '<a class="btn ' + (kind || "btn-primary") + '" href="' + esc(href) + '"' +
+      (blank ? ' target="_blank" rel="noopener"' : "") + ">" + label + "</a>";
+  }
+
+  // Unique courses across every teaching entry.
+  function courseCount() {
+    var seen = {};
+    ((D.director || {}).teaching || []).forEach(function (t) {
+      (t.courses || []).forEach(function (c) { seen[c] = 1; });
+    });
+    return Object.keys(seen).length;
+  }
+  function countPubs(cats) {
+    return (D.publications || []).filter(function (p) { return cats.indexOf(p.category) >= 0; }).length;
+  }
+
+  // Animate numbers from 0 when they scroll into view.
+  function countUp(root) {
+    var nums = root.querySelectorAll("[data-count]");
+    function run(n) {
+      var end = parseInt(n.getAttribute("data-count"), 10) || 0;
+      if (REDUCED) { n.textContent = end; return; }
+      var t0 = null, dur = 1400;
+      function step(t) {
+        if (!t0) t0 = t;
+        var k = Math.min((t - t0) / dur, 1);
+        n.textContent = Math.round(end * (1 - Math.pow(1 - k, 3)));   // ease-out
+        if (k < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if (!("IntersectionObserver" in window)) { Array.prototype.forEach.call(nums, run); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.4 });
+    Array.prototype.forEach.call(nums, function (n) { io.observe(n); });
+  }
+
+  // Vertical timeline used on the Director page.
+  function timeline(items) {
+    return '<ol class="timeline">' + items.map(function (it) {
+      return '<li class="tl-item"><span class="tl-dot" aria-hidden="true"></span>' +
+        '<div class="tl-card">' +
+          '<span class="tl-when">' + esc(it.when) + "</span>" +
+          "<h3 class=\"tl-title\">" + esc(it.title) + "</h3>" +
+          (it.sub ? '<p class="tl-sub">' + esc(it.sub) + "</p>" : "") +
+          (it.detail ? '<p class="tl-detail">' + it.detail + "</p>" : "") +
+        "</div></li>";
+    }).join("") + "</ol>";
+  }
+
+  /* --- lightbox ------------------------------------------------------------
+     One shared viewer for gallery photos and research figures. Opens on the
+     clicked item, steps with the arrow keys or buttons, closes on Esc or a
+     click outside the image, and hands focus back to whatever opened it.   */
+  var LB = null;
+  function lightbox(items, start, opener) {
+    if (!LB) {
+      var box = document.createElement("div");
+      box.className = "lightbox"; box.setAttribute("role", "dialog");
+      box.setAttribute("aria-modal", "true"); box.setAttribute("aria-label", "Image viewer");
+      box.innerHTML =
+        '<button class="lb-btn lb-close" aria-label="Close">&times;</button>' +
+        '<button class="lb-btn lb-prev" aria-label="Previous image">&#8249;</button>' +
+        '<figure class="lb-figure"><img class="lb-img" alt=""><figcaption class="lb-cap"></figcaption></figure>' +
+        '<button class="lb-btn lb-next" aria-label="Next image">&#8250;</button>' +
+        '<span class="lb-count"></span>';
+      document.body.appendChild(box);
+      LB = { box: box, img: box.querySelector(".lb-img"), cap: box.querySelector(".lb-cap"),
+             count: box.querySelector(".lb-count"), items: [], i: 0, opener: null };
+      function go(d) { show(LB.i + d); }
+      function show(n) {
+        LB.i = (n + LB.items.length) % LB.items.length;
+        var it = LB.items[LB.i];
+        LB.img.classList.remove("is-in");
+        LB.img.src = it.src; LB.img.alt = it.caption || "";
+        LB.cap.textContent = it.caption || "";
+        LB.count.textContent = (LB.i + 1) + " / " + LB.items.length;
+        requestAnimationFrame(function () { LB.img.classList.add("is-in"); });
+      }
+      function close() {
+        box.classList.remove("is-open");
+        document.body.classList.remove("lb-lock");
+        if (LB.opener) LB.opener.focus();
+      }
+      LB.show = show; LB.close = close;
+      box.querySelector(".lb-close").addEventListener("click", close);
+      box.querySelector(".lb-prev").addEventListener("click", function () { go(-1); });
+      box.querySelector(".lb-next").addEventListener("click", function () { go(1); });
+      box.addEventListener("click", function (e) { if (e.target === box) close(); });
+      document.addEventListener("keydown", function (e) {
+        if (!box.classList.contains("is-open")) return;
+        if (e.key === "Escape") close();
+        else if (e.key === "ArrowLeft") go(-1);
+        else if (e.key === "ArrowRight") go(1);
+      });
+    }
+    LB.items = items; LB.opener = opener || null;
+    var single = items.length < 2;
+    LB.box.classList.toggle("is-single", single);
+    LB.show(start || 0);
+    LB.box.classList.add("is-open");
+    document.body.classList.add("lb-lock");
+    LB.box.querySelector(".lb-close").focus();
+  }
+
   // --- page renderers ------------------------------------------------------
   var PAGES = {
     home: function () {
-      var h = D.home || {};
-      var about = el("about");
-      if (about) {
-        about.innerHTML =
-          "<div><p style='font-size:1.1rem;color:var(--text-primary)'>" + esc(h.aboutLead) + "</p>" +
-          "<p>" + esc(h.aboutBody) + "</p></div>" +
-          (h.image ? "<div><img src='" + esc(h.image) + "' alt='ASTRA Lab' " +
-             "onerror=\"this.style.display='none'\"></div>" : "");
-      }
+      var h = D.home || {}, dir = D.director || {};
       if (el("hero-title")) el("hero-title").textContent = h.heroTitle || "";
       if (el("hero-sub")) el("hero-sub").textContent = h.heroSubtitle || "";
       renderShowcase();
+
+      var stats = el("stats");
+      if (stats) {
+        var S4 = [
+          { n: countPubs(["journal"]), label: "Journal Articles" },
+          { n: countPubs(["conference", "talk", "poster"]), label: "Conference Papers & Presentations" },
+          { n: (D.awards || []).length, label: "Honors & Awards" },
+          { n: courseCount(), label: "Courses Taught" }
+        ];
+        stats.innerHTML = S4.map(function (s) {
+          return '<div class="stat"><span class="stat-num" data-count="' + s.n + '">' + s.n + "</span>" +
+                 '<span class="stat-label">' + esc(s.label) + "</span></div>";
+        }).join("");
+        countUp(stats);
+      }
+
+      var about = el("about");
+      if (about) {
+        about.innerHTML =
+          "<div><h2 class='section-title'>About the Lab</h2>" +
+          "<p class='lead'>" + esc(h.aboutLead) + "</p>" +
+          "<p>" + esc(h.aboutBody) + "</p>" +
+          "<div class='btn-row'>" + btn("research.html", "Explore our research " + icon("arrow"), "btn-primary") +
+            btn("join.html", "Join the lab", "btn-outline") + "</div></div>" +
+          (h.image ? "<figure class='about-photo'><span class='about-frame'><img src='" + esc(h.image) + "' alt='" + esc(h.imageCaption || "ASTRA Lab") +
+             "' loading='lazy' onerror=\"this.closest('figure').style.display='none'\"></span>" +
+             (h.imageCaption ? "<figcaption>" + esc(h.imageCaption) + "</figcaption>" : "") + "</figure>" : "");
+      }
+
+      var hl = el("home-highlights");
+      if (hl) {
+        var three = (D.highlights || []).slice(0, 3);
+        hl.innerHTML = three.map(function (p) {
+          return '<a class="hl-card" href="' + esc(p.link || "research.html") + '" target="_blank" rel="noopener">' +
+            '<div class="hl-media"><img src="' + esc(p.image) + '" alt="" loading="lazy"></div>' +
+            '<div class="hl-body"><span class="badge">' + esc(p.venue) + " · " + esc(p.year) + "</span>" +
+            '<h3>' + esc(p.title) + "</h3><p>" + esc(p.summary) + "</p>" +
+            '<span class="hl-more">Read the paper ' + icon("arrow") + "</span></div></a>";
+        }).join("");
+      }
+
+      var sp = el("spotlight");
+      if (sp && dir.name) {
+        sp.innerHTML =
+          '<div class="spotlight-photo"><img src="' + esc(dir.image) + '" alt="' + esc(dir.name) + '" loading="lazy"></div>' +
+          '<div class="spotlight-body"><span class="eyebrow">Meet the Director</span>' +
+            "<h2>" + esc(dir.name) + "</h2>" +
+            '<p class="spotlight-title">' + esc(dir.title) + " · " + esc(dir.university) + "</p>" +
+            "<p>" + esc((dir.bio || [""])[0]) + "</p>" +
+            '<div class="btn-row">' + btn("director.html", "Full profile " + icon("arrow"), "btn-primary") +
+              btn(dir.email ? "mailto:" + dir.email : "", icon("mail") + " Email", "btn-outline") + "</div>" +
+          "</div>";
+      }
+
       var nb = el("news");
       if (nb) {
         nb.innerHTML = (D.news || []).map(function (n) {
-          return '<li class="news-item"><span class="news-date">📢 ' + esc(n.date) +
+          return '<li class="news-item"><span class="news-date">' + esc(n.date) +
             '</span><span class="news-text">' + esc(n.text) + "</span></li>";
         }).join("") || '<li class="news-item muted">No updates yet.</li>';
+      }
+
+      // Endless photo strip: the list is rendered twice so the loop is seamless.
+      var mq = el("marquee");
+      if (mq) {
+        var pics = (D.gallery || []).slice(0, 12);
+        if (!pics.length) { mq.closest(".marquee-band").style.display = "none"; }
+        else {
+          var row = pics.map(function (g) {
+            return '<a class="mq-item" href="gallery.html"><img src="' + esc(g.image) + '" alt="' +
+                   esc(g.caption) + '" loading="lazy"></a>';
+          }).join("");
+          mq.innerHTML = '<div class="mq-track">' + row + row.replace(/<a /g, '<a tabindex="-1" aria-hidden="true" ') + "</div>";
+        }
       }
     },
 
     research: function () {
-      var host = el("research"); if (!host) return;
-      host.innerHTML = (D.research || []).map(function (p) {
-        var links = (p.links || []).map(function (l) {
-          return link(l.url, "[" + l.label + "]", true);
+      var host = el("research");
+      if (host) {
+        host.innerHTML = (D.research || []).map(function (p) {
+          var links = (p.links || []).map(function (l) {
+            return link(l.url, l.label, true);
+          }).join("");
+          var tags = (p.tags || []).map(function (t) { return '<span class="tag">' + esc(t) + "</span>"; }).join("");
+          return '<div class="card">' +
+            "<div class='card-media" + (p.fit === "contain" ? " is-figure" : "") + "'>" +
+            "<img class='card-image' src='" + esc(p.image || "") + "' alt='" + esc(p.title) +
+              "' loading='lazy' onerror=\"this.src='assets/images/placeholder.svg'\"></div>" +
+            "<div class='card-body'><h3 class='card-title'>" + esc(p.title) + "</h3>" +
+            (tags ? "<div class='tag-row'>" + tags + "</div>" : "") +
+            "<p class='card-text'>" + esc(p.description) + "</p>" +
+            (links ? "<div class='card-links'>" + links + "</div>" : "") +
+            "</div></div>";
         }).join("");
-        return '<div class="card">' +
-          "<img class='card-image' src='" + esc(p.image || "") + "' alt='" + esc(p.title) +
-            "' loading='lazy' onerror=\"this.src='assets/images/placeholder.svg'\">" +
-          "<div class='card-body'><h3 class='card-title'>" + esc(p.title) + "</h3>" +
-          "<p class='card-text'>" + esc(p.description) + "</p>" +
-          (links ? "<div class='card-links'>" + links + "</div>" : "") +
-          "</div></div>";
-      }).join("");
+      }
+
+      var hl = el("highlights");
+      if (hl) {
+        var items = D.highlights || [];
+        hl.innerHTML = items.map(function (p, i) {
+          return '<article class="feature-row' + (i % 2 ? " is-flipped" : "") + '">' +
+            '<button class="feature-media" type="button" data-i="' + i + '" aria-label="Enlarge figure: ' + esc(p.title) + '">' +
+              '<img src="' + esc(p.image) + '" alt="Key figure from: ' + esc(p.title) + '" loading="lazy">' +
+              '<span class="zoom-hint">' + icon("zoom") + "</span></button>" +
+            '<div class="feature-body"><span class="badge">' + esc(p.venue) + " · " + esc(p.year) + "</span>" +
+              "<h3>" + esc(p.title) + "</h3>" +
+              '<p class="feature-authors">' + authorsHtml(p.authors) + "</p>" +
+              "<p>" + esc(p.summary) + "</p>" +
+              (p.link ? btn(p.link, "Read the paper " + icon("arrow"), "btn-outline", true) : "") +
+            "</div></article>";
+        }).join("");
+        var figs = items.map(function (p) { return { src: p.image, caption: p.title }; });
+        Array.prototype.forEach.call(hl.querySelectorAll(".feature-media"), function (b) {
+          b.addEventListener("click", function () { lightbox(figs, +b.getAttribute("data-i"), b); });
+        });
+      }
+
+      var fund = el("funding");
+      if (fund) {
+        fund.innerHTML = (D.funding || []).map(function (f) {
+          return '<div class="fund-card"><span class="fund-mark">' + esc(f.short) + "</span>" +
+            "<div><h3>" + esc(f.sponsor) + "</h3>" +
+            (f.award ? '<p class="fund-award">' + esc(f.award) + "</p>" : "") +
+            "<p>" + esc(f.project) + "</p></div></div>";
+        }).join("");
+      }
+    },
+
+    director: function () {
+      var d = D.director || {}; if (!d.name) return;
+      var hero = el("profile-hero");
+      if (hero) {
+        var links = "";
+        if (d.email)        links += btn("mailto:" + d.email, icon("mail") + " " + esc(d.email), "btn-light");
+        if (d.scholar)      links += btn(d.scholar, "Google Scholar", "btn-ghost", true);
+        if (d.linkedin)     links += btn(d.linkedin, "LinkedIn", "btn-ghost", true);
+        if (d.researchgate) links += btn(d.researchgate, "ResearchGate", "btn-ghost", true);
+        hero.innerHTML =
+          '<div class="profile-inner">' +
+            '<div class="profile-photo"><img src="' + esc(d.image) + '" alt="' + esc(d.name) + '"></div>' +
+            '<div class="profile-id"><span class="eyebrow">' + esc(d.role) + "</span>" +
+              "<h1>" + esc(d.name) + "</h1>" +
+              '<p class="profile-title">' + esc(d.title) + "</p>" +
+              '<p class="profile-dept">' + esc(d.department) + "<br>" + esc(d.university) + "</p>" +
+              '<div class="btn-row">' + links + "</div>" +
+            "</div>" +
+          "</div>";
+      }
+
+      var bio = el("profile-bio");
+      if (bio) {
+        bio.innerHTML = (d.bio || []).map(function (p, i) {
+          return "<p" + (i === 0 ? " class='lead'" : "") + ">" + esc(p) + "</p>";
+        }).join("") +
+        "<h3 class='sub-title'>Research Interests</h3><div class='tag-row'>" +
+        (d.interests || []).map(function (t) { return '<span class="tag tag-lg">' + esc(t) + "</span>"; }).join("") + "</div>";
+      }
+
+      var facts = el("profile-facts");
+      if (facts) {
+        var F = [
+          { n: countPubs(["journal"]), label: "Journal articles" },
+          { n: countPubs(["conference", "talk", "poster"]), label: "Conference works" },
+          { n: (D.awards || []).length, label: "Honors & awards" },
+          { n: courseCount(), label: "Courses taught" }
+        ];
+        facts.innerHTML = F.map(function (f) {
+          return '<div class="fact"><span class="fact-num" data-count="' + f.n + '">' + f.n +
+                 '</span><span class="fact-label">' + esc(f.label) + "</span></div>";
+        }).join("");
+        countUp(facts);
+      }
+
+      var edu = el("profile-education");
+      if (edu) edu.innerHTML = timeline((d.education || []).map(function (e) {
+        return { when: e.years, title: e.degree, sub: e.school + (e.place ? " · " + e.place : ""),
+                 detail: e.thesis ? "<em>" + esc(e.thesisLabel || "Thesis") + ":</em> " + esc(e.thesis) : "" };
+      }));
+
+      var aca = el("profile-academic");
+      if (aca) aca.innerHTML = timeline((d.academic || []).map(function (a) {
+        return { when: a.years, title: a.role, sub: a.org + (a.unit ? " · " + a.unit : ""),
+                 detail: a.note ? esc(a.note) : "" };
+      }));
+
+      var ind = el("profile-industry");
+      if (ind) ind.innerHTML = timeline((d.industry || []).map(function (a) {
+        return { when: a.years, title: a.role, sub: a.org, detail: a.note ? esc(a.note) : "" };
+      }));
+
+      var pr = el("profile-projects");
+      if (pr) {
+        pr.innerHTML = (d.projects || []).map(function (p, i) {
+          return '<article class="project-row' + (i % 2 ? " is-flipped" : "") + '">' +
+            '<div class="project-media' + (p.fit === "contain" ? " is-figure" : "") + '"><img src="' + esc(p.image) + '" alt="" loading="lazy"></div>' +
+            '<div class="project-body"><span class="badge badge-gold">Funded by ' + esc(p.funding) + "</span>" +
+              "<h3>" + esc(p.title) + "</h3><ul class='check-list'>" +
+              (p.points || []).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") +
+            "</ul></div></article>";
+        }).join("");
+      }
+
+      var te = el("profile-teaching");
+      if (te) {
+        te.innerHTML = (d.teaching || []).map(function (t) {
+          return '<div class="teach-card"><div class="teach-head"><h3>' + esc(t.org) + "</h3>" +
+            '<span class="tl-when">' + esc(t.years) + "</span></div>" +
+            '<div class="tag-row">' + (t.courses || []).map(function (c) {
+              return '<span class="tag">' + esc(c) + "</span>"; }).join("") + "</div>" +
+            (t.note ? '<p class="teach-note">' + esc(t.note) + "</p>" : "") + "</div>";
+        }).join("");
+      }
+
+      var ce = el("profile-certs");
+      if (ce) {
+        ce.innerHTML = (d.certifications || []).map(function (c) {
+          return '<div class="cert-card">' + icon("cert", "cert-ico") +
+            "<div><h3>" + esc(c.title) + "</h3><p>" + esc(c.org) + "</p>" +
+            '<span class="cert-year">' + esc(c.year) + "</span></div></div>";
+        }).join("");
+      }
+
+      // Section shortcuts: highlight the section currently under the sticky
+      // bars, recomputed on every scroll so it also clears when scrolling up.
+      var tabs = Array.prototype.slice.call(document.querySelectorAll(".profile-tabs a"));
+      var secs = tabs.map(function (a) { return document.querySelector(a.getAttribute("href")); });
+      if (tabs.length) {
+        var ticking = false;
+        var sync = function () {
+          ticking = false;
+          var cur = -1;
+          secs.forEach(function (sec, i) { if (sec && sec.getBoundingClientRect().top <= 170) cur = i; });
+          tabs.forEach(function (a, i) { a.classList.toggle("is-current", i === cur); });
+        };
+        window.addEventListener("scroll", function () {
+          if (!ticking) { ticking = true; requestAnimationFrame(sync); }
+        }, { passive: true });
+        sync();
+      }
     },
 
     team: function () {
@@ -337,9 +701,12 @@
             return '<div class="director-card">' + photo(m, "team-card-image") +
               '<div class="team-card-content"><h3 class="team-card-name">' + esc(m.name) + "</h3>" +
               '<p class="team-card-position">' + esc(m.position || "") + "</p>" +
+              (m.education ? '<p class="team-card-interests"><strong>Education:</strong> ' + esc(m.education) + "</p>" : "") +
               (m.interests ? '<p class="team-card-interests"><strong>Research Interests:</strong> ' + esc(m.interests) + "</p>" : "") +
               (m.bio ? '<p class="team-card-bio">' + esc(m.bio) + "</p>" : "") +
-              '<div class="team-card-links">' + personLinks(m) + "</div></div></div>";
+              '<div class="team-card-links">' + personLinks(m) + "</div>" +
+              (m.profile ? '<div class="btn-row">' + btn(m.profile, "View full profile " + icon("arrow"), "btn-primary") + "</div>" : "") +
+              "</div></div>";
           }).join("");
         } else {
           host.innerHTML = members.map(teamCard).join("");
@@ -354,35 +721,157 @@
 
     publications: function () {
       var pubs = D.publications || [];
-      function fmt(p) {
-        var tail = esc(p.venue || "");
-        return '<li class="publication-item"><p class="publication-text">' +
-          esc(p.authors) + " (" + esc(p.year) + "). " +
-          '<span class="pub-title">' + esc(p.title) + ".</span> <em>" + tail + "</em>.</p>" +
-          (p.link ? link(p.link, "🔗 View Publication", true).replace("<a ", '<a class="publication-link" ') : "") +
-          "</li>";
+      var CATS = [
+        { key: "all",        label: "All" },
+        { key: "journal",    label: "Journal Articles" },
+        { key: "conference", label: "Conference Papers" },
+        { key: "preprint",   label: "Preprints" },
+        { key: "talk",       label: "Presentations" },
+        { key: "poster",     label: "Posters" }
+      ];
+      var LABEL = { journal: "Journal", conference: "Conference", preprint: "Preprint", talk: "Presentation", poster: "Poster" };
+      function count(k) { return k === "all" ? pubs.length : pubs.filter(function (p) { return p.category === k; }).length; }
+      var cats = CATS.filter(function (c) { return count(c.key) > 0; });
+
+      var start = (location.hash || "").replace("#", "");
+      var state = { cat: cats.some(function (c) { return c.key === start; }) ? start : "all", q: "" };
+
+      var bar = el("pub-toolbar"), list = el("pub-list");
+      if (!bar || !list) return;
+      bar.innerHTML =
+        '<div class="filter-row" role="tablist" aria-label="Filter by type">' + cats.map(function (c) {
+          return '<button type="button" role="tab" class="chip" data-cat="' + c.key + '" aria-selected="' +
+                 (c.key === state.cat) + '">' + esc(c.label) + ' <span class="chip-n">' + count(c.key) + "</span></button>";
+        }).join("") + "</div>" +
+        '<label class="search">' + icon("search") +
+          '<input type="search" id="pub-q" placeholder="Search title, author, venue or year" aria-label="Search publications">' +
+        "</label>";
+
+      // Hyphens are ignored so "bioprinting" also finds "bio-printing".
+      function norm(t) { return String(t).toLowerCase().replace(/[-‐–]/g, ""); }
+      function render() {
+        var q = norm(state.q);
+        var items = pubs.filter(function (p) {
+          if (state.cat !== "all" && p.category !== state.cat) return false;
+          if (!q) return true;
+          return norm(p.title + " " + p.authors + " " + p.venue + " " + p.year).indexOf(q) >= 0;
+        }).sort(function (a, b) { return (b.year || 0) - (a.year || 0); });
+
+        if (!items.length) {
+          list.innerHTML = '<p class="empty">No publications match “' + esc(state.q) + '”.</p>';
+          return;
+        }
+        var html = "", year = null, n = 0;
+        items.forEach(function (p) {
+          if (p.year !== year) {
+            if (year !== null) html += "</ul></section>";
+            year = p.year;
+            html += '<section class="pub-year"><h3 class="pub-year-label">' + esc(year) + '</h3><ul class="publication-list">';
+          }
+          html += '<li class="publication-item pub-in" style="--i:' + Math.min(n++, 12) + '">' +
+            '<span class="pub-type pub-type-' + esc(p.category) + '">' + esc(LABEL[p.category] || p.category) + "</span>" +
+            '<p class="publication-text"><span class="pub-title">' + esc(p.title) + "</span><br>" +
+            authorsHtml(p.authors) + (/\.$/.test(p.authors) ? " " : ". ") + "<em>" + esc(p.venue) + "</em>, " + esc(p.year) + ".</p>" +
+            (p.link ? '<a class="publication-link" href="' + esc(p.link) + '" target="_blank" rel="noopener">' +
+              icon("link") + (p.link.indexOf("doi.org") >= 0 ? " DOI" : " View") + "</a>" : "") +
+            "</li>";
+        });
+        list.innerHTML = html + "</ul></section>";
       }
-      function fill(id, cat) {
-        var host = el(id); if (!host) return;
-        var items = pubs.filter(function (p) { return p.category === cat; })
-                        .sort(function (a, b) { return (b.year || 0) - (a.year || 0); });
-        var section = host.closest(".section");
-        if (!items.length) { if (section) section.style.display = "none"; return; }
-        host.innerHTML = items.map(fmt).join("");
-      }
-      fill("pub-journal", "journal");
-      fill("pub-conference", "conference");
-      fill("pub-preprint", "preprint");
+
+      Array.prototype.forEach.call(bar.querySelectorAll(".chip"), function (b) {
+        b.addEventListener("click", function () {
+          state.cat = b.getAttribute("data-cat");
+          Array.prototype.forEach.call(bar.querySelectorAll(".chip"), function (x) {
+            x.setAttribute("aria-selected", String(x === b));
+          });
+          if (history.replaceState) history.replaceState(null, "", state.cat === "all" ? location.pathname : "#" + state.cat);
+          render();
+        });
+      });
+      var qIn = el("pub-q"), t = null;
+      qIn.addEventListener("input", function () {
+        clearTimeout(t); t = setTimeout(function () { state.q = qIn.value.trim(); render(); }, 120);
+      });
+      render();
     },
 
     awards: function () {
       var host = el("awards"); if (!host) return;
-      host.innerHTML = (D.awards || []).map(function (a) {
-        return '<div class="award-card"><h4>' + esc(a.title) + "</h4>" +
-          '<p class="award-meta"><strong>' + esc(a.year) + "</strong>" +
-          (a.org ? " · " + esc(a.org) : "") +
-          (a.person ? " · " + esc(a.person) : "") + "</p></div>";
+      var awards = D.awards || [];
+      var GROUPS = [
+        { key: "research",    title: "Research Honors",          icon: "trophy" },
+        { key: "grant",       title: "Grants & Travel Awards",   icon: "grant" },
+        { key: "scholarship", title: "Scholarships",             icon: "cap" }
+      ];
+      var used = GROUPS.filter(function (g) { return awards.some(function (a) { return (a.group || "research") === g.key; }); });
+
+      var sum = el("award-summary");
+      if (sum) {
+        sum.innerHTML = used.map(function (g) {
+          var n = awards.filter(function (a) { return (a.group || "research") === g.key; }).length;
+          return '<a class="award-stat" href="#aw-' + g.key + '">' + icon(g.icon, "award-stat-ico") +
+            '<span class="award-stat-n" data-count="' + n + '">' + n + "</span>" +
+            '<span class="award-stat-l">' + esc(g.title) + "</span></a>";
+        }).join("");
+        countUp(sum);
+      }
+
+      host.innerHTML = used.map(function (g) {
+        var items = awards.filter(function (a) { return (a.group || "research") === g.key; });
+        return '<section class="award-group" id="aw-' + g.key + '">' +
+          '<h2 class="section-title">' + esc(g.title) + "</h2>" +
+          '<div class="award-list">' + items.map(function (a) {
+            return '<div class="award-card"><span class="award-ico">' + icon(g.icon) + "</span>" +
+              '<div class="award-main"><h4>' + esc(a.title) + "</h4>" +
+              '<p class="award-meta">' + esc(a.org || "") + (a.person ? " · " + esc(a.person) : "") + "</p></div>" +
+              '<span class="award-year">' + esc(a.year) + "</span></div>";
+          }).join("") + "</div></section>";
       }).join("") || '<p class="muted">Awards will be listed here.</p>';
+    },
+
+    gallery: function () {
+      var host = el("gallery"), bar = el("gallery-filters"); if (!host) return;
+      var all = D.gallery || [];
+      var CATS = [
+        { key: "all", label: "All" },
+        { key: "talks", label: "Talks & Conferences" },
+        { key: "lab", label: "In the Lab" },
+        { key: "outreach", label: "Outreach & Mentoring" },
+        { key: "campus", label: "Campus & Community" }
+      ].filter(function (c) { return c.key === "all" || all.some(function (g) { return g.category === c.key; }); });
+      var cur = "all";
+
+      function shown() { return cur === "all" ? all : all.filter(function (g) { return g.category === cur; }); }
+      function render() {
+        var items = shown();
+        host.innerHTML = items.map(function (g, i) {
+          return '<button type="button" class="gallery-item g-in" style="--i:' + Math.min(i, 10) + '" data-i="' + i + '">' +
+            '<img src="' + esc(g.image) + '" alt="' + esc(g.caption) + '" loading="lazy">' +
+            '<span class="g-cap">' + esc(g.caption) + "</span></button>";
+        }).join("");
+        var set = items.map(function (g) { return { src: g.image, caption: g.caption }; });
+        Array.prototype.forEach.call(host.querySelectorAll(".gallery-item"), function (b) {
+          b.addEventListener("click", function () { lightbox(set, +b.getAttribute("data-i"), b); });
+        });
+      }
+      if (bar) {
+        bar.innerHTML = CATS.map(function (c) {
+          var n = c.key === "all" ? all.length : all.filter(function (g) { return g.category === c.key; }).length;
+          return '<button type="button" class="chip" data-cat="' + c.key + '" aria-pressed="' + (c.key === cur) + '">' +
+            esc(c.label) + ' <span class="chip-n">' + n + "</span></button>";
+        }).join("");
+        Array.prototype.forEach.call(bar.querySelectorAll(".chip"), function (b) {
+          b.addEventListener("click", function () {
+            cur = b.getAttribute("data-cat");
+            Array.prototype.forEach.call(bar.querySelectorAll(".chip"), function (x) {
+              x.setAttribute("aria-pressed", String(x === b));
+            });
+            render();
+          });
+        });
+      }
+      render();
     },
 
     resources: function () {
@@ -425,7 +914,9 @@
   function setupReveal() {
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     // auto-tag the main content blocks on each page
-    var sel = ".card, .team-card, .director-card, .award-card, .publication-item, .news-item, .about-grid > div, .join-section, .highlight-box";
+    var sel = ".card, .team-card, .director-card, .award-card, .news-item, .about-grid > *, " +
+              ".join-section, .highlight-box, .stat, .hl-card, .director-spotlight, .feature-row, .fund-card, " +
+              ".tl-item, .project-row, .teach-card, .cert-card, .fact, .award-stat";
     var nodes = Array.prototype.slice.call(document.querySelectorAll(sel));
     if (reduce || !("IntersectionObserver" in window)) { return; } // leave fully visible
     nodes.forEach(function (n) { n.classList.add("reveal"); });
