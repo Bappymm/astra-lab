@@ -1100,3 +1100,6 @@ h1, h2, h3, .hero-title { text-wrap: balance; }
 /* Facility cards: a taller image well so machine renders read clearly. */
 #facilities-list .card-image { height: 250px; }
 #facilities-list .card-media.card-icon { height: 250px; }
+
+/* The water-treatment slide carries its own dark canvas; keep the diagram on the right. */
+.hero-slide[src*="hero-water-treatment"] { object-position: right center; }
