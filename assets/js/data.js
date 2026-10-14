@@ -970,7 +970,7 @@ window.LAB_DATA = {
     { group: "student", year: "2026", title: "2nd Place, Best Track Paper Award (Health Systems Track)", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
     { group: "student", year: "2026", title: "3rd Place, DAIS Student Data Analytics Competition", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
     { group: "student", year: "2025", title: "Champion, IISE Innovative Design Competition", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
-    { group: "student", year: "2025", title: "Runner-up, Stakeholder Engagement Data Challenge", org: "INFORMS Annual Meeting", person: "Md Shafikul Islam" },
+    { group: "student", year: "2025", title: "Runner-up, Stakeholder Engagement Data Challenge", org: "INFORMS Annual Meeting", person: "Md Shafikul Islam, Azmine Toushiq Wasi & Dr. Bappy" },
     { group: "student", year: "2025", title: "2nd Runner-up, QCRE Data Challenge", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
     { group: "student", year: "2025", title: "Best Graduate Oral Presentation", org: "Louisiana Academy of Sciences, 99th Annual Meeting", person: "Md Shafikul Islam" },
     { group: "student", year: "2025", title: "NSF Student Travel Award", org: "North American Manufacturing Research Conference (NAMRC)", person: "Md Shafikul Islam" },
@@ -994,6 +994,8 @@ window.LAB_DATA = {
     // Lab director. kind: review | committee | judge | outreach | organizing
     // TODO add journal reviewing, editorial boards, committees and session chairs here.
     director: [
+      { kind: "outreach", title: "Engaging prospective and current students at LSU College of Engineering events",
+        org: "Louisiana State University", year: "", image: "assets/images/gal-lsu-student-engagement.webp" },
       { kind: "judge", title: "Judge, student research poster competition",
         org: "Mississippi State University", year: "", image: "assets/images/gal-poster-judging.webp" },
       { kind: "judge", title: "Judge, student science fair",
@@ -1018,10 +1020,12 @@ window.LAB_DATA = {
 
   /* ---------------------------------------------------------------------- */
   /*  GALLERY                                                               */
-  /*  category: "talks" | "awards" | "lab" | "outreach" | "life"            */
+  /*  category: "talks" | "awards" | "lab" | "field" | "outreach" | "life"  */
   /* ---------------------------------------------------------------------- */
   gallery: [
     // ---- Awards & milestones ----
+    { image: "assets/images/gal-informs-2025-runnerup.webp", category: "awards",
+      caption: "Runner-up, Stakeholder Engagement Data Challenge — Md Shafikul Islam and Dr. Bappy at the INFORMS Annual Meeting 2025" },
     { image: "assets/images/gal-iise-award-shafikul.webp", category: "awards",
       caption: "Md Shafikul Islam receiving an award at the IISE Annual Conference" },
     { image: "assets/images/gal-las-best-oral.webp", category: "awards",
@@ -1034,6 +1038,8 @@ window.LAB_DATA = {
       caption: "Commencement day at the LSU College of Engineering" },
 
     // ---- Talks & conferences ----
+    { image: "assets/images/gal-msec-2026-pennstate.webp", category: "talks",
+      caption: "ASME MSEC 2026 / NAMRC 54 at Penn State" },
     { image: "assets/images/gal-las-2025-lsua.webp", category: "talks",
       caption: "ASTRA Lab members at the Louisiana Academy of Sciences Annual Meeting, LSU Alexandria" },
     { image: "assets/images/gal-poster-entropy-mpc.webp", category: "talks",
@@ -1071,7 +1077,13 @@ window.LAB_DATA = {
     { image: "assets/images/gal-xct-lab.webp", category: "lab",
       caption: "X-ray computed tomography for non-destructive analysis of printed parts" },
 
+    // ---- Field work & collaborations ----
+    { image: "assets/images/gal-site-visit-lafourche.webp", category: "field",
+      caption: "Site visit with collaborators at a Lafourche Parish water district treatment plant" },
+
     // ---- Outreach & service ----
+    { image: "assets/images/gal-lsu-student-engagement.webp", category: "outreach",
+      caption: "Meeting students at an LSU College of Engineering event" },
     { image: "assets/images/gal-poster-judging.webp", category: "outreach",
       caption: "Judging student research posters" },
     { image: "assets/images/gal-science-fair-judging.webp", category: "outreach",
@@ -1080,6 +1092,8 @@ window.LAB_DATA = {
       caption: "STEM outreach with high-school students" },
 
     // ---- Lab life ----
+    { image: "assets/images/gal-students-atrium.webp", category: "life",
+      caption: "Dr. Bappy with LSU engineering students" },
     { image: "assets/images/gal-lab-dinner.webp", category: "life",
       caption: "ASTRA Lab dinner" }
     // Add photos by copying a block above. Put image files in assets/images/.

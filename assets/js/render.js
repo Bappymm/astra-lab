@@ -1178,6 +1178,7 @@
         { key: "awards", label: "Awards & Milestones" },
         { key: "talks", label: "Talks & Conferences" },
         { key: "lab", label: "In the Lab" },
+        { key: "field", label: "Field Work & Collaborations" },
         { key: "outreach", label: "Outreach & Service" },
         { key: "life", label: "Lab Life" }
       ].filter(function (c) { return c.key === "all" || all.some(function (g) { return g.category === c.key; }); });
