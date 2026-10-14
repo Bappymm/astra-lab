@@ -64,10 +64,10 @@ window.LAB_DATA = {
       { image: "https://commons.wikimedia.org/wiki/Special:FilePath/Mississippi_River_Lock_and_Dam_number_25.jpg?width=1920", label: "Cyber-Physical-Social Systems",
         caption: "Freshwater infrastructure: Lock and Dam 25 on the Mississippi River",
         credit: "Photo: U.S. Army Corps of Engineers / Wikimedia Commons, public domain" },
-      { image: "assets/images/resource-creality-ender3.webp", label: "Additive Manufacturing",
-        caption: "Large-format FDM printing in the ASTRA Lab" },
-      { image: "assets/images/resource-seeed-arm.webp", label: "Robotics",
-        caption: "Robotic manipulation experiments in the ASTRA Lab" }
+      { image: "assets/images/res-waam-cell.webp", label: "Additive Repair",
+        caption: "Robotic WAAM repair of a notched steel fatigue specimen" },
+      { image: "assets/images/gal-3d-scanning.webp", label: "In-Process Sensing",
+        caption: "3D scanning a printed part for in-process quality monitoring" }
     ],
 
     /* Rotating animated panels. Each entry pairs a caption with one of the
@@ -939,37 +939,37 @@ window.LAB_DATA = {
     {
       group: "3D Printing",
       name: "Creality Ender-3 V3 Plus",
-      image: "assets/images/resource-creality-ender3.webp",
+      image: "assets/images/res-creality-ender3.webp", fit: "contain",
       description: "Large-format FDM printer for rapid prototyping of fixtures, mounts, and functional parts.",
       specs: "FDM · ~300 × 300 × 330 mm build volume"
     },
     {
       group: "3D Printing",
       name: "Bambu Lab A1",
-      image: "assets/images/resource-bambu-a1.webp",
+      image: "assets/images/res-bambu-a1.webp", fit: "contain",
       description: "Fast FDM printer with multi-color (AMS) capability for high-quality, multi-material prototypes.",
       specs: "FDM · multi-color (AMS lite)"
     },
     {
       group: "3D Printing",
       name: "Resin Printing & Post-Processing Station",
-      image: "assets/images/resource-resin-station.webp",
-      description: "Elegoo MSLA resin printer with a dedicated wash-and-cure station for high-detail, high-resolution parts.",
-      specs: "MSLA (resin) · wash & UV cure station"
+      image: "assets/images/res-anycubic-wash-cure.webp", fit: "contain",
+      description: "MSLA resin printing with an Anycubic Wash & Cure 3 station for washing and UV post-curing high-detail, high-resolution parts.",
+      specs: "MSLA (resin) · Anycubic Wash & Cure 3"
     },
 
     // ---- Robotics ----
     {
       group: "Robotics",
       name: "Seeed Studio Robotic Arm",
-      image: "assets/images/resource-seeed-arm.webp",
-      description: "Desktop robotic manipulator on a linear rail used for pick-and-place, manipulation, and human–robot interaction experiments.",
-      specs: "Multi-DOF manipulator · linear rail" // TODO confirm exact model
+      image: "assets/images/res-seeed-arm.webp", fit: "contain",
+      description: "Desktop robotic manipulator with a parallel gripper for pick-and-place, manipulation, and human–robot interaction experiments.",
+      specs: "Multi-DOF manipulator · parallel gripper" // TODO confirm exact model
     },
     {
       group: "Robotics",
       name: "Fashion Star Servo Robotic Arm",
-      image: "assets/images/resource-fashionstar-arm.webp",
+      image: "assets/images/res-fashionstar-arm.webp", fit: "contain",
       description: "Custom 3D-printed robotic arm built with Fashion Star serial bus servos for low-cost manipulation and control research.",
       specs: "Serial-bus servo arm · custom build"
     }
