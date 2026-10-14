@@ -261,8 +261,8 @@ window.LAB_DATA = {
 
     teaching: [
       { org: "Mississippi State University", years: "2023",
-        courses: ["IE 3323: Manufacturing Processes"],
-        note: "Instructor (Fall 2023) and Guest Lecturer (Spring 2023)." },
+        courses: ["IE 3323: Manufacturing Processes (Instructor of Record)", "IE 4683/6683: Machine Learning with IE Applications (Guest Lecturer)"],
+        note: "Designed course modules, lectured, supervised student projects and prepared ABET assessment documentation." },
       { org: "Shahjalal University of Science and Technology", years: "2018 – 2019",
         courses: [
           "IPE 121: Engineering Mechanics", "IPE 122: Manufacturing Processes-I Sessional",
@@ -290,13 +290,41 @@ window.LAB_DATA = {
   /* ---------------------------------------------------------------------- */
   teachingPage: {
     intro:
-      "Dr. Bappy has taught manufacturing processes, engineering mechanics, advanced manufacturing " +
-      "systems, and system modeling and simulation at Mississippi State University and Shahjalal " +
-      "University of Science and Technology, bringing nearly four years of manufacturing industry " +
-      "experience into the classroom.",
-    // TODO add current LSU courses here, e.g. { code: "IE 0000", title: "...", term: "Fall 2025" }
-    lsuCourses: [],
-    // Theses and research projects supervised
+      "Dr. Bappy teaches statistics, quality, lean and AI-driven manufacturing in Industrial Engineering at LSU, " +
+      "where his courses average 4.62 / 5 across 221 students and earned the 2026 Longwell Teaching Excellence Award. " +
+      "He brings nearly four years of Lean Six Sigma and manufacturing industry experience, and earlier teaching at " +
+      "Mississippi State University and Shahjalal University of Science and Technology, into a classroom built " +
+      "around real data, real factories and hands-on projects.",
+    stats: [
+      { n: 4.62, decimals: 2, suffix: " / 5", label: "Mean course evaluation" },
+      { n: 221, label: "LSU students taught" },
+      { n: 11, label: "Senior-design projects" },
+      { n: 40, label: "Undergraduate advisees / term" }
+    ],
+    award: { title: "Longwell Teaching Excellence Award", org: "LSU College of Engineering", year: "2026", amount: "$4,500" },
+    // Courses at LSU, newest first. rating is the mean student evaluation out of 5 ("" = in progress).
+    lsuCourses: [
+      { code: "IE 4530",  title: "Lean Manufacturing Systems",                    level: "Undergraduate", term: "Fall 2026",   students: 65, rating: "" },
+      { code: "IE 7722",  title: "Artificial Intelligence in Manufacturing",      level: "Graduate",      term: "Fall 2025",   students: 14, rating: 4.88, isNew: true },
+      { code: "IE 4362",  title: "Advanced Engineering Statistics",               level: "Core",          term: "Fall 2025",   students: 58, rating: 4.53 },
+      { code: "IE 4362G", title: "Advanced Engineering Statistics",               level: "Graduate",      term: "Fall 2025",   students: 5,  rating: 4.68 },
+      { code: "IE 4453",  title: "Quality Control and Six Sigma",                 level: "Core",          term: "Spring 2025", students: 66, rating: 4.61 },
+      { code: "IE 4362",  title: "Advanced Engineering Statistics",               level: "Core",          term: "Fall 2024",   students: 78, rating: 4.40 }
+    ],
+    interests: {
+      undergraduate: ["Advanced Engineering Statistics", "Quality Control & Six Sigma", "Manufacturing Processes",
+        "Lean Manufacturing", "CAD/CAM & Computer-Integrated Manufacturing", "Production Planning & Control",
+        "Systems Simulation", "Engineering Economy"],
+      graduate: ["AI / Machine Learning in Manufacturing", "Additive Manufacturing", "Smart Manufacturing & Digital Twins",
+        "Reliability Engineering", "Predictive Data Analytics", "Systems Informatics"]
+    },
+    // Graduate mentoring
+    graduate: {
+      phd: ["Md Shafikul Islam", "Saifur Rahman Tushar", "Mubaraq A. Olojo"],
+      phdNote: "Lead authors in The International Journal of Advanced Manufacturing Technology, Manufacturing Letters and ASME JCISE; INFORMS Data Mining Stakeholder Data Challenge runners-up; Best Oral Presentation, Louisiana Academy of Sciences (2025).",
+      committee: "Committee member for 4 Ph.D. and 18 M.S. students at LSU (2024–2026), and external member for one Ph.D. dissertation."
+    },
+    // Thesis-based M.S. graduates, newest first
     mentoring: [
       { name: "Saifur Rahman Tushar", level: "M.S. Thesis, Louisiana State University", year: "2026",
         title: "Thermo-Physics-Informed Transfer Learning for Fatigue-Life Prediction across Metallic Alloys using Infrared Thermography",
@@ -304,15 +332,50 @@ window.LAB_DATA = {
       { name: "Md Shafikul Islam", level: "M.S. Thesis, Industrial Engineering, LSU", year: "2026",
         title: "Trustworthy Artificial Intelligence for Real-Time Quality Assurance in Additive Manufacturing",
         link: "https://repository.lsu.edu/gradschool_theses/6431/" },
-      { name: "Undergraduate researchers", level: "LSU Discover Day poster presentations", year: "",
-        title: "Measurement-guided additive manufacturing for quantum technology components; robotic-arm camera monitoring with 3D-printer telemetry to predict and correct printing errors",
-        link: "" },
-      { name: "Undergraduate researchers", level: "Bio-manufacturing project, Mississippi State University", year: "",
-        title: "Mechanical and rheology testing of 3D-printed composite bone scaffolds",
-        link: "" },
-      { name: "Undergraduate theses", level: "Industrial and Production Engineering, SUST", year: "2018–2019",
-        title: "Supervised undergraduate thesis projects as a Lecturer",
+      { name: "Jeimy Martinez De La Hoz", level: "M.S. Thesis, Louisiana State University", year: "2025",
+        title: "Research on AI-enabled smart rural wastewater treatment; co-author in Water Research and Applied Water Science",
         link: "" }
+    ],
+    // Undergraduate researchers, grouped by institution
+    undergrads: [
+      { org: "Louisiana State University", years: "2024 – present", icon: "robot",
+        people: [
+          { name: "Sierra Sterling", note: "Honors College advisee · Discover Day 2026" },
+          { name: "Mohamed Kheshouei", note: "Discover Day 2026 · AM for quantum components" },
+          { name: "Benjamin Logan", note: "Discover Day 2026 · robotic print monitoring" },
+          { name: "Madeline Morsalone" },
+          { name: "Shaunak S. Hanumante" },
+          { name: "Marcus Figueroa" },
+          { name: "Rachel Stone", note: "Honors College advisee · Outstanding GEAUX Communicator Award" },
+          { name: "Rita Nitipouna", note: "Honors College advisee · 2025 – present" }
+        ] },
+      { org: "Mississippi State University", years: "2021 – 2024", icon: "printer",
+        people: [
+          { name: "Emma Van Epps", note: "Co-author, J. Manuf. Processes 2024 · Best Poster Award" },
+          { name: "Honor Elchos" }, { name: "Annemarie Coatney" }, { name: "Seth Helton" },
+          { name: "Kevon Scales" }, { name: "Zac LeBlanc" }
+        ] },
+      { org: "Shahjalal University of Science and Technology", years: "2018 – 2019", icon: "school",
+        people: [
+          { name: "Md. Shamim Hossain", note: "Co-author" }, { name: "Md. Abu Sayed", note: "Co-author" },
+          { name: "Md. Abu Musa", note: "Co-author" }
+        ] }
+    ],
+    // Senior-design (capstone) projects mentored at LSU
+    capstone: {
+      summary: "Eleven Industrial Engineering senior-design teams mentored at LSU: five in progress on smart manufacturing and systems informatics, and six completed or underway, including projects with Turner and Folgers.",
+      projects: [
+        { title: "EMS drone program for East Baton Rouge", partner: "", year: "2026", icon: "flag" },
+        { title: "Sustainable Mardi Gras bead manufacturing facility", partner: "", year: "2025–26", icon: "leaf" },
+        { title: "Inventory yard optimization", partner: "", year: "2025–26", icon: "gear" },
+        { title: "EMS drone project", partner: "Turner", year: "2025", icon: "flag" },
+        { title: "Transportation-hub value stream mapping", partner: "Folgers", year: "2024–25", icon: "pulse" },
+        { title: "Productivity and resource scheduling", partner: "Turner", year: "2024–25", icon: "work" }
+      ],
+      inProgress: { n: 5, title: "Smart manufacturing & systems informatics", note: "Teams in progress" }
+    },
+    advising: [
+      { term: "Fall 2024", n: 10 }, { term: "Spring 2025", n: 40 }, { term: "Fall 2025", n: 35 }, { term: "Spring 2026", n: 40 }
     ],
     // Photos shown on the Teaching page
     photos: [
@@ -1004,34 +1067,37 @@ window.LAB_DATA = {
 
   /* ---------------------------------------------------------------------- */
   /*  AWARDS & HONORS                                                       */
-  /*  group: "research" | "student" | "grant" | "scholarship"              */
+  /*  group: "faculty" | "research" | "student" | "grant" | "scholarship"  */
   /*  person: optional — shown when an award belongs to someone other       */
   /*  than the lab director.                                                */
   /* ---------------------------------------------------------------------- */
   awards: [
-    // ---- Lab director: research honors ----
-    { group: "research", year: "2023–2024", title: "ISE “Outstanding Graduate Student Researcher” Award", org: "Department of Industrial and Systems Engineering, Mississippi State University" },
-    { group: "research", year: "2023", title: "Best Poster Award — Research Week Poster Competition", org: "Mississippi State University" },
-    { group: "research", year: "2023", title: "Best Poster Award — Research That Matters in ISE", org: "Mississippi State University" },
-    { group: "research", year: "2023", title: "First Runner-up, Best Posters — Graduate Research Symposium", org: "Mississippi State University" },
-    { group: "research", year: "2023", title: "Selected for the Doctoral Student Colloquium", org: "Institute of Industrial and Systems Engineers (IISE)" },
-    { group: "research", year: "2022", title: "INFORMS Student Chapter Magna Cum Laude Award", org: "INFORMS Annual Meeting, Indianapolis" },
-    { group: "research", year: "2022", title: "First Runner-up, Best Posters — Graduate Research Symposium", org: "Mississippi State University" },
-    { group: "research", year: "2021", title: "First Runner-up, Best Posters — Graduate Research Symposium", org: "Mississippi State University" },
+    // ---- Lab director: faculty honors (LSU) ----
+    { group: "faculty", year: "2026", title: "Longwell Teaching Excellence Award", org: "College of Engineering, Louisiana State University", amount: "$4,500", featured: true },
+    { group: "faculty", year: "2025", title: "Editor’s Pick Award", org: "ASME Journal of Computing and Information Science in Engineering", note: "Adaptive thermal history de-identification for privacy-preserving data sharing of DED processes", featured: true },
+    { group: "faculty", year: "2025", title: "First Runner-Up, INFORMS Data Mining Stakeholder Data Challenge", org: "INFORMS Annual Meeting, Atlanta", person: "With Md Shafikul Islam & Azmine Toushiq Wasi", featured: true },
+
+    // ---- Lab director: doctoral honors (Mississippi State) ----
+    { group: "research", year: "2024", title: "Outstanding Graduate Student Researcher Award", org: "Industrial and Systems Engineering, Mississippi State University", featured: true },
+    { group: "research", year: "2023", title: "Best Poster Award, Research Week Poster Competition", org: "Mississippi State University" },
+    { group: "research", year: "2023", title: "Best Poster Award, Research That Matters in ISE", org: "Mississippi State University" },
+    { group: "research", year: "2023", title: "Selected Participant, Doctoral Student Colloquium", org: "Institute of Industrial and Systems Engineers (IISE)" },
+    { group: "research", year: "2021–2023", title: "First Runner-up, Best Posters (three consecutive years)", org: "Graduate Research Symposium, Mississippi State University" },
 
     // ---- Student honors ----
     { group: "student", year: "2026", title: "2nd Place, Best Track Paper Award (Health Systems Track)", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
     { group: "student", year: "2026", title: "3rd Place, DAIS Student Data Analytics Competition", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
     { group: "student", year: "2025", title: "Champion, IISE Innovative Design Competition", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
-    { group: "student", year: "2025", title: "Runner-up, Stakeholder Engagement Data Challenge", org: "INFORMS Annual Meeting", person: "Md Shafikul Islam, Azmine Toushiq Wasi & Dr. Bappy" },
-    { group: "student", year: "2025", title: "2nd Runner-up, QCRE Data Challenge", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
-    { group: "student", year: "2025", title: "Best Graduate Oral Presentation", org: "Louisiana Academy of Sciences, 99th Annual Meeting", person: "Md Shafikul Islam" },
+    { group: "student", year: "2025", title: "Third Place, Quality Control & Reliability Engineering (QCRE) Data Challenge", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
+    { group: "student", year: "2025", title: "Best Oral Presentation", org: "Louisiana Academy of Sciences, 99th Annual Meeting", person: "Md Shafikul Islam (Ph.D. advisee presenter)" },
     { group: "student", year: "2025", title: "NSF Student Travel Award", org: "North American Manufacturing Research Conference (NAMRC)", person: "Md Shafikul Islam" },
     { group: "student", year: "2025", title: "NSF Student Travel Award", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
+    { group: "student", year: "", title: "Outstanding GEAUX Communicator Award", org: "Ogden Honors College, Louisiana State University", person: "Rachel Stone (Honors advisee)" },
 
     // ---- Grants & travel awards ----
-    { group: "grant", year: "2024", title: "NSF Student/Early Career Researcher Travel Award", org: "National Science Foundation" },
-    { group: "grant", year: "2022", title: "Graduate Student Travel Assistance Grant (TAGGS)", org: "The Graduate School, Mississippi State University" },
+    { group: "grant", year: "2026", title: "SEC Faculty Travel Award", org: "Louisiana State University", amount: "$1,000" },
+    { group: "grant", year: "2025", title: "NHERI RAPID Intensive Workshop Travel Award", org: "National Science Foundation", amount: "$1,600" },
+    { group: "grant", year: "2022", title: "Graduate Student Travel Assistance Grant", org: "The Graduate School, Mississippi State University" },
     { group: "grant", year: "2021", title: "Manufacturing & Design Student Sponsorship Award", org: "Institute of Industrial and Systems Engineers (IISE)" },
     { group: "grant", year: "2019", title: "Research Project Funding Award", org: "Research Centre, Shahjalal University of Science and Technology" },
 
