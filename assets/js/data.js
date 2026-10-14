@@ -478,6 +478,7 @@ window.LAB_DATA = {
   research: [
     {
       title: "In-Situ Sensing & Quality Assurance for Additive Manufacturing",
+      cover: "assets/images/hero-laser-deposition.webp", accent: "#e8772e",  // home-page card photo and colour
       icon: "printer",
       image: "assets/images/fig-melt-pool-morphology.webp", fit: "contain",
       description:
@@ -492,6 +493,7 @@ window.LAB_DATA = {
     },
     {
       title: "Digital Twins & Predictive Process Control",
+      cover: "assets/images/hero-dt-smart-factory.webp", accent: "#1f8fd6",  // home-page card photo and colour
       icon: "twin",
       image: "assets/images/fig-entropy-mpc.webp", fit: "contain",
       description:
@@ -505,6 +507,7 @@ window.LAB_DATA = {
     },
     {
       title: "Physical AI & Embodied Intelligence for Manufacturing",
+      cover: "assets/images/res-kuka-am-robot.webp", accent: "#7b4fd6",  // home-page card photo and colour
       icon: "robot",
       image: "assets/images/res-seeed-arm.webp", fit: "contain",
       description:
@@ -519,6 +522,7 @@ window.LAB_DATA = {
     },
     {
       title: "Trustworthy & Privacy-Preserving Manufacturing AI",
+      cover: "assets/images/hero-digital-twin.webp", accent: "#0f9d8a",  // home-page card photo and colour
       icon: "shield",
       image: "assets/images/fig-amaas-privacy.webp", fit: "contain",
       description:
@@ -533,6 +537,7 @@ window.LAB_DATA = {
     },
     {
       title: "Condition Monitoring & Smart Systems",
+      cover: "assets/images/gal-machine-fault-simulator.webp", accent: "#c9a227",  // home-page card photo and colour
       icon: "gear",
       image: "assets/images/fig-sensor-fusion.webp", fit: "contain",
       description:
@@ -547,6 +552,7 @@ window.LAB_DATA = {
     },
     {
       title: "AI for Sustainable & Resilient Systems",
+      cover: "assets/images/cover-water.webp", accent: "#2a9d5c",  // home-page card photo and colour
       icon: "leaf",
       image: "assets/images/research-water-energy.svg", fit: "contain",
       description:
@@ -564,6 +570,7 @@ window.LAB_DATA = {
     },
     {
       title: "AI for Healthcare & Bio-Manufacturing",
+      cover: "assets/images/gal-bioprinter-lab.webp", accent: "#d64f7a",  // home-page card photo and colour
       icon: "pulse",
       image: "assets/images/gal-bioprinter-lab.webp",
       description:

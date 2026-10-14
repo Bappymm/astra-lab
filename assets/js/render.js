@@ -552,7 +552,7 @@
     // A soft light follows the cursor across cards.
     if (!REDUCED && window.matchMedia && window.matchMedia("(hover: hover)").matches) {
       document.addEventListener("pointermove", function (e) {
-        var c = e.target.closest && e.target.closest(".thrust-card, .proj-card, .card, .svc-card, .fund-card, .join-card");
+        var c = e.target.closest && e.target.closest(".proj-card, .card, .svc-card, .fund-card, .join-card");
         if (!c) return;
         var r = c.getBoundingClientRect();
         c.style.setProperty("--mx", (e.clientX - r.left) + "px");
@@ -616,13 +616,34 @@
       var th = el("home-thrusts");
       if (th) {
         th.innerHTML = (D.research || []).map(function (r, i) {
-          return '<a class="thrust-card" href="research.html#thrust-' + (i + 1) + '">' +
-            '<span class="thrust-ico">' + icon(r.icon || "gear") + "</span>" +
-            '<span class="thrust-num">0' + (i + 1) + "</span>" +
-            "<h3>" + esc(r.title) + "</h3>" +
-            "<p>" + esc(r.description) + "</p>" +
-            '<span class="thrust-more">Learn more ' + icon("arrow") + "</span></a>";
+          var n = (i + 1 < 10 ? "0" : "") + (i + 1);
+          return '<a class="tcard" style="--ac:' + esc(r.accent || "#5e2ea0") + '" href="research.html#thrust-' + (i + 1) + '">' +
+            '<span class="tcard-media">' +
+              '<img src="' + esc(r.cover || r.image) + '" alt="" loading="lazy">' +
+              '<span class="tcard-num">' + n + "</span>" +
+              '<span class="tcard-ico">' + icon(r.icon || "gear") + "</span>" +
+            "</span>" +
+            '<span class="tcard-body">' +
+              "<h3>" + esc(r.title) + "</h3>" +
+              "<p>" + esc(r.description) + "</p>" +
+              '<span class="tcard-tags">' + (r.tags || []).map(function (t) { return "<span>" + esc(t) + "</span>"; }).join("") + "</span>" +
+              '<span class="tcard-more">Explore thrust ' + icon("arrow") + "</span>" +
+            "</span>" +
+            '<span class="tcard-sheen" aria-hidden="true"></span></a>';
         }).join("");
+        // Gentle 3D tilt toward the cursor.
+        if (!REDUCED && window.matchMedia && window.matchMedia("(hover: hover)").matches) {
+          Array.prototype.forEach.call(th.querySelectorAll(".tcard"), function (c) {
+            c.addEventListener("pointermove", function (e) {
+              var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+              c.style.setProperty("--ry", ((x - .5) * 7).toFixed(2) + "deg");
+              c.style.setProperty("--rx", ((.5 - y) * 7).toFixed(2) + "deg");
+              c.style.setProperty("--sx", (x * 100).toFixed(1) + "%");
+              c.style.setProperty("--sy", (y * 100).toFixed(1) + "%");
+            });
+            c.addEventListener("pointerleave", function () { c.style.removeProperty("--rx"); c.style.removeProperty("--ry"); });
+          });
+        }
       }
 
       var pj = el("home-projects");
@@ -1256,7 +1277,7 @@
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     // auto-tag the main content blocks on each page
     var sel = ".card, .team-card, .director-card, .award-card, .news-item, .about-grid > *, " +
-              ".stat, .thrust-card, .proj-card, .spotlight, .feature-row, .fund-card, .fac-tile, " +
+              ".stat, .tcard, .proj-card, .spotlight, .feature-row, .fund-card, .fac-tile, " +
               ".tl-item, .project-row, .teach-card, .cert-card, .fact, .award-stat, .svc-card, .svc-row, .join-card, .spot-paper";
     var nodes = Array.prototype.slice.call(document.querySelectorAll(sel));
     if (reduce || !("IntersectionObserver" in window)) { return; } // leave fully visible

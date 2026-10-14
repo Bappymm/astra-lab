@@ -1104,12 +1104,6 @@ h1, h2, h3, .hero-title { text-wrap: balance; }
 /* The water-treatment slide carries its own dark canvas; keep the diagram on the right. */
 .hero-slide[src*="hero-water-treatment"] { object-position: right center; }
 
-/* Seven thrusts fill even rows: on three columns the first and last cards
-   span two (2+1 / 3 / 1+2); on two columns only the first spans. */
-.thrust-grid > .thrust-card:first-child { grid-column: span 2; }
-@media (min-width: 1101px) { .thrust-grid > .thrust-card:last-child:nth-child(7) { grid-column: span 2; } }
-@media (max-width: 768px) { .thrust-grid > .thrust-card:first-child { grid-column: auto; } }
-
 /* ---- sponsor logo wall ---- */
 .sponsors { gap: var(--space-lg); align-items: stretch; }
 .sponsor-logo { margin: 0; width: 200px; display: flex; flex-direction: column; align-items: center; gap: 10px;
@@ -1122,3 +1116,59 @@ h1, h2, h3, .hero-title { text-wrap: balance; }
 .sponsor-logo figcaption { font-size: .78rem; font-weight: 500; line-height: 1.35; color: var(--text-secondary); text-align: center; }
 @media (max-width: 560px) { .sponsor-logo { width: calc(50% - var(--space-lg) / 2); } .sl-img img { max-width: 100%; } }
 @media (prefers-reduced-motion: reduce) { .sponsor-logo:hover, .sponsor-logo:hover .sl-img img { transform: none; } }
+
+/* =========================================================================
+   Home research thrust cards: photo header, signature colour, 3D tilt
+   ========================================================================= */
+.thrust-grid { perspective: 1400px; gap: var(--space-xl); }
+.thrust-grid > .tcard:first-child { grid-column: span 2; }
+@media (min-width: 1101px) { .thrust-grid > .tcard:last-child:nth-child(7) { grid-column: span 2; } }
+.tcard {
+  --ac: #5e2ea0; position: relative; display: flex; flex-direction: column; overflow: hidden; color: inherit;
+  background: #fff; border-radius: 20px; border: 1px solid var(--border-color);
+  box-shadow: 0 1px 2px rgba(20,8,40,.05), 0 10px 30px -18px rgba(46,18,82,.35);
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-style: preserve-3d;
+  transition: transform .25s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.tcard::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; z-index: 3; background: var(--ac); transform: scaleX(.18); transform-origin: left; transition: transform .45s ease; }
+.tcard:hover { text-decoration: none; border-color: color-mix(in srgb, var(--ac) 45%, transparent);
+  box-shadow: 0 2px 4px rgba(20,8,40,.06), 0 28px 50px -22px color-mix(in srgb, var(--ac) 70%, transparent); }
+.tcard:hover::before { transform: scaleX(1); }
+.tcard:focus-visible { outline: 3px solid var(--ac); outline-offset: 3px; }
+.tcard-media { position: relative; display: block; height: 190px; overflow: hidden; background: #1c0b33; }
+.tcard-media img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform .9s cubic-bezier(.2,.7,.2,1), filter .5s ease; filter: saturate(.92); }
+.tcard:hover .tcard-media img { transform: scale(1.1); filter: saturate(1.08); }
+.tcard-media::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(20,8,40,.55) 100%),
+              linear-gradient(135deg, color-mix(in srgb, var(--ac) 38%, transparent), transparent 55%); }
+.tcard-num { position: absolute; z-index: 2; top: 12px; right: 16px; font-family: var(--font-display); font-weight: 700; font-size: 2.6rem; line-height: 1;
+  color: rgba(255,255,255,.88); text-shadow: 0 2px 14px rgba(0,0,0,.35); letter-spacing: -.04em; }
+.tcard-ico { position: absolute; z-index: 2; left: 20px; bottom: -22px; width: 52px; height: 52px; display: grid; place-items: center; font-size: 1.45rem;
+  border-radius: 15px; color: #fff; background: var(--ac); border: 3px solid #fff;
+  box-shadow: 0 10px 22px -6px color-mix(in srgb, var(--ac) 75%, transparent); transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+.tcard:hover .tcard-ico { transform: translateY(-4px) rotate(-8deg) scale(1.06); }
+.tcard-media { overflow: visible; }
+.tcard-media img { border-radius: 20px 20px 0 0; }
+.tcard-media::after { border-radius: 20px 20px 0 0; }
+.tcard-body { display: flex; flex-direction: column; flex: 1; padding: 38px 22px 20px; }
+.tcard-body h3 { font-size: 1.12rem; line-height: 1.3; color: var(--primary-dark); margin-bottom: 8px; transition: color .3s ease; }
+.tcard:hover .tcard-body h3 { color: color-mix(in srgb, var(--ac) 70%, var(--primary-dark)); }
+.tcard-body p { font-size: .9rem; line-height: 1.6; margin-bottom: 14px; max-height: 4.8em; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.tcard-tags { margin-top: auto; }
+.tcard-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.tcard-tags span { font-family: var(--font-mono); font-size: .68rem; font-weight: 500; letter-spacing: .02em; padding: 3px 9px; border-radius: 99px;
+  color: color-mix(in srgb, var(--ac) 80%, #1a0a30); background: color-mix(in srgb, var(--ac) 11%, #fff); border: 1px solid color-mix(in srgb, var(--ac) 25%, #fff); }
+.tcard-more { display: inline-flex; align-items: center; gap: .45em; font-size: .86rem; font-weight: 600; color: var(--ac); }
+.tcard-more .ico { transition: transform .25s ease; }
+.tcard:hover .tcard-more .ico { transform: translateX(5px); }
+.tcard-sheen { position: absolute; inset: 0; z-index: 4; pointer-events: none; opacity: 0; transition: opacity .35s ease;
+  background: radial-gradient(420px circle at var(--sx, 50%) var(--sy, 0%), rgba(255,255,255,.22), transparent 55%); }
+.tcard:hover .tcard-sheen { opacity: 1; }
+.tcard:first-child .tcard-media, .tcard:nth-child(7) .tcard-media { height: 220px; }
+@media (max-width: 768px) {
+  .thrust-grid > .tcard:first-child { grid-column: auto; }
+  .tcard-media, .tcard:first-child .tcard-media { height: 170px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tcard, .tcard:hover .tcard-media img, .tcard:hover .tcard-ico, .tcard:hover .tcard-more .ico { transform: none; transition: none; }
+}
