@@ -88,8 +88,23 @@ window.LAB_DATA = {
         text: "Machine learning that turns streaming sensor data into real-time decisions." }
     ],
 
-    image: "assets/images/gal-las-2025-lsua.webp", // a team photo works best here
-    imageCaption: "ASTRA Lab members at the Louisiana Academy of Sciences Annual Meeting, LSU Alexandria",
+    image: "assets/images/gal-team-graduate-students.webp", // a team photo works best here
+    imageCaption: "Dr. Bappy with ASTRA Lab graduate students",
+
+    // Curated photo grid on the home page ("Life at ASTRA Lab"). The first
+    // photo is shown large.
+    moments: [
+      { image: "assets/images/gal-informs-2025-runnerup.webp", label: "Recognition",
+        caption: "Runner-up, INFORMS 2025 Stakeholder Engagement Data Challenge" },
+      { image: "assets/images/gal-discover-day-quantum-am.webp", label: "Undergraduate Research",
+        caption: "Measurement-guided additive manufacturing, LSU Discover Day" },
+      { image: "assets/images/gal-industry-visit-rollforming.webp", label: "Industry Engagement",
+        caption: "Visiting a metal roll-forming production line" },
+      { image: "assets/images/gal-site-visit-lafourche.webp", label: "Field Work",
+        caption: "Water treatment site visit with collaborators" },
+      { image: "assets/images/gal-msec-2026-pennstate.webp", label: "Conferences",
+        caption: "ASME MSEC 2026 / NAMRC 54 at Penn State" }
+    ],
     aboutLead:
       "ASTRA Lab, led by Dr. Mahathir Mohammad Bappy in the Department of Mechanical & " +
       "Industrial Engineering at Louisiana State University, develops data-driven and " +
@@ -290,12 +305,24 @@ window.LAB_DATA = {
       { name: "Md Shafikul Islam", level: "M.S. Thesis, Industrial Engineering, LSU", year: "2026",
         title: "Trustworthy Artificial Intelligence for Real-Time Quality Assurance in Additive Manufacturing",
         link: "https://repository.lsu.edu/gradschool_theses/6431/" },
+      { name: "Undergraduate researchers", level: "LSU Discover Day poster presentations", year: "",
+        title: "Measurement-guided additive manufacturing for quantum technology components; robotic-arm camera monitoring with 3D-printer telemetry to predict and correct printing errors",
+        link: "" },
       { name: "Undergraduate researchers", level: "Bio-manufacturing project, Mississippi State University", year: "",
         title: "Mechanical and rheology testing of 3D-printed composite bone scaffolds",
         link: "" },
       { name: "Undergraduate theses", level: "Industrial and Production Engineering, SUST", year: "2018–2019",
         title: "Supervised undergraduate thesis projects as a Lecturer",
         link: "" }
+    ],
+    // Photos shown on the Teaching page
+    photos: [
+      { image: "assets/images/gal-discover-day-quantum-am.webp",
+        caption: "LSU Discover Day: measurement-guided additive manufacturing for quantum technology components" },
+      { image: "assets/images/gal-discover-day-robotic-monitoring.webp",
+        caption: "LSU Discover Day: robotic-arm camera and printer telemetry to monitor and correct printing errors" },
+      { image: "assets/images/gal-lsu-student-engagement.webp",
+        caption: "Meeting students at an LSU College of Engineering event" }
     ],
     // Teaching-development certifications (titles must match director.certifications)
     development: [
@@ -1020,7 +1047,7 @@ window.LAB_DATA = {
 
   /* ---------------------------------------------------------------------- */
   /*  GALLERY                                                               */
-  /*  category: "talks" | "awards" | "lab" | "field" | "outreach" | "life"  */
+  /*  category: awards | undergrad | talks | lab | field | outreach | life  */
   /* ---------------------------------------------------------------------- */
   gallery: [
     // ---- Awards & milestones ----
@@ -1036,6 +1063,12 @@ window.LAB_DATA = {
       caption: "Md Shafikul Islam earns his M.S. in Industrial Engineering at LSU (2026)" },
     { image: "assets/images/gal-commencement-lsu.webp", category: "awards",
       caption: "Commencement day at the LSU College of Engineering" },
+
+    // ---- Undergraduate research ----
+    { image: "assets/images/gal-discover-day-quantum-am.webp", category: "undergrad",
+      caption: "LSU Discover Day poster: measurement-guided additive manufacturing for quantum technology components" },
+    { image: "assets/images/gal-discover-day-robotic-monitoring.webp", category: "undergrad",
+      caption: "LSU Discover Day poster: robotic-arm camera and 3D-printer telemetry to monitor, predict and correct printing errors" },
 
     // ---- Talks & conferences ----
     { image: "assets/images/gal-msec-2026-pennstate.webp", category: "talks",
@@ -1077,7 +1110,9 @@ window.LAB_DATA = {
     { image: "assets/images/gal-xct-lab.webp", category: "lab",
       caption: "X-ray computed tomography for non-destructive analysis of printed parts" },
 
-    // ---- Field work & collaborations ----
+    // ---- Field & industry visits ----
+    { image: "assets/images/gal-industry-visit-rollforming.webp", category: "field",
+      caption: "Industry visit: discussing a metal roll-forming production line" },
     { image: "assets/images/gal-site-visit-lafourche.webp", category: "field",
       caption: "Site visit with collaborators at a Lafourche Parish water district treatment plant" },
 
@@ -1092,6 +1127,8 @@ window.LAB_DATA = {
       caption: "STEM outreach with high-school students" },
 
     // ---- Lab life ----
+    { image: "assets/images/gal-team-graduate-students.webp", category: "life",
+      caption: "Dr. Bappy with ASTRA Lab graduate students" },
     { image: "assets/images/gal-students-atrium.webp", category: "life",
       caption: "Dr. Bappy with LSU engineering students" },
     { image: "assets/images/gal-lab-dinner.webp", category: "life",

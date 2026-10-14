@@ -982,6 +982,28 @@ h1, h2, h3, .hero-title { text-wrap: balance; }
   .spot-paper { grid-template-columns: 1fr; }
 }
 
+/* ---- photo mosaics: home "Life at ASTRA Lab" and Teaching ---- */
+.moments { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 250px 250px; gap: var(--space-md); }
+.moments-row { grid-template-columns: repeat(3, 1fr); grid-template-rows: 300px; }
+.moment { position: relative; overflow: hidden; padding: 0; border: 0; border-radius: var(--radius-lg); cursor: zoom-in; background: var(--bg-gray); box-shadow: var(--shadow-md); }
+.moment.is-lead { grid-row: span 2; }
+.moment img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
+.moment:hover img { transform: scale(1.07); }
+.moment:focus-visible { outline: 3px solid var(--accent-bright); outline-offset: 3px; }
+.moment-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 44px 16px 14px; text-align: left; color: #fff; font-size: .9rem; font-weight: 500; line-height: 1.35;
+  background: linear-gradient(transparent, rgba(26,8,48,.9)); }
+.moment.is-lead .moment-cap { font-size: 1.05rem; padding: 60px 22px 20px; }
+.moment-label { display: block; font-family: var(--font-mono); font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-bright); margin-bottom: 4px; }
+@media (max-width: 900px) {
+  .moments, .moments-row { grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: 220px; }
+  .moment.is-lead { grid-column: span 2; grid-row: auto; }
+}
+@media (max-width: 560px) {
+  .moments, .moments-row { grid-template-columns: 1fr; }
+  .moment.is-lead { grid-column: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .moment:hover img { transform: none; } }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1240px) {
   .hdr-nav a { padding: 8px 9px; font-size: .88rem; }

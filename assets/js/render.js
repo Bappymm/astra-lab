@@ -674,6 +674,21 @@
         }).join("");
       }
 
+      var mo = el("moments");
+      if (mo) {
+        var ms = h.moments || [];
+        if (!ms.length) { mo.closest(".section").style.display = "none"; }
+        mo.innerHTML = ms.map(function (m, i) {
+          return '<button type="button" class="moment' + (i === 0 ? " is-lead" : "") + '" data-i="' + i + '">' +
+            '<img src="' + esc(m.image) + '" alt="' + esc(m.caption) + '" loading="lazy">' +
+            '<span class="moment-cap"><span class="moment-label">' + esc(m.label || "") + "</span>" + esc(m.caption) + "</span></button>";
+        }).join("");
+        var mset = ms.map(function (m) { return { src: m.image, caption: m.caption }; });
+        Array.prototype.forEach.call(mo.querySelectorAll(".moment"), function (b) {
+          b.addEventListener("click", function () { lightbox(mset, +b.getAttribute("data-i"), b); });
+        });
+      }
+
       // Endless photo strip: the list is rendered twice so the loop is seamless.
       var mq = el("marquee");
       if (mq) {
@@ -1094,6 +1109,20 @@
                  detail: (m.link ? '<a href="' + esc(m.link) + '" target="_blank" rel="noopener">' + esc(m.title) + "</a>" : esc(m.title)) };
       }));
 
+      var tph = el("teach-photos");
+      if (tph) {
+        var ph = tp.photos || [];
+        if (!ph.length) { tph.style.display = "none"; }
+        tph.innerHTML = ph.map(function (q, i) {
+          return '<button type="button" class="moment" data-i="' + i + '"><img src="' + esc(q.image) + '" alt="' + esc(q.caption) + '" loading="lazy">' +
+            '<span class="moment-cap">' + esc(q.caption) + "</span></button>";
+        }).join("");
+        var pset = ph.map(function (q) { return { src: q.image, caption: q.caption }; });
+        Array.prototype.forEach.call(tph.querySelectorAll(".moment"), function (b) {
+          b.addEventListener("click", function () { lightbox(pset, +b.getAttribute("data-i"), b); });
+        });
+      }
+
       var dv = el("teach-dev");
       if (dv) {
         var certs = (d.certifications || []).filter(function (c) { return (tp.development || []).indexOf(c.title) >= 0; });
@@ -1178,7 +1207,8 @@
         { key: "awards", label: "Awards & Milestones" },
         { key: "talks", label: "Talks & Conferences" },
         { key: "lab", label: "In the Lab" },
-        { key: "field", label: "Field Work & Collaborations" },
+        { key: "undergrad", label: "Undergraduate Research" },
+        { key: "field", label: "Field & Industry Visits" },
         { key: "outreach", label: "Outreach & Service" },
         { key: "life", label: "Lab Life" }
       ].filter(function (c) { return c.key === "all" || all.some(function (g) { return g.category === c.key; }); });
