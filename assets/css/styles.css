@@ -1103,3 +1103,9 @@ h1, h2, h3, .hero-title { text-wrap: balance; }
 
 /* The water-treatment slide carries its own dark canvas; keep the diagram on the right. */
 .hero-slide[src*="hero-water-treatment"] { object-position: right center; }
+
+/* Seven thrusts fill even rows: on three columns the first and last cards
+   span two (2+1 / 3 / 1+2); on two columns only the first spans. */
+.thrust-grid > .thrust-card:first-child { grid-column: span 2; }
+@media (min-width: 1101px) { .thrust-grid > .thrust-card:last-child:nth-child(7) { grid-column: span 2; } }
+@media (max-width: 768px) { .thrust-grid > .thrust-card:first-child { grid-column: auto; } }

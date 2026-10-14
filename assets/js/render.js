@@ -334,6 +334,7 @@
     flag:   '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
     review: '<path d="M4 4h12l4 4v12H4z"/><path d="M8 12h8M8 16h5M15 4v5h5"/>',
     medal:  '<path d="M7 3h10l-3 6h-4z"/><circle cx="12" cy="15" r="5"/><path d="m12 13 .9 1.8 2 .3-1.4 1.4.3 2-1.8-1-1.8 1 .3-2-1.4-1.4 2-.3z"/>',
+    robot:  '<rect x="6" y="7" width="12" height="10" rx="2"/><path d="M12 3v4M9 11h.01M15 11h.01M10 14h4M3 11v3M21 11v3M9 17v4M15 17v4"/>',
     chip:   '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>'
 
   };

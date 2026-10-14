@@ -504,6 +504,20 @@ window.LAB_DATA = {
       ]
     },
     {
+      title: "Physical AI & Embodied Intelligence for Manufacturing",
+      icon: "robot",
+      image: "assets/images/res-seeed-arm.webp", fit: "contain",
+      description:
+        "Robots and machines that perceive, reason and act in the physical world: learning-based " +
+        "perception and control for robotic manipulation and robotic additive manufacturing, " +
+        "simulation-to-real transfer, human–robot collaboration, and real-time edge AI that closes " +
+        "the loop between sensing and action on the shop floor.",
+      tags: ["Embodied AI", "Robot Learning", "Edge AI"],
+      links: [
+        { label: "LSU Control Symposium 2026", url: "https://doi.org/10.31390/lsucontrol.26.12" }
+      ]
+    },
+    {
       title: "Trustworthy & Privacy-Preserving Manufacturing AI",
       icon: "shield",
       image: "assets/images/fig-amaas-privacy.webp", fit: "contain",
