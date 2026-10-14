@@ -412,6 +412,35 @@ window.LAB_DATA = {
                 "Gamry potentiostat", "X-ray CT", "SEM / EBSD", "3D laser scanner", "PINNs", "CS-MMD transfer learning",
                 "Bayesian Ridge Regression", "SHAP"]
       }
+    },
+    {
+      name: "Mubaraq Olojo",
+      category: "phd",
+      position: "Ph.D. Student, Mechanical Engineering",
+      image: "assets/images/mubaraq-olojo.webp",
+      interests: "Computational Mechanics, Fatigue & Fracture, Additive Repair, Data-Driven Materials Modeling, Digital Twins",
+      bio:
+        "Mubaraq Olojo is a Ph.D. student in Mechanical Engineering at LSU. He combines physics-based " +
+        "simulation, reproducible code workflows and machine learning to assess damaged and repaired " +
+        "materials under mechanical loading.",
+      email: "",
+      linkedin: "https://www.linkedin.com/in/mubaraq-olojo-44230a128/",
+      scholar: "",
+      website: "",
+      spotlight: {
+        summary:
+          "Computational mechanics and data-driven materials modeling for digital manufacturing: " +
+          "finite-element modeling of damaged and repaired steel fatigue specimens, WAAM and AFSD repair " +
+          "concepts, crack-growth and fracture assessment, creep-life prediction, and AI-enabled digital " +
+          "twins for process monitoring, quality prediction and manufacturing decision support.",
+        projects: [
+          "Finite-Element Screening of Damaged and Repaired Steel Fatigue Specimens",
+          "Creep-Life Prediction of 316 Austenitic Stainless Steel"
+        ],
+        next: "Simulate repaired geometries against the pristine and open-damage baselines, then define the fatigue and crack-growth study. A review of AI-driven digital twins for smart manufacturing is in preparation.",
+        tools: ["ANSYS APDL", "Finite element analysis", "Fatigue & fracture mechanics", "WAAM / AFSD repair",
+                "Creep modeling", "Physics-informed ML", "Uncertainty quantification", "Digital twins"]
+      }
     }
 
     // ---- Add more members below by copying a block above and editing it.
@@ -627,6 +656,29 @@ window.LAB_DATA = {
         "Notched CS1018 specimens are 3D-scanned, repaired by robotic WAAM with in-situ melt-pool imaging, " +
         "machined and inspected by X-ray CT. Fatigue testing is under way to measure how much fatigue life " +
         "the repair recovers.",
+      links: []
+    },
+    {
+      title: "Finite-Element Screening of Damaged and Repaired Steel Fatigue Specimens",
+      image: "assets/images/fig-fe-diamond-notch.webp",
+      status: "Ongoing · Mubaraq Olojo",
+      tags: ["ANSYS APDL", "Fatigue & Fracture", "Additive Repair"],
+      summary:
+        "A reproducible ANSYS APDL workflow screens pristine, open-damage and repaired ASTM E466-style " +
+        "steel specimens. Open-damage baselines under 1000 lbf axial load rank diamond, circular and " +
+        "two-side openings at 7.19×, 3.42× and 3.00× the pristine path stress; repaired geometries " +
+        "(AFSD/FSD-style fill, machined WAAM, as-deposited WAAM cap) come next.",
+      links: []
+    },
+    {
+      title: "Creep-Life Prediction of 316 Austenitic Stainless Steel",
+      image: "assets/images/fig-creep-ml-workflow.webp",
+      status: "Ongoing · Mubaraq Olojo",
+      tags: ["Creep", "Physics-Informed ML", "Uncertainty"],
+      summary:
+        "Empirical, machine-learning and physics-informed models are compared for creep rupture-life " +
+        "prediction, with protocol-aware validation, uncertainty quantification and checks on " +
+        "physical consistency.",
       links: []
     },
     {
