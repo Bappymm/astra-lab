@@ -97,8 +97,8 @@ window.LAB_DATA = {
         caption: "Visiting a metal roll-forming production line" },
       { image: "assets/images/gal-site-visit-lafourche.webp", label: "Field Work",
         caption: "Water treatment site visit with collaborators" },
-      { image: "assets/images/gal-msec-2026-pennstate.webp", label: "Conferences",
-        caption: "ASME MSEC 2026 / NAMRC 54 at Penn State" }
+      { image: "assets/images/gal-tushar-ms-defense.webp", label: "Milestones",
+        caption: "Saifur Rahman Tushar defends his M.S. thesis" }
     ],
     aboutLead:
       "ASTRA Lab, led by Dr. Mahathir Mohammad Bappy in the Department of Mechanical & " +
@@ -116,6 +116,7 @@ window.LAB_DATA = {
   /* ---------------------------------------------------------------------- */
   // type: paper | award | grant | talk | milestone | people   (sets the tag colour)
   news: [
+    { date: "Sep 2026", type: "milestone", text: "Saifur Rahman Tushar successfully defended his M.S. thesis, “Thermo-Physics-Informed Transfer Learning for Fatigue-Life Prediction across Metallic Alloys using Infrared Thermography.”" },
     { date: "Aug 2026", type: "milestone", text: "Md Shafikul Islam earned his M.S. in Industrial Engineering (thesis option) at LSU with the thesis “Trustworthy Artificial Intelligence for Real-Time Quality Assurance in Additive Manufacturing.”" },
     { date: "Jun 2026", type: "talk", text: "Entropy-aware model predictive control for transient quality mitigation in metal additive manufacturing presented at the LSU Control Systems Symposium." },
     { date: "Jun 2026", type: "award", text: "Md Shafikul Islam won 2nd Place, Best Track Paper (Health Systems Track), and 3rd Place in the DAIS Student Data Analytics Competition at the IISE Annual Conference 2026." },
@@ -297,6 +298,9 @@ window.LAB_DATA = {
     lsuCourses: [],
     // Theses and research projects supervised
     mentoring: [
+      { name: "Saifur Rahman Tushar", level: "M.S. Thesis, Louisiana State University", year: "2026",
+        title: "Thermo-Physics-Informed Transfer Learning for Fatigue-Life Prediction across Metallic Alloys using Infrared Thermography",
+        link: "" },
       { name: "Md Shafikul Islam", level: "M.S. Thesis, Industrial Engineering, LSU", year: "2026",
         title: "Trustworthy Artificial Intelligence for Real-Time Quality Assurance in Additive Manufacturing",
         link: "https://repository.lsu.edu/gradschool_theses/6431/" },
@@ -312,6 +316,10 @@ window.LAB_DATA = {
     ],
     // Photos shown on the Teaching page
     photos: [
+      { image: "assets/images/gal-class-students.webp",
+        caption: "Dr. Bappy with students from his LSU class" },
+      { image: "assets/images/gal-undergrad-quest3.webp",
+        caption: "Undergraduate researcher working with a Meta Quest 3 headset alongside a robotic arm" },
       { image: "assets/images/gal-discover-day-quantum-am.webp",
         caption: "LSU Discover Day: measurement-guided additive manufacturing for quantum technology components" },
       { image: "assets/images/gal-discover-day-robotic-monitoring.webp",
@@ -396,7 +404,7 @@ window.LAB_DATA = {
       category: "phd",
       position: "Ph.D. Student, Industrial Engineering",
       image: "assets/images/saifur-rahman-tushar.webp",
-      education: "M.Sc. in Industrial & Production Engineering", // TODO confirm
+      education: "M.S., Louisiana State University (2026) · M.Sc. in Industrial & Production Engineering", // TODO confirm field of both degrees
       interests: "Structural Integrity, Physics-Informed ML, Fatigue & Corrosion, Digital Twins for Metal AM",
       bio:
         "Saifur Rahman Tushar is a Ph.D. student and Graduate Research Assistant in Mechanical and " +
@@ -864,6 +872,7 @@ window.LAB_DATA = {
     { category: "poster", year: 2021, authors: "Bappy, M. M., & Tian, W.", title: "In-situ layer-wise certification for direct energy deposition processes based on melt pool morphology dynamics analysis", venue: "Graduate Research Symposium, Mississippi State University", link: "" },
 
     // ---- Theses supervised ----
+    { category: "thesis", year: 2026, authors: "Tushar, S. R. (advisor: Bappy, M. M.)", title: "Thermo-physics-informed transfer learning for fatigue-life prediction across metallic alloys using infrared thermography", venue: "M.S. Thesis, Louisiana State University", link: "" },
     { category: "thesis", year: 2026, authors: "Islam, M. S. (advisor: Bappy, M. M.)", title: "Trustworthy artificial intelligence for real-time quality assurance in additive manufacturing", venue: "M.S. Thesis, Louisiana State University", link: "https://repository.lsu.edu/gradschool_theses/6431/" }
     // Add more by copying a block above. Order within a year does not matter.
   ],
@@ -1068,6 +1077,8 @@ window.LAB_DATA = {
   /* ---------------------------------------------------------------------- */
   gallery: [
     // ---- Awards & milestones ----
+    { image: "assets/images/gal-tushar-ms-defense.webp", category: "awards",
+      caption: "Saifur Rahman Tushar after his M.S. thesis defense with Dr. Bappy and a committee member (2026)" },
     { image: "assets/images/gal-informs-2025-runnerup.webp", category: "awards",
       caption: "Runner-up, Stakeholder Engagement Data Challenge — Md Shafikul Islam and Dr. Bappy at the INFORMS Annual Meeting 2025" },
     { image: "assets/images/gal-iise-award-shafikul.webp", category: "awards",
@@ -1081,7 +1092,11 @@ window.LAB_DATA = {
     { image: "assets/images/gal-commencement-lsu.webp", category: "awards",
       caption: "Commencement day at the LSU College of Engineering" },
 
-    // ---- Undergraduate research ----
+    // ---- Teaching & undergraduate research ----
+    { image: "assets/images/gal-class-students.webp", category: "undergrad",
+      caption: "Dr. Bappy with students from his LSU class" },
+    { image: "assets/images/gal-undergrad-quest3.webp", category: "undergrad",
+      caption: "Undergraduate researcher working with a Meta Quest 3 headset alongside a robotic arm" },
     { image: "assets/images/gal-discover-day-quantum-am.webp", category: "undergrad",
       caption: "LSU Discover Day poster: measurement-guided additive manufacturing for quantum technology components" },
     { image: "assets/images/gal-discover-day-robotic-monitoring.webp", category: "undergrad",

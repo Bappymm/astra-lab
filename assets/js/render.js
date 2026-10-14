@@ -1139,7 +1139,7 @@
         var ph = tp.photos || [];
         if (!ph.length) { tph.style.display = "none"; }
         tph.innerHTML = ph.map(function (q, i) {
-          return '<button type="button" class="moment" data-i="' + i + '"><img src="' + esc(q.image) + '" alt="' + esc(q.caption) + '" loading="lazy">' +
+          return '<button type="button" class="moment' + (i === 0 ? " is-lead" : "") + '" data-i="' + i + '"><img src="' + esc(q.image) + '" alt="' + esc(q.caption) + '" loading="lazy">' +
             '<span class="moment-cap">' + esc(q.caption) + "</span></button>";
         }).join("");
         var pset = ph.map(function (q) { return { src: q.image, caption: q.caption }; });
@@ -1232,7 +1232,7 @@
         { key: "awards", label: "Awards & Milestones" },
         { key: "talks", label: "Talks & Conferences" },
         { key: "lab", label: "In the Lab" },
-        { key: "undergrad", label: "Undergraduate Research" },
+        { key: "undergrad", label: "Teaching & Undergraduate Research" },
         { key: "field", label: "Field & Industry Visits" },
         { key: "outreach", label: "Outreach & Service" },
         { key: "life", label: "Lab Life" }
