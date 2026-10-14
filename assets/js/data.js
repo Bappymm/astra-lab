@@ -45,7 +45,7 @@ window.LAB_DATA = {
     heroSubtitle: "AI & Digital Twin for Advanced Manufacturing and Smart Systems",
     heroText:
       "We build trustworthy AI, digital twins, and sensing systems that monitor, certify, and " +
-      "control the machines and processes behind modern manufacturing.",
+      "control the machines and processes behind modern manufacturing and complex engineering systems.",
 
     /* Full-screen photos behind the home-page title. They cross-fade in this
        order. Use wide photos where possible; the centre of each is kept. */
@@ -780,11 +780,12 @@ window.LAB_DATA = {
   /*  SPONSORS — the "Research supported by" band on the home page           */
   /* ---------------------------------------------------------------------- */
   sponsors: [
-    { short: "NSF",   name: "National Science Foundation" },
-    { short: "BoR",   name: "Louisiana Board of Regents" },
-    { short: "LTRC",  name: "Louisiana Transportation Research Center & Louisiana DOTD" },
-    { short: "USGS",  name: "U.S. Geological Survey" }
-    // Add sponsors by copying a line above.
+    { short: "NSF",  name: "National Science Foundation", logo: "assets/images/logo-nsf.webp" },
+    { short: "BoR",  name: "Louisiana Board of Regents", logo: "assets/images/logo-bor.webp" },
+    { short: "LTRC", name: "Louisiana Transportation Research Center & Louisiana DOTD", logo: "assets/images/logo-ltrc.webp" },
+    { short: "USGS", name: "U.S. Geological Survey", logo: "assets/images/logo-usgs.webp" },
+    { short: "NASA", name: "National Aeronautics and Space Administration", logo: "assets/images/logo-nasa.webp" }
+    // Add sponsors by copying a line above; "logo" is optional.
   ],
 
   /* ---------------------------------------------------------------------- */

@@ -707,7 +707,10 @@
       var spn = el("sponsors");
       if (spn) {
         spn.innerHTML = (D.sponsors || []).map(function (m) {
-          return '<span class="sponsor"><b>' + esc(m.short) + "</b>" + esc(m.name) + "</span>";
+          return m.logo
+            ? '<figure class="sponsor-logo" title="' + esc(m.name) + '"><span class="sl-img"><img src="' + esc(m.logo) +
+              '" alt="' + esc(m.name) + '" loading="lazy"></span><figcaption>' + esc(m.name) + "</figcaption></figure>"
+            : '<span class="sponsor"><b>' + esc(m.short) + "</b>" + esc(m.name) + "</span>";
         }).join("");
       }
     },
