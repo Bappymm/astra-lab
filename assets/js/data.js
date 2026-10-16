@@ -346,7 +346,7 @@ window.LAB_DATA = {
           { name: "Madeline Morsalone" },
           { name: "Shaunak S. Hanumante" },
           { name: "Marcus Figueroa" },
-          { name: "Rachel Stone", note: "Honors College advisee · Outstanding GEAUX Communicator Award" },
+          { name: "Rachel Stone", note: "Industrial Engineering · LSU Distinguished Communicator (faculty advisor)" },
           { name: "Rita Nitipouna", note: "Honors College advisee · 2025 – present" }
         ] },
       { org: "Mississippi State University", years: "2021 – 2024", icon: "printer",
@@ -1092,7 +1092,7 @@ window.LAB_DATA = {
     { group: "student", year: "2025", title: "Best Oral Presentation", org: "Louisiana Academy of Sciences, 99th Annual Meeting", person: "Md Shafikul Islam (Ph.D. advisee presenter)" },
     { group: "student", year: "2025", title: "NSF Student Travel Award", org: "North American Manufacturing Research Conference (NAMRC)", person: "Md Shafikul Islam" },
     { group: "student", year: "2025", title: "NSF Student Travel Award", org: "IISE Annual Conference and Expo", person: "Md Shafikul Islam" },
-    { group: "student", year: "", title: "Outstanding GEAUX Communicator Award", org: "Ogden Honors College, Louisiana State University", person: "Rachel Stone (Honors advisee)" },
+    { group: "student", year: "", title: "LSU Distinguished Communicator", org: "Geaux Communicate, Louisiana State University", person: "Rachel Stone, Industrial Engineering (faculty advisor: Dr. Bappy)" },
 
     // ---- Grants & travel awards ----
     { group: "grant", year: "2026", title: "SEC Faculty Travel Award", org: "Louisiana State University", amount: "$1,000" },
