@@ -1178,7 +1178,9 @@
           return '<div class="ug-card"><div class="ug-head"><span class="ug-ico">' + icon(g.icon || "school") + "</span>" +
             "<div><h3>" + esc(g.org) + '</h3><span class="ug-years">' + esc(g.years) + " · " + (g.people || []).length + " researchers</span></div></div>" +
             '<ul class="person-list">' + (g.people || []).map(function (p) {
-              return '<li><span class="avatar">' + esc(initials(p.name)) + "</span><span><b>" + esc(p.name) + "</b>" +
+              var tm = (D.team || []).filter(function (m) { return m.name === p.name && m.image; })[0];
+              var av = tm ? '<img class="avatar" src="' + esc(tm.image) + '" alt="" loading="lazy">' : '<span class="avatar">' + esc(initials(p.name)) + "</span>";
+              return "<li>" + av + "<span><b>" + esc(p.name) + "</b>" +
                 (p.note ? "<small>" + esc(p.note) + "</small>" : "") + "</span></li>";
             }).join("") + "</ul></div>";
         }).join("");

@@ -1369,3 +1369,5 @@ h3, h4 { font-weight: 700; }
 .hero h1, .hero h2, .hero h3, .page-header h1, .showcase h2, .marquee-head h2, .footer h2, .footer h3, .footer h4,
 .teach-award h3, .cap-card.is-feature h3, .apply h3, .award-stat, .profile-hero h1 { color: #fff; }
 .apply h3, .footer-col h4 { color: var(--accent-bright); }
+img.avatar { object-fit: cover; object-position: center top; background: var(--bg-gray); }
+.person-list b { display: block; line-height: 1.3; }

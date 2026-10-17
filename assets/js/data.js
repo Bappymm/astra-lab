@@ -345,7 +345,7 @@ window.LAB_DATA = {
           { name: "Benjamin Logan", note: "Discover Day 2026 · robotic print monitoring" },
           { name: "Madeline Morsalone" },
           { name: "Shaunak S. Hanumante" },
-          { name: "Marcus Figueroa" },
+          { name: "Marcus Figueroa", note: "Meta Quest 3 & robotic-arm interaction" },
           { name: "Rachel Stone", note: "Industrial Engineering · LSU Distinguished Communicator (faculty advisor)" },
           { name: "Rita Nitipouna", note: "Honors College advisee · 2025 – present" }
         ] },
@@ -534,6 +534,44 @@ window.LAB_DATA = {
         tools: ["ANSYS APDL", "Finite element analysis", "Fatigue & fracture mechanics", "WAAM / AFSD repair",
                 "Creep modeling", "Physics-informed ML", "Uncertainty quantification", "Digital twins"]
       }
+    },
+
+    // ---- Undergraduate researchers ----------------------------------------
+    {
+      name: "Marcus Figueroa",
+      category: "undergrad",
+      position: "Undergraduate Researcher, LSU",
+      image: "assets/images/marcus-figueroa.webp",
+      interests: "Extended reality (Meta Quest 3), robotic-arm interaction, Physical AI",
+      email: "", linkedin: "", scholar: "", website: ""
+    },
+    {
+      name: "Shaunak S. Hanumante",
+      category: "undergrad",
+      position: "Undergraduate Researcher, LSU",
+      image: "assets/images/shaunak-hanumante.webp",
+      interests: "", // TODO add research focus
+      email: "", linkedin: "", scholar: "", website: ""
+    },
+    {
+      name: "Mohamed Kheshouei",
+      category: "undergrad",
+      position: "Undergraduate Researcher, LSU",
+      image: "assets/images/mohamed-kheshouei.webp",
+      interests: "Measurement-guided additive manufacturing for quantum technology components",
+      bio: "Presented “Measurement-guided additive manufacturing for quantum technology components” at LSU Discover Day 2026.",
+      email: "", linkedin: "", scholar: "", website: ""
+    },
+
+    // ---- Alumni ------------------------------------------------------------
+    {
+      name: "Jeimy Martinez De La Hoz",
+      category: "alumni",
+      position: "M.S. (Thesis), Louisiana State University, 2025",
+      image: "assets/images/jeimy-martinez-de-la-hoz.webp",
+      interests: "AI-enabled modeling for smart rural wastewater treatment, foundation-model forecasting",
+      bio: "Jeimy completed her thesis-based M.S. in ASTRA Lab in 2025. Her work on interpretable dissolved-oxygen forecasting with a foundation model appeared in Water Research, and her review of AI for rural wastewater treatment in Applied Water Science.",
+      email: "", linkedin: "", scholar: "", website: ""
     }
 
     // ---- Add more members below by copying a block above and editing it.
