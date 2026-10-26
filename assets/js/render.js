@@ -100,151 +100,88 @@
       '<p class="footer-bottom">&copy; ' + y + " " + esc(S.labName || "") + " · Louisiana State University</p>";
   }
 
-  /* --- home showcase artwork ----------------------------------------------
-     Each entry returns the inner markup of one <svg> panel. The CSS classes
-     (sc-*) carry the styling and the animation; see styles.css.            */
-  var ART = {
-
-    // A print head sweeping across a bed, laying down one layer at a time.
-    printing: function () {
-      var layers = "";
-      for (var i = 0; i < 5; i++) {
-        layers += '<rect class="sc-layer l' + (i + 1) + '" x="212" y="' + (204 - i * 14) +
-                  '" width="216" height="11" rx="2" fill="rgba(253,208,35,.75)"/>';
-      }
-      return '<line class="sc-dim" x1="150" y1="54" x2="492" y2="54"/>' +
-             '<g class="sc-head">' +
-               '<rect class="sc-fill" x="-21" y="-18" width="42" height="30" rx="5"/>' +
-               '<path class="sc-gold" d="M-9 12 L0 30 L9 12"/>' +
-               '<line class="sc-gold sc-jet" x1="0" y1="30" x2="0" y2="88"/>' +
-             '</g>' +
-             layers +
-             '<line class="sc-ln" x1="150" y1="220" x2="492" y2="220"/>' +
-             '<line class="sc-dim" x1="196" y1="220" x2="196" y2="242"/>' +
-             '<line class="sc-dim" x1="446" y1="220" x2="446" y2="242"/>';
-    },
-
-    // A physical machine on the left, its live virtual twin on the right.
-    twin: function () {
-      var bars = "";
-      for (var i = 0; i < 4; i++) {
-        bars += '<rect class="sc-bar b' + (i + 1) + '" x="' + (424 + i * 26) +
-                '" y="214" width="14" height="34" rx="3" fill="rgba(253,208,35,.85)"/>';
-      }
-      return '<rect class="sc-fill" x="86" y="92" width="152" height="112" rx="9"/>' +
-             '<circle class="sc-ln sc-gear" cx="162" cy="148" r="27"/>' +
-             '<g class="sc-ln sc-gear">' +
-               '<line x1="162" y1="121" x2="162" y2="175"/>' +
-               '<line x1="135" y1="148" x2="189" y2="148"/>' +
-               '<line x1="143" y1="129" x2="181" y2="167"/>' +
-               '<line x1="181" y1="129" x2="143" y2="167"/>' +
-             '</g>' +
-             '<line class="sc-dim" x1="86" y1="204" x2="238" y2="204"/>' +
-             '<path class="sc-gold sc-flow" d="M248 128 H392"/>' +
-             '<path class="sc-gold sc-flow rev" d="M392 170 H248"/>' +
-             '<rect class="sc-dim" x="398" y="92" width="152" height="112" rx="9"/>' +
-             '<circle class="sc-dim" cx="474" cy="148" r="27"/>' +
-             '<line class="sc-gold sc-scan" x1="404" y1="100" x2="544" y2="100"/>' +
-             bars;
-    },
-
-    // A robotic arm working a conveyor line, with an inline sensor check.
-    factory: function () {
-      var parts = "", rollers = "", i;
-      for (i = 0; i < 3; i++) {
-        parts += '<g class="sc-part p' + (i + 1) + '">' +
-                 '<rect class="sc-fill" x="206" y="192" width="26" height="22" rx="3"/></g>';
-      }
-      for (i = 0; i < 5; i++) {
-        rollers += '<circle class="sc-roll" cx="' + (228 + i * 76) + '" cy="226" r="8"/>';
-      }
-      return '<rect class="sc-fill" x="118" y="196" width="60" height="22" rx="4"/>' +
-             '<line class="sc-limb" x1="148" y1="198" x2="148" y2="152"/>' +
-             // shoulder -> elbow -> claw. The groups nest and each pivots on its
-             // own joint coordinate (see .sc-arm-* in styles.css), so the
-             // segments stay connected as they swing.
-             '<g class="sc-arm-u">' +
-               '<line class="sc-limb" x1="148" y1="152" x2="220" y2="110"/>' +
-               '<circle class="sc-joint" cx="220" cy="110" r="6"/>' +
-               '<g class="sc-arm-f">' +
-                 '<line class="sc-limb" x1="220" y1="110" x2="258" y2="166"/>' +
-                 '<circle class="sc-joint" cx="258" cy="166" r="5"/>' +
-                 '<path class="sc-gold" d="M249 172 l-5 12 M267 172 l5 12"/>' +
-               '</g>' +
-             '</g>' +
-             '<circle class="sc-joint" cx="148" cy="152" r="7"/>' +
-             parts +
-             '<line class="sc-gold sc-belt" x1="200" y1="214" x2="544" y2="214"/>' +
-             rollers +
-             // inline sensor watching the line
-             '<rect class="sc-fill" x="386" y="104" width="36" height="26" rx="4"/>' +
-             '<circle class="sc-gfill sc-blink" cx="404" cy="117" r="6"/>' +
-             '<line class="sc-dim" x1="404" y1="130" x2="404" y2="200"/>';
-    },
-
-    // Sensor signal feeding a small network that produces a decision.
-    ai: function () {
-      var cols = [[170, [86, 142, 198]], [320, [70, 118, 166, 214]], [470, [118, 166]]];
-      var lines = "", nodes = "", n = 0, c, next, i, j;
-      for (c = 0; c < cols.length - 1; c++) {
-        next = cols[c + 1];
-        for (i = 0; i < cols[c][1].length; i++) {
-          for (j = 0; j < next[1].length; j++) {
-            lines += '<line class="sc-dim sc-sig" x1="' + cols[c][0] + '" y1="' + cols[c][1][i] +
-                     '" x2="' + next[0] + '" y2="' + next[1][j] + '"/>';
-          }
-        }
-      }
-      for (c = 0; c < cols.length; c++) {
-        for (i = 0; i < cols[c][1].length; i++) {
-          n++;
-          nodes += '<circle class="sc-wfill sc-node n' + ((n % 5) + 1) + '" cx="' + cols[c][0] +
-                   '" cy="' + cols[c][1][i] + '" r="6.5"/>';
-        }
-      }
-      return '<g class="sc-wave">' +
-               '<path class="sc-gold" d="M40 142 q15 -34 30 0 t30 0 t30 0 t30 0 t30 0 t30 0"/>' +
-             '</g>' +
-             lines + nodes +
-             '<path class="sc-gold" d="M506 142 h42 l-12 -12 m12 12 l-12 12"/>';
-    }
-  };
-
+  /* --- home showcase ------------------------------------------------------
+     The four animated panels themselves live in assets/js/showcase.js
+     (window.ASTRA_SCENES). Each scene returns a tick(t, dt) function; this
+     renderer builds the panels, runs one animation loop for whichever panel
+     is visible, and rotates panels on a timer or via the dots.             */
   function renderShowcase() {
     var host = el("showcase"); if (!host) return;
     var items = (D.home && D.home.showcase) || [];
+    var SC = window.ASTRA_SCENES || {};
     if (!items.length) { host.parentNode.removeChild(host); return; }
 
-    var scenes = "", dots = "";
+    var dots = "";
     items.forEach(function (it, i) {
-      var art = ART[it.art] ? ART[it.art]() : "";
-      scenes += '<div class="scene' + (i === 0 ? " is-active" : "") + '" data-i="' + i + '">' +
-                '<svg viewBox="0 0 640 270" role="img" aria-label="' + esc(it.title) + '">' +
-                art + "</svg></div>";
       dots += '<button type="button" data-i="' + i + '" aria-selected="' + (i === 0) +
               '" data-label="' + esc(it.title) + '" aria-label="Show ' + esc(it.title) + '"></button>';
     });
-
     host.innerHTML =
       '<div class="showcase-inner">' +
-        '<div class="showcase-stage">' + scenes + "</div>" +
+        '<div class="showcase-stage"></div>' +
         '<div class="showcase-caption" id="showcase-caption" aria-live="polite">' +
           "<h3>" + esc(items[0].title) + "</h3><p>" + esc(items[0].text) + "</p>" +
         "</div>" +
         '<div class="showcase-dots" role="tablist">' + dots + "</div>" +
       "</div>";
 
-    var sceneEls = host.querySelectorAll(".scene");
+    var stage = host.querySelector(".showcase-stage");
     var dotEls = host.querySelectorAll(".showcase-dots button");
     var cap = el("showcase-caption");
-    var idx = 0, timer = null, hovered = false;
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    var scenes = items.map(function (it, i) {
+      var wrap = document.createElement("div");
+      wrap.className = "scene" + (i === 0 ? " is-active" : "");
+      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 640 270");
+      svg.setAttribute("role", "img");
+      svg.setAttribute("aria-label", it.title + ": " + it.text);
+      wrap.appendChild(svg);
+      stage.appendChild(wrap);
+      var tick = null;
+      try { tick = SC[it.art] ? SC[it.art](svg, "sc" + i + "-") : null; } catch (e) { console.error(e); }
+      var s = { el: wrap, tick: tick, t: 0 };
+      // Draw a representative frame up front. With reduced motion this frame
+      // is all that is ever shown.
+      if (tick) {
+        try {
+          var still = reduce ? 3.2 : 0;
+          for (var f = 0; f <= still * 30; f++) tick(f / 30, 1 / 30);
+          s.t = still;
+        } catch (e) { console.error(e); s.tick = null; }
+      }
+      return s;
+    });
+
+    var idx = 0, prev = -1, prevUntil = 0, timer = null, hovered = false;
+    var running = false, onScreen = true, last = 0, clock = 0;
+
+    function frame(now) {
+      if (!running) return;
+      var dt = last ? Math.min((now - last) / 1000, .05) : 0;
+      last = now; clock += dt;
+      var s = scenes[idx];
+      if (s.tick) { s.t += dt; s.tick(s.t, dt); }
+      // keep the outgoing panel moving while it fades out
+      if (prev >= 0 && clock < prevUntil && scenes[prev].tick) { scenes[prev].t += dt; scenes[prev].tick(scenes[prev].t, dt); }
+      requestAnimationFrame(frame);
+    }
+    function sync() {
+      var want = !reduce && onScreen && !document.hidden;
+      if (want && !running) { running = true; last = 0; requestAnimationFrame(frame); }
+      else if (!want) running = false;
+    }
+
     function show(n) {
+      n = (n + items.length) % items.length;
       if (n === idx) return;
-      idx = (n + items.length) % items.length;
-      for (var i = 0; i < sceneEls.length; i++) {
-        sceneEls[i].classList.toggle("is-active", i === idx);
+      prev = idx; prevUntil = clock + .8;
+      idx = n;
+      scenes[idx].t = 0;                       // every visit tells the story from the start
+      if (scenes[idx].tick && !reduce) scenes[idx].tick(0, 0);
+      for (var i = 0; i < scenes.length; i++) {
+        scenes[i].el.classList.toggle("is-active", i === idx);
         dotEls[i].setAttribute("aria-selected", String(i === idx));
       }
       cap.classList.add("is-swapping");
@@ -257,11 +194,10 @@
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
     function start() {
       stop();
-      // Hold a single still panel for reduced motion, and never resume while
-      // the pointer is still resting on the showcase (e.g. just after a dot
-      // click, which happens with the cursor inside the component).
+      // No auto-advance for reduced motion, and never while the pointer is
+      // resting on the showcase (e.g. right after a dot click).
       if (reduce || items.length < 2 || hovered) return;
-      timer = setInterval(function () { show(idx + 1); }, 6000);
+      timer = setInterval(function () { show(idx + 1); }, 10000);
     }
 
     for (var i = 0; i < dotEls.length; i++) {
@@ -270,14 +206,20 @@
         start();                                    // restart the clock after a manual pick
       });
     }
-    // Pause while the visitor is reading or the tab is in the background.
-    host.addEventListener("mouseenter", function () { hovered = true; stop(); host.classList.add("is-paused"); });
-    host.addEventListener("mouseleave", function () { hovered = false; host.classList.remove("is-paused"); start(); });
+    // Hovering pauses the rotation (so a visitor can watch a panel) but the
+    // animation keeps playing.
+    host.addEventListener("mouseenter", function () { hovered = true; stop(); });
+    host.addEventListener("mouseleave", function () { hovered = false; start(); });
     host.addEventListener("focusin",  function () { stop(); });
     host.addEventListener("focusout", function () { start(); });
     document.addEventListener("visibilitychange", function () {
-      if (document.hidden) { stop(); } else { start(); }
+      if (document.hidden) stop(); else start();
+      sync();
     });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) { onScreen = en[en.length - 1].isIntersecting; sync(); }, { threshold: .05 }).observe(host);
+    }
+    sync();
     start();
   }
 
