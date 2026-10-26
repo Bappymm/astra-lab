@@ -45,7 +45,8 @@ window.LAB_DATA = {
     heroSubtitle: "AI & Digital Twin for Advanced Manufacturing and Smart Systems",
     heroText:
       "We build trustworthy AI, digital twins, and sensing systems that monitor, certify, and " +
-      "control the machines and processes behind modern manufacturing and complex engineering systems.",
+      "control the machines and processes behind modern manufacturing and complex engineering systems — " +
+      "advancing embodied intelligence and agentic AI for resilient, sustainable systems.",
 
     /* Full-screen photos behind the home-page title. They cross-fade in this
        order. Use wide photos where possible; the centre of each is kept. */
@@ -75,12 +76,12 @@ window.LAB_DATA = {
     showcase: [
       { art: "printing", title: "Advanced Manufacturing",
         text: "In-situ, layer-wise monitoring and certification of additive processes." },
-      { art: "twin", title: "Digital Twin",
-        text: "Physical assets mirrored by synchronized, physics-informed virtual models." },
+      { art: "twin", title: "Digital Twin & World Models",
+        text: "Physical assets mirrored by synchronized, physics-informed models that predict what happens next." },
       { art: "factory", title: "Smart Systems",
         text: "Robotics, sensing, and automation working together on the factory floor." },
-      { art: "ai", title: "Artificial Intelligence",
-        text: "Machine learning that turns streaming sensor data into real-time decisions." }
+      { art: "ai", title: "Agentic AI",
+        text: "AI agents that turn streaming sensor data into plans, decisions, and real-time action." }
     ],
 
     image: "assets/images/gal-team-graduate-students.webp", // a team photo works best here
@@ -108,7 +109,10 @@ window.LAB_DATA = {
       "We combine multimodal sensing, machine learning, and digital twins to make manufacturing " +
       "more reliable, secure, and sustainable — from certifying metal parts layer by layer and " +
       "protecting design data on cloud platforms, to diagnosing machine faults in real time and " +
-      "forecasting the behavior of water and energy systems."
+      "forecasting the behavior of water and energy systems. Building on these foundations, we are " +
+      "developing world models and agentic AI that let machines anticipate, plan, and act — embodied " +
+      "intelligence for the factory floor, and resilience and sustainability for the infrastructure " +
+      "communities rely on."
   },
 
   /* ---------------------------------------------------------------------- */
@@ -153,7 +157,8 @@ window.LAB_DATA = {
     interests: [
       "Systems Informatics", "Additive Manufacturing", "Digital Twins",
       "Privacy-Preserving AI", "Physics-Informed Machine Learning",
-      "Condition Monitoring", "Smart Manufacturing", "Supply Chain Sustainability"
+      "Condition Monitoring", "Smart Manufacturing", "Embodied Intelligence",
+      "Agentic AI", "World Models", "Systems Resilience & Sustainability"
     ],
     bio: [
       "Dr. Mahathir Mohammad Bappy is an Assistant Professor of Industrial Engineering in the " +
@@ -412,7 +417,7 @@ window.LAB_DATA = {
       position: "Assistant Professor & Lab Director",
       image: "assets/images/bappy.webp",
       education: "Ph.D., Industrial & Systems Engineering, Mississippi State University",
-      interests: "Systems Informatics, AI/ML, Smart Manufacturing, Digital Twins, Privacy-Preserving AI, Embodied Intelligence",
+      interests: "Systems Informatics, Agentic AI, World Models, Embodied Intelligence, Digital Twins, Privacy-Preserving AI, Systems Resilience & Sustainability",
       bio:
         "Dr. Bappy is an Assistant Professor of Industrial Engineering in the Department of " +
         "Mechanical and Industrial Engineering at Louisiana State University. He earned his Ph.D. " +
@@ -601,15 +606,16 @@ window.LAB_DATA = {
       ]
     },
     {
-      title: "Digital Twins & Predictive Process Control",
+      title: "Digital Twins, World Models & Predictive Control",
       cover: "assets/images/hero-dt-smart-factory.webp", accent: "#1f8fd6",  // home-page card photo and colour
       icon: "twin",
       image: "assets/images/fig-entropy-mpc.webp", fit: "contain",
       description:
-        "Physics-informed and data-driven process models that link in-process measurements to part " +
-        "quality, and model predictive controllers that act on them — such as using the spectral " +
+        "Physics-informed digital twins and learned world models that link in-process measurements to " +
+        "part quality and predict how a process will evolve, and model predictive controllers that act " +
+        "on those predictions — such as using the spectral " +
         "entropy of arc sound to correct restart transients in wire arc additive manufacturing.",
-      tags: ["Digital Twins", "Model Predictive Control", "Physics-Informed ML"],
+      tags: ["Digital Twins", "World Models", "Model Predictive Control"],
       links: [
         { label: "LSU Control Symposium 2026", url: "https://doi.org/10.31390/lsucontrol.26.12" }
       ]
@@ -622,9 +628,10 @@ window.LAB_DATA = {
       description:
         "Robots and machines that perceive, reason and act in the physical world: learning-based " +
         "perception and control for robotic manipulation and robotic additive manufacturing, " +
-        "simulation-to-real transfer, human–robot collaboration, and real-time edge AI that closes " +
-        "the loop between sensing and action on the shop floor.",
-      tags: ["Embodied AI", "Robot Learning", "Edge AI"],
+        "simulation-to-real transfer, human–robot collaboration, agentic AI that plans and carries out " +
+        "multi-step tasks, and real-time edge AI that closes the loop between sensing and action on the " +
+        "shop floor.",
+      tags: ["Embodied Intelligence", "Agentic AI", "Robot Learning"],
       links: [
         { label: "LSU Control Symposium 2026", url: "https://doi.org/10.31390/lsucontrol.26.12" }
       ]
@@ -660,15 +667,15 @@ window.LAB_DATA = {
       ]
     },
     {
-      title: "AI for Sustainable & Resilient Systems",
+      title: "AI for Systems Resilience & Sustainability",
       cover: "assets/images/cover-water.webp", accent: "#2a9d5c",  // home-page card photo and colour
       icon: "leaf",
       image: "assets/images/research-water-energy.svg", fit: "contain",
       description:
-        "Foundation-model forecasting and data-driven decision support for cyber-physical-social " +
-        "systems — rural wastewater and freshwater infrastructure, energy systems, critical " +
-        "materials, and sustainable, resilient supply chains.",
-      tags: ["Foundation Models", "Water & Energy", "Supply Chains"],
+        "Foundation-model forecasting and data-driven decision support that make cyber-physical-social " +
+        "systems resilient to cascading hazards and sustainable over the long term — rural wastewater " +
+        "and freshwater infrastructure, energy systems, critical materials, and supply chains.",
+      tags: ["Systems Resilience", "Sustainability", "Foundation Models"],
       links: [
         { label: "Water Research 2025", url: "https://doi.org/10.1016/j.watres.2025.124931" },
         { label: "Water 2025", url: "https://www.mdpi.com/2073-4441/17/20/2936" },
