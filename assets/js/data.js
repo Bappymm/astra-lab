@@ -505,6 +505,12 @@ window.LAB_DATA = {
             image: "assets/images/fig-spectrogram-bearing.webp",
             text: "A denoising U-Net and multi-resolution convolutional STFT pipeline reconstructs noise-robust time–frequency maps from raw vibration, reaching 99.4% accuracy on CWRU and 99.1% on HUST." }
         ],
+        photos: [
+          { image: "assets/images/gal-tushar-fatigue-daq.webp",
+            caption: "Saifur Rahman Tushar running a fatigue test with multimodal data acquisition" },
+          { image: "assets/images/res-mts-fatigue-ir.webp",
+            caption: "MTS fatigue testing system with infrared camera and DAQ" }
+        ],
         next: "Physics-aware thermal-history reconstruction for accelerated fatigue performance prediction, building on the thermographic datasets above.",
         tools: ["Robotic WAAM", "LPBF", "FFF", "WARDJet waterjet", "Bending fatigue tester", "FLIR A600 IR camera",
                 "Gamry potentiostat", "X-ray CT", "SEM / EBSD", "3D laser scanner", "PINNs", "CS-MMD transfer learning",
@@ -1031,6 +1037,13 @@ window.LAB_DATA = {
     // ---- Sensing & Characterization ----
     {
       group: "Sensing & Characterization",
+      name: "MTS Fatigue Testing System with IR Thermography & DAQ",
+      image: "assets/images/res-mts-fatigue-ir.webp", home: true,
+      description: "Servo-hydraulic MTS load frame with hydraulic wedge grips for axial fatigue testing, paired with an infrared camera and multi-channel data acquisition that record load, displacement, cycle count and surface temperature in sync for multimodal fatigue-life studies.",
+      specs: "MTS load frame · hydraulic wedge grips · IR camera · multi-channel DAQ"
+    },
+    {
+      group: "Sensing & Characterization",
       name: "In-Situ Laser Profilometry FDM Testbed",
       image: "assets/images/res-laser-profilometry.webp",
       description: "Creality Ender-5 FDM printer integrated with a motorized scanner frame, angle encoder and motion controller for layer-wise surface scanning, used for real-time defect detection with vision transformers.",
@@ -1238,6 +1251,10 @@ window.LAB_DATA = {
       caption: "INFORMS Annual Meeting 2022, Indianapolis" },
 
     // ---- In the lab ----
+    { image: "assets/images/gal-tushar-fatigue-daq.webp", category: "lab",
+      caption: "Saifur Rahman Tushar running a fatigue test with multimodal data acquisition" },
+    { image: "assets/images/res-mts-fatigue-ir.webp", category: "lab",
+      caption: "MTS fatigue testing system with infrared camera and DAQ" },
     { image: "assets/images/gal-3d-scanning.webp", category: "lab",
       caption: "3D scanning a printed part for in-process quality monitoring" },
     { image: "assets/images/gal-bioprinter-lab.webp", category: "lab",

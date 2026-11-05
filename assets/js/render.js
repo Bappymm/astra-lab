@@ -632,7 +632,8 @@
 
       var fac = el("home-facilities");
       if (fac) {
-        var shots = (D.resources || []).filter(function (r) { return r.image; }).slice(0, 5);
+        var withImg = (D.resources || []).filter(function (r) { return r.image; });
+        var shots = withImg.filter(function (r) { return r.home; }).concat(withImg.filter(function (r) { return !r.home; })).slice(0, 5);
         fac.innerHTML = shots.map(function (r) {
           return '<a class="fac-tile' + (r.fit === "contain" ? " is-contain" : "") + '" href="research.html#facilities"><img src="' + esc(r.image) + '" alt="' + esc(r.name) + '" loading="lazy">' +
             '<span class="fac-cap"><strong>' + esc(r.name) + "</strong><small>" + esc(r.group || "") + "</small></span></a>";
@@ -994,6 +995,10 @@
                 '<div class="team-card-links">' + personLinks(m) + "</div></div>" +
             "</header>" +
             '<p class="spot-summary">' + esc(sp.summary || "") + "</p>" +
+            ((sp.photos || []).length ? '<div class="spot-photos" data-set="f' + k + '">' + sp.photos.map(function (f, i) {
+              return '<button type="button" class="spot-photo' + (i === 0 ? " is-wide" : "") + '" data-i="' + i + '">' +
+                '<img src="' + esc(f.image) + '" alt="' + esc(f.caption) + '" loading="lazy"><span class="moment-cap">' + esc(f.caption) + "</span></button>";
+            }).join("") + "</div>" : "") +
             (projs.length ? '<h4 class="spot-sub">Projects</h4><div class="proj-grid spot-grid" data-set="p' + k + '">' +
               projs.map(projectCard).join("") + "</div>" : "") +
             (papers.length ? '<h4 class="spot-sub">Papers</h4><div class="spot-papers" data-set="q' + k + '">' + papers.map(function (q, i) {
@@ -1007,6 +1012,13 @@
           "</article>";
         }).join("");
         withSpot.forEach(function (m, k) {
+          var fg = sr.querySelector('[data-set="f' + k + '"]');
+          if (fg) {
+            var fset = m.spotlight.photos.map(function (f) { return { src: f.image, caption: f.caption }; });
+            Array.prototype.forEach.call(fg.querySelectorAll(".spot-photo"), function (b) {
+              b.addEventListener("click", function () { lightbox(fset, +b.getAttribute("data-i"), b); });
+            });
+          }
           var pg = sr.querySelector('[data-set="p' + k + '"]'), qg = sr.querySelector('[data-set="q' + k + '"]');
           if (pg) wireFigures(pg, (m.spotlight.projects || []).map(function (t) { return byTitle[t]; }).filter(Boolean));
           if (qg) wireFigures(qg, (m.spotlight.papers || []).map(function (q) { return { image: q.image, title: q.title }; }));
