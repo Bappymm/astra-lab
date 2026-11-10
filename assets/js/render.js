@@ -1191,13 +1191,49 @@
     service: function () {
       var sv = D.service || {};
       var KIND = { review: ["review", "Peer review"], committee: ["users", "Committee"], judge: ["flag", "Judging"],
-                   outreach: ["users", "Outreach"], organizing: ["flag", "Organizing"], talk: ["mic", "Invited talk"] };
+                   outreach: ["users", "Outreach"], organizing: ["flag", "Leadership"], talk: ["mic", "Invited talk"] };
       function kind(k) { var x = KIND[k] || ["flag", "Service"]; return '<span class="svc-kind">' + icon(x[0]) + " " + x[1] + "</span>"; }
+
+      var st0 = el("svc-stats");
+      if (st0) {
+        st0.innerHTML = (sv.stats || []).map(function (f) {
+          return '<div class="stat"><span class="stat-num"><span data-count="' + f.n + '">' + f.n + "</span>" +
+            (f.suffix ? '<small class="stat-suffix">' + esc(f.suffix) + "</small>" : "") + "</span>" +
+            '<span class="stat-label">' + esc(f.label) + "</span></div>";
+        }).join("");
+        countUp(st0);
+      }
+      var it = el("svc-intro"); if (it) it.textContent = sv.intro || "";
+
+      var rv = el("svc-review"), R = sv.review || {};
+      if (rv) {
+        function list(items) { return '<ul class="rev-list">' + items.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>"; }
+        rv.innerHTML =
+          '<div class="rev-card"><div class="rev-head">' + icon("review", "rev-ico") + '<div><h3>Journals</h3><span class="rev-n">' + (R.journals || []).length + " titles</span></div></div>" + list(R.journals || []) + "</div>" +
+          '<div class="rev-card"><div class="rev-head">' + icon("mic", "rev-ico") + '<div><h3>Conferences</h3><span class="rev-n">' + (R.conferences || []).length + " programs</span></div></div>" + list(R.conferences || []) + "</div>" +
+          '<div class="rev-card is-dark"><div class="rev-head">' + icon("grant", "rev-ico") + '<div><h3>Proposals &amp; Panels</h3><span class="rev-n">Funding and award review</span></div></div>' +
+            '<ul class="panel-list">' + (R.panels || []).map(function (p) {
+              return '<li' + (p.highlight ? ' class="is-hl"' : "") + ">" + (p.n ? '<span class="panel-n">' + esc(p.n) + "</span>" : '<span class="panel-n is-star">' + icon("trophy") + "</span>") +
+                "<span><b>" + esc(p.title) + "</b><small>" + esc(p.org) + "</small></span></li>";
+            }).join("") + "</ul></div>";
+      }
+
+      var ld = el("svc-leadership");
+      if (ld) ld.innerHTML = '<div class="lead-grid">' + (sv.leadership || []).map(function (x, i) {
+        return '<div class="lead-card' + (i === 0 ? " is-feature" : "") + '"><span class="lead-year">' + esc(x.year) + "</span>" +
+          "<h3>" + esc(x.title) + '</h3><p class="uni-org">' + esc(x.org) + "</p></div>";
+      }).join("") + "</div>";
+
+      var un = el("svc-university");
+      if (un) un.innerHTML = (sv.university || []).map(function (u) {
+        return '<div class="uni-card"><span class="uni-ico">' + icon(u.icon || "school") + "</span>" +
+          "<div><h3>" + esc(u.title) + '</h3><p class="uni-org">' + esc(u.org) + "</p>" +
+          '<span class="uni-years">' + (u.current ? '<i class="uni-live" aria-hidden="true"></i>' : "") + esc(u.years) + "</span></div></div>";
+      }).join("");
 
       var dh = el("service-director");
       if (dh) {
-        var items = sv.director || [];
-        dh.innerHTML = items.map(function (s) {
+        dh.innerHTML = (sv.director || []).map(function (s) {
           return '<article class="svc-card' + (s.image ? "" : " no-media") + '">' +
             (s.image ? '<div class="svc-media"><img src="' + esc(s.image) + '" alt="' + esc(s.title) + '" loading="lazy"></div>' : "") +
             '<div class="svc-body">' + kind(s.kind) + "<h3>" + esc(s.title) + "</h3>" +
@@ -1205,13 +1241,27 @@
             "</div></article>";
         }).join("");
       }
-      var st = el("service-students");
-      if (st) {
-        st.innerHTML = (sv.students || []).map(function (s) {
+      function rows(items) {
+        return items.map(function (s) {
           return '<div class="svc-row">' + kind(s.kind) +
             '<div class="svc-row-main"><h3>' + esc(s.title) + '</h3><p class="svc-meta">' + esc(s.org) + "</p></div>" +
             '<span class="award-year">' + esc(s.year) + "</span></div>";
         }).join("");
+      }
+      var cm = el("svc-community"); if (cm) cm.innerHTML = rows(sv.community || []);
+
+      var mt = el("svc-meetings");
+      if (mt) mt.innerHTML = (sv.meetings || []).map(function (m) {
+        return '<div class="meet-card"><span class="award-year">' + esc(m.year) + "</span><h3>" + esc(m.title) + "</h3>" +
+          (m.org ? '<p class="uni-org">' + esc(m.org) + "</p>" : "") + "</div>";
+      }).join("");
+      var mb = el("svc-members");
+      if (mb && (sv.memberships || []).length) mb.innerHTML = '<span class="grad-k">Professional memberships</span>' +
+        sv.memberships.map(function (x) { return '<span class="member-pill">' + esc(x) + "</span>"; }).join("");
+
+      var st = el("service-students");
+      if (st) {
+        st.innerHTML = rows(sv.students || []);
         if (!(sv.students || []).length) st.closest(".section").style.display = "none";
       }
     },
@@ -1330,7 +1380,7 @@
     // auto-tag the main content blocks on each page
     var sel = ".card, .team-card, .director-card, .award-card, .news-item, .about-grid > *, " +
               ".stat, .tcard, .proj-card, .spotlight, .feature-row, .fund-card, .fac-tile, " +
-              ".tl-item, .project-row, .teach-card, .cert-card, .fact, .award-stat, .svc-card, .svc-row, .join-card, .spot-paper, .lsu-course, .interest-card, .grad-box, .ug-card, .cap-card, .advise, .aw-feat, .teach-award";
+              ".tl-item, .project-row, .teach-card, .cert-card, .fact, .award-stat, .svc-card, .svc-row, .join-card, .spot-paper, .lsu-course, .interest-card, .grad-box, .ug-card, .cap-card, .advise, .aw-feat, .teach-award, .rev-card, .uni-card, .meet-card, .lead-card";
     var nodes = Array.prototype.slice.call(document.querySelectorAll(sel));
     if (reduce || !("IntersectionObserver" in window)) { return; } // leave fully visible
     nodes.forEach(function (n) { n.classList.add("reveal"); });

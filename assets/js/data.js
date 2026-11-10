@@ -1169,22 +1169,88 @@ window.LAB_DATA = {
   /*  SERVICE & OUTREACH                                                  */
   /* ---------------------------------------------------------------------- */
   service: {
-    // Lab director. kind: review | committee | judge | outreach | organizing
-    // TODO add journal reviewing, editorial boards, committees and session chairs here.
+    intro:
+      "Dr. Bappy serves the industrial engineering and manufacturing communities as a reviewer for leading " +
+      "journals, conferences and funding programs, organizes and chairs sessions at INFORMS and NAMRC, " +
+      "serves on LSU committees and student organizations, and brings engineering to students and the public " +
+      "through science fairs, lab visits and volunteer work.",
+    stats: [
+      { n: 10, label: "Journals reviewed for" },
+      { n: 6, label: "Conference programs" },
+      { n: 88, suffix: "+", label: "Proposals reviewed" },
+      { n: 5, label: "Conference leadership roles" }
+    ],
+    // Peer review
+    review: {
+      journals: [
+        "Journal of Manufacturing Systems", "ASME Journal of Computing and Information Science in Engineering",
+        "Journal of Manufacturing Processes", "Journal of Intelligent Manufacturing",
+        "IISE Transactions on Healthcare Systems Engineering", "Expert Systems with Applications",
+        "Water Research", "Environment, Development and Sustainability", "Emerald Open Research",
+        "Journal of Engineering Research, Innovation and Education"
+      ],
+      conferences: [
+        "IISE Annual Conference", "ASME Manufacturing Science and Engineering Conference (MSEC)",
+        "North American Manufacturing Research Conference (NAMRC)", "INFORMS Annual Meeting",
+        "International Symposium on Flexible Automation (ISFA)", "ASME International Mechanical Engineering Congress & Exposition (IMECE)"
+      ],
+      panels: [
+        { title: "Invited Panel Reviewer", org: "National Science Foundation (NSF) and DOE Mission Genesis", n: "" , highlight: true },
+        { title: "Our Lady of the Lake Scholarship", org: "Proposal reviewer, 2025–2026", n: "27" },
+        { title: "LSU Graduate School Summer Funding", org: "Proposal reviewer, 2025", n: "50" },
+        { title: "LSU Clayton Engineering Excellence Award", org: "Proposal reviewer, 2025", n: "11" },
+        { title: "LSU Office of Undergraduate Research", org: "Proposal reviewer, 2025", n: "" }
+      ]
+    },
+    // Conference organizing and chairing, newest first
+    leadership: [
+      { year: "2026", title: "Organizer and Chair", org: "INFORMS QSR Best Student Poster Competition Session" },
+      { year: "2025", title: "Track Co-Chair", org: "SSCET 2025" },
+      { year: "2025", title: "Session Chair (three sessions)", org: "North American Manufacturing Research Conference (NAMRC 53)" },
+      { year: "2025", title: "Session Chair and Subcommittee Member", org: "INFORMS Quality, Statistics and Reliability (QSR) Section" },
+      { year: "2019", title: "Co-Organizer", org: "International Conference on Engineering Research, Innovation and Education (ICERIE 2019)" }
+    ],
+    // University and departmental service. icon: any name in render.js ICON
+    university: [
+      { title: "Faculty Advisor", org: "Alpha Pi Mu Industrial Engineering Honor Society", years: "2025 – present", icon: "cap", current: true },
+      { title: "Faculty Council Member", org: "Engineering Residential College (ERC)", years: "2025 – present", icon: "users", current: true },
+      { title: "Formation Team Member", org: "LSU Robotic Engineering Center", years: "2025 – present", icon: "robot", current: true },
+      { title: "Committee Member", org: "Graduate Student Admission Committee", years: "2025 – present", icon: "review", current: true },
+      { title: "Committee Member", org: "Engineering Management degree program proposal", years: "2024 – 2025", icon: "cert" },
+      { title: "Reviewer and Interviewer", org: "Chevron Energy Leaders Scholarship", years: "2025, 2026", icon: "grant" },
+      { title: "Judge", org: "LSU Discover Day", years: "2026", icon: "flag" },
+      { title: "Recruitment", org: "Eye of the Tiger Tour and Destination LSU", years: "LSU", icon: "school" }
+    ],
+    // Outreach with photos. kind: review | committee | judge | outreach | organizing
     director: [
       { kind: "outreach", title: "Hosted Engineering Residential College (ERC) students at ASTRA Lab",
         org: "Robot learning, VR teleoperation & robotic WAAM demonstrations, LSU", year: "Fall 2026", image: "assets/images/gal-erc-visit-robot-demo.webp" },
+      { kind: "judge", title: "Judge, regional science and engineering fairs",
+        org: "Louisiana Region VII (2025) · Mississippi Region V (2023)", year: "", image: "assets/images/gal-science-fair-judging.webp" },
+      { kind: "judge", title: "Evaluator, student research poster competitions",
+        org: "Mississippi State University", year: "2022–2023", image: "assets/images/gal-poster-judging.webp" },
       { kind: "outreach", title: "Engaging prospective and current students at LSU College of Engineering events",
         org: "Louisiana State University", year: "", image: "assets/images/gal-lsu-student-engagement.webp" },
-      { kind: "judge", title: "Judge, student research poster competition",
-        org: "Mississippi State University", year: "", image: "assets/images/gal-poster-judging.webp" },
-      { kind: "judge", title: "Judge, student science fair",
-        org: "", year: "", image: "assets/images/gal-science-fair-judging.webp" },
       { kind: "outreach", title: "STEM outreach with high-school students",
-        org: "", year: "", image: "assets/images/gal-outreach-group.webp" },
-      { kind: "organizing", title: "Organizer, problem setter and judge for onsite practice contests",
-        org: "Department of Industrial and Production Engineering, SUST", year: "2018–2019", image: "" }
+        org: "", year: "", image: "assets/images/gal-outreach-group.webp" }
     ],
+    // Further community roles (no photo)
+    community: [
+      { kind: "outreach", title: "Site Leader", org: "MSU Maroon Volunteer Center", year: "2022–2024" },
+      { kind: "organizing", title: "Vice President", org: "INFORMS Student Chapter, Mississippi State University", year: "2021–2022" },
+      { kind: "review", title: "External Examiner", org: "Jashore University of Science and Technology", year: "2018–2019" },
+      { kind: "organizing", title: "Organizer, problem setter and judge for onsite practice contests", org: "Industrial and Production Engineering, SUST", year: "2018–2019" }
+    ],
+    // Professional engagement
+    meetings: [
+      { year: "2025", title: "Invited research meeting", org: "NASA Marshall Space Flight Center" },
+      { year: "2025", title: "Additive Construction: The Path to Standardization", org: "NIST workshop" },
+      { year: "2025", title: "NHERI RAPID Facility Intensive Workshop", org: "National Science Foundation" },
+      { year: "2025", title: "Louisiana Energy Research Symposium", org: "" },
+      { year: "2025", title: "LAMDA Technical Meeting", org: "Louisiana Materials Design Alliance" },
+      { year: "2024", title: "LAMA 3-D Printing Expo", org: "" }
+    ],
+    memberships: ["IISE", "INFORMS", "SME"],
     // Lab members
     students: [
       { kind: "judge", title: "Judge, Louisiana Science and Engineering Fair (Senior Division)",
@@ -1197,6 +1263,7 @@ window.LAB_DATA = {
         org: "Md Shafikul Islam", year: "2025" }
     ]
   },
+
 
   /* ---------------------------------------------------------------------- */
   /*  GALLERY                                                               */
