@@ -92,8 +92,8 @@ window.LAB_DATA = {
     moments: [
       { image: "assets/images/gal-informs-2025-runnerup.webp", label: "Recognition",
         caption: "Runner-up, INFORMS 2025 Stakeholder Engagement Data Challenge" },
-      { image: "assets/images/gal-discover-day-quantum-am.webp", label: "Undergraduate Research",
-        caption: "Measurement-guided additive manufacturing, LSU Discover Day" },
+      { image: "assets/images/gal-erc-visit-group.webp", label: "Outreach",
+        caption: "Engineering Residential College students visit ASTRA Lab, Fall 2026" },
       { image: "assets/images/gal-industry-visit-rollforming.webp", label: "Industry Engagement",
         caption: "Visiting a metal roll-forming production line" },
       { image: "assets/images/gal-site-visit-lafourche.webp", label: "Field Work",
@@ -120,6 +120,7 @@ window.LAB_DATA = {
   /* ---------------------------------------------------------------------- */
   // type: paper | award | grant | talk | milestone | people   (sets the tag colour)
   news: [
+    { date: "Nov 2026", type: "people", text: "Students from LSU’s Engineering Residential College (ERC) visited ASTRA Lab for hands-on demonstrations of robot learning, Meta Quest 3 teleoperation of a robotic arm, and robotic wire arc additive manufacturing." },
     { date: "Sep 2026", type: "milestone", text: "Saifur Rahman Tushar successfully defended his M.S. thesis, “Thermo-Physics-Informed Transfer Learning for Fatigue-Life Prediction across Metallic Alloys using Infrared Thermography.”" },
     { date: "Aug 2026", type: "milestone", text: "Md Shafikul Islam earned his M.S. in Industrial Engineering (thesis option) at LSU with the thesis “Trustworthy Artificial Intelligence for Real-Time Quality Assurance in Additive Manufacturing.”" },
     { date: "Jun 2026", type: "talk", text: "Entropy-aware model predictive control for transient quality mitigation in metal additive manufacturing presented at the LSU Control Systems Symposium." },
@@ -1171,6 +1172,8 @@ window.LAB_DATA = {
     // Lab director. kind: review | committee | judge | outreach | organizing
     // TODO add journal reviewing, editorial boards, committees and session chairs here.
     director: [
+      { kind: "outreach", title: "Hosted Engineering Residential College (ERC) students at ASTRA Lab",
+        org: "Robot learning, VR teleoperation & robotic WAAM demonstrations, LSU", year: "Fall 2026", image: "assets/images/gal-erc-visit-robot-demo.webp" },
       { kind: "outreach", title: "Engaging prospective and current students at LSU College of Engineering events",
         org: "Louisiana State University", year: "", image: "assets/images/gal-lsu-student-engagement.webp" },
       { kind: "judge", title: "Judge, student research poster competition",
@@ -1273,6 +1276,14 @@ window.LAB_DATA = {
       caption: "Site visit with collaborators at a Lafourche Parish water district treatment plant" },
 
     // ---- Outreach & service ----
+    { image: "assets/images/gal-erc-visit-group.webp", category: "outreach",
+      caption: "Engineering Residential College (ERC) students visit ASTRA Lab, Fall 2026" },
+    { image: "assets/images/gal-erc-visit-robot-demo.webp", category: "outreach",
+      caption: "Dr. Bappy walks ERC students through a robot-learning experiment on a Seeed Studio arm" },
+    { image: "assets/images/gal-erc-visit-vr-teleop.webp", category: "outreach",
+      caption: "An ERC student teleoperates a robotic arm with a Meta Quest 3 headset" },
+    { image: "assets/images/gal-erc-visit-waam.webp", category: "outreach",
+      caption: "ERC students tour the robotic wire arc additive manufacturing cell" },
     { image: "assets/images/gal-lsu-student-engagement.webp", category: "outreach",
       caption: "Meeting students at an LSU College of Engineering event" },
     { image: "assets/images/gal-poster-judging.webp", category: "outreach",
